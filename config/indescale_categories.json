@@ -64,7 +64,7 @@
       "categories": [
         { "nom": "Home cinéma / salle de projection privée", "ticket": "30 000 – 200 000 €", "public_cible": "Propriétaires villa / résidence secondaire +1 M€", "requete_scraping": "installateur home cinéma", "liste_figee": true },
         { "nom": "Salle de sport / home gym", "ticket": "20 000 – 150 000 €", "public_cible": "Fortunés, passionnés fitness/longévité", "requete_scraping": "aménagement home gym domicile" },
-        { "nom": "Spa intérieur / hammam / piscine intérieure", "ticket": "30 000 – 300 000 €", "public_cible": "Propriétaires villa, bien-être premium", "requete_scraping": "spa hammam intérieur sur-mesure" },
+        { "nom": "Spa intérieur / hammam / piscine intérieure", "ticket": "30 000 – 300 000 €", "public_cible": "Propriétaires villa, bien-être premium", "requete_scraping": "spa hammam intérieur sur-mesure", "liste_figee": true },
         { "nom": "Golf simulateur indoor", "ticket": "30 000 – 100 000 €", "public_cible": "Dirigeants, golfeurs aisés", "requete_scraping": "simulateur de golf indoor installation" },
         { "nom": "Domotique luxe intégrée (Crestron, KNX)", "ticket": "50 000 – 300 000 €", "public_cible": "Propriétaires villa neuve / rénovation lourde", "requete_scraping": "intégrateur domotique luxe Crestron KNX" },
         { "nom": "Ascenseur privatif de villa", "ticket": "25 000 – 80 000 €", "public_cible": "Propriétaires villa, seniors aisés", "requete_scraping": "ascenseur privatif maison" },
