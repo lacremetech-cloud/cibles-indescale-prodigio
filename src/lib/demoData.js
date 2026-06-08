@@ -7,6 +7,11 @@
 import { PRODIGIO_PROSPECTS } from './prodigioData'
 import { CINEMA_PROSPECTS } from './cinemaData'
 import { SPA_HAMMAM_PISCINE_PROSPECTS } from './spaHammamPiscineData'
+import { GOLF_SIMULATEUR_PROSPECTS } from './golfSimulateurData'
+import { HOME_GYM_PROSPECTS } from './homeGymData'
+import { DOMOTIQUE_LUXE_PROSPECTS } from './domotiqueLuxeData'
+import { ASCENSEUR_PRIVATIF_PROSPECTS } from './ascenseurPrivatifData'
+import { CRYOTHERAPIE_PROSPECTS } from './cryotherapieData'
 
 let _id = 0
 const id = () => 'demo-' + (++_id)
@@ -50,7 +55,17 @@ function todayPlus(days) {
 export function seedProspects() {
   // INDESCALE = démo fictive ; PRODIGIO = vraies données du fichier maître.
   // Copie profonde pour que le store mémoire soit mutable sans toucher la source.
-  return [...DEMO_PROSPECTS, ...CINEMA_PROSPECTS, ...SPA_HAMMAM_PISCINE_PROSPECTS, ...PRODIGIO_PROSPECTS].map(p => ({
+  return [
+    ...DEMO_PROSPECTS,
+    ...CINEMA_PROSPECTS,
+    ...SPA_HAMMAM_PISCINE_PROSPECTS,
+    ...GOLF_SIMULATEUR_PROSPECTS,
+    ...HOME_GYM_PROSPECTS,
+    ...DOMOTIQUE_LUXE_PROSPECTS,
+    ...ASCENSEUR_PRIVATIF_PROSPECTS,
+    ...CRYOTHERAPIE_PROSPECTS,
+    ...PRODIGIO_PROSPECTS,
+  ].map(p => ({
     qualification: '', date_relance: null, ne_plus_contacter: false, data: {}, ...p
   }))
 }
