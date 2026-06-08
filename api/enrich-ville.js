@@ -43,9 +43,10 @@ export default async function handler(req, res) {
         portable_dirigeant: '', email: '', email_dirigeant: '', linkedin_dirigeant: '',
         source: 'google_places' + (dir ? '+recherche_entreprises' : '')
       }
-      // 3) Connecteur B2B (portable + email du dirigeant) — seulement si clé présente.
-      const b2b = await enrichB2B(base)
-      Object.assign(base, b2b)
+      // 3) Contact du dirigeant — stack le moins cher :
+      //    Pappers (option, données enrichies) → email du site officiel (gratuit) → connecteur B2B (option).
+      const contact = await enrichContact(base)
+      Object.assign(base, contact)
       prospects.push(base)
     }
 
@@ -129,22 +130,74 @@ async function rechercheEntreprise(nom, ville) {
   }
 }
 
-// ── Connecteur B2B configurable (Dropcontact par défaut, Kaspr en option) ──
-// Sans clé → renvoie des champs vides. JAMAIS d'invention de données (brief §11).
-async function enrichB2B(prospect) {
-  const provider = process.env.B2B_CONNECTOR || 'dropcontact'
-  const empty = { email: '', email_dirigeant: '', portable_dirigeant: '', linkedin_dirigeant: '' }
+// ── Pipeline contact : du moins cher au plus cher. JAMAIS d'invention (brief §11). ──
+async function enrichContact(p) {
+  const patch = {}
+  let src = []
 
-  if (provider === 'dropcontact' && process.env.DROPCONTACT_API_KEY) {
-    // TODO (à activer avec ta clé) : POST https://api.dropcontact.io/batch
-    // → email pro vérifié + LinkedIn du dirigeant. Renseigner email_dirigeant / linkedin_dirigeant.
-    return empty
+  // a) Pappers (option) — données dirigeant enrichies + email/tél si publiés. 100 crédits gratuits.
+  if (process.env.PAPPERS_API_KEY && p.siren) {
+    const pap = await enrichPappers(p.siren)
+    if (pap) {
+      if (!p.dirigeant_principal && pap.dirigeant) patch.dirigeant_principal = pap.dirigeant
+      if (pap.email) patch.email_dirigeant = pap.email
+      if (pap.telephone && !p.telephone) patch.telephone = pap.telephone
+      src.push('pappers')
+    }
   }
+
+  // b) Email du site officiel (GRATUIT) — page d'accueil / contact / mentions légales.
+  if (!patch.email_dirigeant && !p.email && p.site_web) {
+    const mail = await scrapeWebsiteEmail(p.site_web)
+    if (mail) { patch.email = mail; src.push('site_officiel') }
+  }
+
+  // c) Connecteur B2B payant (OPTION) — uniquement le portable direct, que les sources gratuites
+  //    ne donnent pas. Activé seulement si une clé est présente.
+  const provider = process.env.B2B_CONNECTOR
   if (provider === 'kaspr' && process.env.KASPR_API_KEY) {
-    // TODO (à activer avec ta clé) : API Kaspr → portable direct du décideur + email.
-    return empty
+    // TODO (avec ta clé Kaspr) : portable direct du décideur → patch.portable_dirigeant.
+  } else if (provider === 'dropcontact' && process.env.DROPCONTACT_API_KEY) {
+    // TODO (avec ta clé Dropcontact) : email pro vérifié → patch.email_dirigeant.
   }
-  return empty
+
+  if (src.length) patch.source = p.source + '+' + src.join('+')
+  return patch
+}
+
+// Pappers v2 — fiche entreprise par SIREN (dirigeant, et email/tél s'ils sont publiés).
+async function enrichPappers(siren) {
+  try {
+    const url = `https://api.pappers.fr/v2/entreprise?api_token=${process.env.PAPPERS_API_KEY}&siren=${siren}`
+    const r = await fetch(url)
+    if (!r.ok) return null
+    const j = await r.json()
+    const d = j.representants?.[0] || j.dirigeants?.[0]
+    return {
+      dirigeant: d ? [d.prenom, d.nom].filter(Boolean).join(' ').trim() || d.nom_complet || '' : '',
+      email: j.email || '',
+      telephone: j.telephone || ''
+    }
+  } catch { return null }
+}
+
+// Extraction d'un email depuis le site officiel — best-effort, jamais inventé.
+async function scrapeWebsiteEmail(siteWeb) {
+  const base = siteWeb.startsWith('http') ? siteWeb : 'https://' + siteWeb
+  const pages = [base, base.replace(/\/$/, '') + '/contact', base.replace(/\/$/, '') + '/mentions-legales']
+  for (const url of pages) {
+    try {
+      const r = await fetch(url, { signal: AbortSignal.timeout(6000), redirect: 'follow' })
+      if (!r.ok) continue
+      const html = await r.text()
+      const found = (html.match(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/gi) || [])
+        .map(e => e.toLowerCase())
+        .filter(e => !/(\.png|\.jpg|\.jpeg|\.gif|\.webp|\.svg)$/.test(e))
+        .filter(e => !/(noreply|no-reply|sentry|wixpress|example|@2x)/.test(e))
+      if (found.length) return found[0]
+    } catch { /* page absente / timeout : on continue */ }
+  }
+  return ''
 }
 
 const sleep = ms => new Promise(r => setTimeout(r, ms))

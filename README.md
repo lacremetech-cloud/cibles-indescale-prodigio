@@ -29,12 +29,20 @@ Ouvre http://localhost:5173 → tu navigues, tu testes le CRM (statuts, notes, r
 3. Crée une clé API (restreins-la à Places API).
 4. Mets-la dans `GOOGLE_PLACES_API_KEY` (variable **serveur**, jamais exposée).
 
-### c. Connecteur B2B (optionnel — atteindre le dirigeant)
-Pour récupérer **email pro + portable + LinkedIn** du dirigeant, branche ta propre clé :
-- **Dropcontact** (défaut, le moins cher, RGPD) : `B2B_CONNECTOR=dropcontact` + `DROPCONTACT_API_KEY=…`
-- **Kaspr** (portables directs des décideurs) : `B2B_CONNECTOR=kaspr` + `KASPR_API_KEY=…`
+### c. Stack le moins cher pour atteindre le dirigeant (démarrage à 0 €)
+Par défaut, l'enrichissement utilise **uniquement des sources gratuites / quasi gratuites** :
+- **Google Maps/Places** → entreprise (nom, adresse, tél standard, site, avis).
+- **API Recherche d'entreprises (gouv)** → **nom du dirigeant** + SIREN — **gratuit**.
+- **Email** → extraction de la page contact / mentions légales du **site officiel** (gratuit, best-effort).
+- **LinkedIn** → lien de recherche Google pré-rempli (dirigeant + entreprise), gratuit.
 
-Sans clé, l'app fonctionne : email/portable restent vides, LinkedIn = lien de recherche pré-rempli. **Aucune donnée n'est jamais inventée.**
+**Optionnel — Pappers** (`PAPPERS_API_KEY`) : 100 crédits gratuits à l'inscription, enrichit le dirigeant (mandats, comptes, email/tél si publiés).
+
+**Optionnel — connecteur B2B payant**, *uniquement pour le portable perso du dirigeant* (aucune source gratuite ne le donne) :
+- **Kaspr** (mobile direct) : `B2B_CONNECTOR=kaspr` + `KASPR_API_KEY=…`
+- **Dropcontact** (email pro vérifié, RGPD) : `B2B_CONNECTOR=dropcontact` + `DROPCONTACT_API_KEY=…`
+
+Sans aucune de ces clés, l'app fonctionne et démarre à **0 €** ; les champs non trouvés restent vides. **Aucune donnée n'est jamais inventée.**
 
 ### Variables d'environnement
 Copie `.env.example` → `.env` (local) et renseigne les mêmes variables côté **Vercel** (Project Settings → Environment Variables). Les `VITE_*` sont publiques (front) ; les autres sont **secrètes** (fonctions serverless).
