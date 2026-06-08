@@ -1,161 +1,390 @@
+/* ════════════════════════════════════════════════════════════════════════════
+   DIRECTION ARTISTIQUE — deux univers de marque pilotés par [data-brand]
+   · INDESCALE : dark mode tech / growth (noir profond + glow violet + bold)
+   · PRODIGIO  : luxe éditorial (noir & blanc + serif + retenue + champagne)
+   Le CRM en dessous est le même moteur, habillé aux couleurs de chaque marque.
+   ════════════════════════════════════════════════════════════════════════════ */
+
 :root {
-  --bg: #0b1220;
-  --bg-2: #0e1525;
-  --card: #131c2e;
-  --card-2: #182338;
-  --line: #243150;
-  --text: #e7ecf5;
-  --muted: #93a2bf;
-  --accent: #5b8def;
-  --green: #22c55e;
-  --green-bg: #16351f;
-  --grey-bg: #23262b;
-  --danger: #f87171;
-  --warn: #f59e0b;
-  --radius: 14px;
+  /* Variables de base (neutres) — surchargées par marque plus bas. */
+  --bg: #0a0a0c;
+  --bg-2: #0d0d10;
+  --card: rgba(255, 255, 255, .04);
+  --card-2: rgba(255, 255, 255, .07);
+  --line: rgba(255, 255, 255, .12);
+  --text: #f3f1f6;
+  --muted: #a9a6b4;
+  --accent: #7c5cff;
+  --accent-2: #b69cff;
+  --on-accent: #0a0612;
+
+  --green: #34d399;
+  --green-bg: rgba(52, 211, 153, .12);
+  --grey-bg: rgba(255, 255, 255, .04);
+  --danger: #fb7185;
+  --warn: #fbbf24;
+
+  --display: 'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --body: 'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --radius: 16px;
+  --radius-sm: 12px;
+  --pill: 999px;
+  --shadow: 0 18px 50px -20px rgba(0, 0, 0, .7);
+  --shadow-soft: 0 10px 30px -16px rgba(0, 0, 0, .6);
+  --ease: cubic-bezier(.22, .61, .36, 1);
 }
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body, #root { height: 100%; margin: 0; }
 body {
-  background: linear-gradient(180deg, var(--bg), var(--bg-2));
   color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--body);
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 a { color: inherit; }
 
-.app { max-width: 980px; margin: 0 auto; padding: 0 14px 96px; }
+/* ── Conteneur racine de marque ─────────────────────────────────────────────── */
+.shell {
+  position: relative;
+  min-height: 100%;
+  background: var(--bg);
+  background: radial-gradient(120% 90% at 50% -10%, var(--bg-2), var(--bg) 60%);
+  overflow-x: hidden;
+  transition: background .4s var(--ease);
+}
+.glow { display: none; }
+.app { position: relative; z-index: 1; max-width: 1040px; margin: 0 auto; padding: 0 16px 110px; }
 
-/* ── Header ──────────────────────────────────────────────────────────────── */
+/* ════════════ UNIVERS INDESCALE — dark / violet / growth ════════════════════ */
+.shell[data-brand="indescale"] {
+  --bg: #0A0612;
+  --bg-2: #0D0A14;
+  --card: rgba(255, 255, 255, .035);
+  --card-2: rgba(180, 156, 255, .08);
+  --line: rgba(180, 156, 255, .16);
+  --text: #F3F0FA;
+  --muted: #C9C4D4;
+  --accent: #7C5CFF;
+  --accent-2: #B69CFF;
+  --on-accent: #ffffff;
+  --display: 'Clash Display', 'General Sans', sans-serif;
+  --body: 'General Sans', -apple-system, sans-serif;
+  --radius: 18px;
+  --radius-sm: 14px;
+}
+/* Halo violet diffus en arrière-plan */
+.shell[data-brand="indescale"] .glow {
+  display: block; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(60% 45% at 78% 8%, rgba(124, 92, 255, .28), transparent 70%),
+    radial-gradient(55% 40% at 12% 30%, rgba(182, 156, 255, .14), transparent 70%);
+  filter: saturate(1.1);
+}
+
+/* ════════════ UNIVERS PRODIGIO — noir & blanc éditorial / luxe ══════════════ */
+.shell[data-brand="prodigio"] {
+  --bg: #0B0B0C;
+  --bg-2: #100F10;
+  --card: rgba(255, 255, 255, .025);
+  --card-2: rgba(255, 255, 255, .045);
+  --line: rgba(255, 255, 255, .13);
+  --text: #F4F2EC;
+  --muted: #9E9A92;
+  --accent: #C9A66B;      /* champagne discret */
+  --accent-2: #E7DCC8;
+  --on-accent: #0B0B0C;
+  --display: 'Playfair Display', Georgia, serif;
+  --body: 'General Sans', -apple-system, sans-serif;
+  --radius: 5px;          /* sobre, architectural */
+  --radius-sm: 4px;
+  --green: #b9c4a8;
+}
+.shell[data-brand="prodigio"] {
+  background:
+    radial-gradient(110% 80% at 50% -20%, #141312, #0B0B0C 65%);
+}
+
+/* ── Header / topbar ────────────────────────────────────────────────────────── */
 .topbar {
   position: sticky; top: 0; z-index: 20;
   display: flex; align-items: center; gap: 12px;
-  padding: 14px 14px; margin: 0 -14px 14px;
-  background: rgba(11,18,32,.86); backdrop-filter: blur(10px);
+  padding: 15px 16px; margin: 0 -16px 18px;
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  backdrop-filter: blur(14px) saturate(1.2);
   border-bottom: 1px solid var(--line);
 }
 .topbar .back {
   border: 1px solid var(--line); background: var(--card);
-  border-radius: 10px; padding: 8px 12px; font-size: 15px; cursor: pointer; color: var(--text);
+  border-radius: var(--radius-sm); padding: 9px 13px; font-size: 16px; cursor: pointer; color: var(--text);
+  transition: border-color .2s var(--ease), background .2s var(--ease), transform .15s var(--ease);
 }
-.topbar h1 { font-size: 17px; margin: 0; font-weight: 650; flex: 1; line-height: 1.2; }
-.topbar .sub { color: var(--muted); font-size: 12px; font-weight: 400; display: block; }
+.topbar .back:hover { border-color: var(--accent); }
+.topbar .back:active { transform: scale(.94); }
+.topbar h1 { font-family: var(--display); font-size: 19px; margin: 0; font-weight: 650; flex: 1; line-height: 1.15; letter-spacing: -.01em; }
+.topbar .sub { color: var(--muted); font-size: 12px; font-weight: 400; display: block; font-family: var(--body); letter-spacing: 0; margin-top: 2px; }
+.shell[data-brand="prodigio"] .topbar h1 { font-weight: 600; letter-spacing: .01em; }
+
 .pill {
-  font-size: 11px; padding: 4px 9px; border-radius: 999px;
-  background: var(--card-2); border: 1px solid var(--line); color: var(--muted); white-space: nowrap;
+  font-size: 11px; padding: 5px 11px; border-radius: var(--pill);
+  background: var(--card-2); border: 1px solid var(--line); color: var(--muted);
+  white-space: nowrap; text-decoration: none;
+  transition: border-color .2s var(--ease), color .2s var(--ease);
 }
-.pill.demo { color: var(--warn); border-color: #5a4420; }
+.pill:hover { border-color: var(--accent); color: var(--text); }
+.pill.demo { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 40%, transparent); }
+.shell[data-brand="prodigio"] .pill {
+  border-radius: 2px; text-transform: uppercase; letter-spacing: .14em; font-size: 10px;
+}
 
-/* ── Home (2 portes) ─────────────────────────────────────────────────────── */
-.home { padding-top: 8vh; text-align: center; }
-.home .brand { font-size: 13px; letter-spacing: .28em; color: var(--muted); margin-bottom: 6px; }
-.home h2 { font-size: 24px; margin: 0 0 28px; font-weight: 650; }
-.doors { display: grid; gap: 16px; grid-template-columns: 1fr 1fr; }
-@media (max-width: 560px) { .doors { grid-template-columns: 1fr; } }
+/* ── Accueil : les deux portes ──────────────────────────────────────────────── */
+.home { padding-top: 9vh; text-align: center; }
+.home-eyebrow {
+  font-size: 12px; letter-spacing: .34em; color: var(--muted); margin-bottom: 14px;
+  text-transform: uppercase;
+}
+.home-title {
+  font-family: 'Clash Display', sans-serif; font-size: clamp(30px, 7vw, 52px);
+  margin: 0; font-weight: 700; line-height: 1.02; letter-spacing: -.02em;
+}
+.home-lead { color: var(--muted); font-size: 16px; margin: 14px 0 34px; }
+
+.doors { display: grid; gap: 18px; grid-template-columns: 1fr 1fr; }
+@media (max-width: 640px) { .doors { grid-template-columns: 1fr; } }
+
 .door {
+  position: relative; overflow: hidden;
   text-align: left; cursor: pointer; text-decoration: none;
-  background: linear-gradient(160deg, var(--card), var(--card-2));
-  border: 1px solid var(--line); border-radius: 20px; padding: 24px;
-  transition: transform .12s ease, border-color .12s ease;
+  border-radius: 22px; min-height: 320px;
+  display: flex; align-items: flex-end;
+  box-shadow: var(--shadow);
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+  animation: fadeUp .5s var(--ease) both;
 }
-.door:hover { transform: translateY(-3px); border-color: var(--accent); }
-.door h3 { margin: 0 0 6px; font-size: 22px; }
-.door p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
-.door .tag { display: inline-block; margin-top: 16px; font-size: 12px; color: var(--accent); }
+.door:hover { transform: translateY(-6px); box-shadow: 0 30px 70px -28px rgba(0, 0, 0, .8); }
+.door-inner { position: relative; z-index: 2; padding: 28px; width: 100%; }
+.door-eyebrow { font-size: 11px; letter-spacing: .26em; text-transform: uppercase; opacity: .85; margin-bottom: 12px; }
+.door-name { line-height: 1; margin-bottom: 14px; }
+.door-desc { font-size: 14px; line-height: 1.55; margin: 0; }
+.door-cta { display: inline-block; margin-top: 20px; font-size: 13px; font-weight: 600; }
 
-/* ── Listes navigation ───────────────────────────────────────────────────── */
-.grid { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
+/* Porte INDESCALE — fond noir + glow violet + Clash Display */
+.door-indescale {
+  background: linear-gradient(165deg, #140C28 0%, #0A0612 70%);
+  border: 1px solid rgba(180, 156, 255, .2);
+}
+.door-indescale .door-aura {
+  position: absolute; inset: 0; z-index: 1;
+  background: radial-gradient(70% 55% at 85% 12%, rgba(124, 92, 255, .55), transparent 65%);
+}
+.door-indescale .door-eyebrow { color: #B69CFF; }
+.door-indescale .door-name {
+  font-family: 'Clash Display', sans-serif; font-weight: 700; font-size: 44px; letter-spacing: -.02em;
+  background: linear-gradient(92deg, #FFFFFF, #B69CFF);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.door-indescale .door-desc { color: #C9C4D4; }
+.door-indescale .door-cta { color: #B69CFF; }
+
+/* Porte PRODIGIO — noir & blanc éditorial + serif + filet champagne */
+.door-prodigio {
+  background: linear-gradient(180deg, #161514 0%, #0B0B0C 100%);
+  border: 1px solid rgba(255, 255, 255, .14);
+}
+.door-prodigio::before {
+  content: ""; position: absolute; inset: 0; z-index: 1; opacity: .5;
+  background:
+    linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, .5)),
+    repeating-linear-gradient(115deg, rgba(255, 255, 255, .03) 0 2px, transparent 2px 7px);
+}
+.door-prodigio .door-eyebrow { color: #C9A66B; letter-spacing: .28em; }
+.door-prodigio .door-name {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 46px; color: #F4F2EC; letter-spacing: .005em;
+}
+.door-prodigio .door-desc { color: #B7B2A8; font-style: italic; }
+.door-prodigio .door-cta { color: #E7DCC8; text-transform: uppercase; letter-spacing: .16em; font-size: 11px; }
+.door-prodigio:hover { border-color: rgba(201, 166, 107, .5); }
+
+.home-foot { margin-top: 34px; }
+.home-banner { margin: 26px auto 0; max-width: 620px; text-align: left; }
+
+/* ── Listes de navigation (secteurs, catégories, villes) ────────────────────── */
+.grid { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
 @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
 .tile {
   display: block; text-decoration: none; cursor: pointer;
   background: var(--card); border: 1px solid var(--line);
-  border-radius: var(--radius); padding: 16px;
-  transition: border-color .12s ease, transform .12s ease;
+  border-radius: var(--radius); padding: 18px;
+  box-shadow: var(--shadow-soft);
+  transition: border-color .25s var(--ease), transform .25s var(--ease), background .25s var(--ease);
+  animation: fadeUp .45s var(--ease) both;
 }
-.tile:hover { border-color: var(--accent); transform: translateY(-2px); }
-.tile .t-title { font-weight: 600; font-size: 16px; }
-.tile .t-meta { color: var(--muted); font-size: 13px; margin-top: 6px; }
+.tile:hover { border-color: var(--accent); transform: translateY(-3px); background: var(--card-2); }
+.tile .t-title { font-family: var(--display); font-weight: 600; font-size: 17px; letter-spacing: -.01em; }
+.tile .t-meta { color: var(--muted); font-size: 13px; margin-top: 7px; line-height: 1.5; }
 .tile .t-meta b { color: var(--text); font-weight: 600; }
-.section-label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; margin: 18px 0 8px; }
+.shell[data-brand="prodigio"] .tile .t-title { font-weight: 600; letter-spacing: .005em; }
 
-/* ── CRM ─────────────────────────────────────────────────────────────────── */
-.toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+.section-label {
+  color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .16em;
+  margin: 24px 0 10px; font-weight: 600;
+}
+
+/* ── Barre d'outils CRM ─────────────────────────────────────────────────────── */
+.toolbar { display: flex; flex-wrap: wrap; gap: 9px; align-items: center; margin-bottom: 12px; }
 .toolbar select, .toolbar input {
   background: var(--card); border: 1px solid var(--line); color: var(--text);
-  border-radius: 10px; padding: 9px 11px; font-size: 14px; outline: none;
+  border-radius: var(--radius-sm); padding: 10px 12px; font-size: 14px; outline: none; font-family: var(--body);
+  transition: border-color .2s var(--ease);
 }
+.toolbar select:focus, .toolbar input:focus { border-color: var(--accent); }
 .toolbar .spacer { flex: 1; }
+
 .btn {
   border: 1px solid var(--line); background: var(--card); color: var(--text);
-  border-radius: 10px; padding: 9px 13px; font-size: 14px; cursor: pointer; font-weight: 550;
+  border-radius: var(--radius-sm); padding: 10px 15px; font-size: 14px; cursor: pointer; font-weight: 550;
+  font-family: var(--body);
+  transition: transform .15s var(--ease), border-color .2s var(--ease), background .2s var(--ease), filter .2s var(--ease);
 }
-.btn.primary { background: var(--accent); border-color: var(--accent); color: #06101f; }
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: transparent; color: var(--on-accent); font-weight: 650; }
+.btn.primary:hover { filter: brightness(1.08); border-color: transparent; }
 .btn.ghost { background: transparent; }
-.btn:active { transform: scale(.97); }
-
-.progress { height: 8px; border-radius: 999px; background: var(--card-2); overflow: hidden; margin: 4px 0 14px; }
-.progress > span { display: block; height: 100%; background: var(--green); transition: width .3s ease; }
-.progress-label { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
-
-.cards { display: grid; gap: 12px; }
-.card {
-  border: 1px solid var(--line); border-left: 4px solid var(--accent);
-  border-radius: var(--radius); padding: 14px; background: var(--card);
+.btn:active { transform: scale(.96); }
+/* INDESCALE : primaire en pill, dégradé violet lumineux */
+.shell[data-brand="indescale"] .btn.primary {
+  border-radius: var(--pill);
+  background: linear-gradient(95deg, #7C5CFF, #B69CFF);
+  box-shadow: 0 10px 30px -10px rgba(124, 92, 255, .6);
 }
+/* PRODIGIO : boutons rectangulaires à filet fin translucide, fond transparent */
+.shell[data-brand="prodigio"] .btn {
+  border-radius: 2px; text-transform: uppercase; letter-spacing: .12em; font-size: 12px; font-weight: 500;
+}
+.shell[data-brand="prodigio"] .btn.primary {
+  background: transparent; color: var(--accent-2); border: 1px solid var(--accent);
+}
+.shell[data-brand="prodigio"] .btn.primary:hover { background: color-mix(in srgb, var(--accent) 14%, transparent); filter: none; }
+
+/* ── Progression ────────────────────────────────────────────────────────────── */
+.progress { height: 7px; border-radius: var(--pill); background: var(--card-2); overflow: hidden; margin: 6px 0 18px; }
+.progress > span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width .5s var(--ease); }
+.progress-label { font-size: 12px; color: var(--muted); margin-bottom: 5px; letter-spacing: .02em; }
+
+/* ── Cartes prospect ────────────────────────────────────────────────────────── */
+.cards { display: grid; gap: 14px; }
+.card {
+  position: relative;
+  border: 1px solid var(--line); border-left: 3px solid var(--accent);
+  border-radius: var(--radius); padding: 16px; background: var(--card);
+  box-shadow: var(--shadow-soft);
+  transition: transform .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease);
+  animation: fadeUp .45s var(--ease) both;
+}
+.card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
 .card.won { background: var(--green-bg); }
 .card.lost { background: var(--grey-bg); opacity: .72; }
 .card.opp { filter: grayscale(.4); opacity: .6; }
 .card .c-head { display: flex; align-items: flex-start; gap: 10px; }
-.card .c-name { font-size: 17px; font-weight: 650; line-height: 1.25; flex: 1; }
+.card .c-name { font-family: var(--display); font-size: 18px; font-weight: 650; line-height: 1.22; flex: 1; letter-spacing: -.01em; }
+.shell[data-brand="prodigio"] .card .c-name { font-weight: 600; letter-spacing: .005em; }
 .card .c-rating { font-size: 12px; color: var(--warn); white-space: nowrap; }
-.card .c-dir { color: var(--muted); font-size: 13px; margin-top: 2px; }
-.card .c-dir b { color: var(--text); }
-.card .c-addr { color: var(--muted); font-size: 12px; margin-top: 6px; }
+.card .c-dir { color: var(--muted); font-size: 13px; margin-top: 4px; }
+.card .c-dir b { color: var(--text); font-weight: 600; }
+.card .c-addr { color: var(--muted); font-size: 12px; margin-top: 7px; line-height: 1.45; }
 
-.actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 14px; }
 .act {
   display: inline-flex; align-items: center; gap: 6px; text-decoration: none;
-  border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; font-size: 14px;
-  background: var(--card-2); color: var(--text); font-weight: 550;
+  border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 11px 14px; font-size: 14px;
+  background: var(--card-2); color: var(--text); font-weight: 550; min-height: 44px;
+  transition: border-color .2s var(--ease), transform .15s var(--ease), background .2s var(--ease);
 }
-.act.call-dir { background: var(--green); border-color: var(--green); color: #04210f; font-weight: 700; }
-.act.disabled { opacity: .4; pointer-events: none; }
+.act:hover { border-color: var(--accent); }
+.act:active { transform: scale(.97); }
+/* Appel du dirigeant = action prioritaire, mise en avant (vert lumineux) */
+.act.call-dir {
+  background: linear-gradient(95deg, var(--green), color-mix(in srgb, var(--green) 70%, #ffffff));
+  border-color: transparent; color: #062013; font-weight: 700;
+  box-shadow: 0 10px 26px -12px color-mix(in srgb, var(--green) 80%, transparent);
+}
+.act.disabled { opacity: .38; pointer-events: none; }
+.shell[data-brand="prodigio"] .act { border-radius: 2px; }
+.shell[data-brand="prodigio"] .act.call-dir { color: #1a2410; }
 
-.meta-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; align-items: center; }
-.meta-row label { font-size: 11px; color: var(--muted); display: block; margin-bottom: 3px; }
+/* ── Champs CRM éditables ───────────────────────────────────────────────────── */
+.meta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; align-items: center; }
+.meta-row label { font-size: 11px; color: var(--muted); display: block; margin-bottom: 4px; letter-spacing: .03em; }
 .field { display: flex; flex-direction: column; }
 .field select, .field input {
-  background: var(--bg-2); border: 1px solid var(--line); color: var(--text);
-  border-radius: 9px; padding: 7px 9px; font-size: 13px; min-width: 120px;
+  background: color-mix(in srgb, var(--bg) 60%, transparent); border: 1px solid var(--line); color: var(--text);
+  border-radius: var(--radius-sm); padding: 8px 10px; font-size: 13px; min-width: 120px; font-family: var(--body);
+  transition: border-color .2s var(--ease);
 }
-.badge { font-size: 11px; padding: 3px 8px; border-radius: 999px; font-weight: 600; }
-.badge.suspect { background: #3a1c1c; color: var(--danger); border: 1px solid #5a2424; }
-.badge.relance { background: #3a2333; color: #f9a8d4; border: 1px solid #5a2440; }
-.badge.opp { background: #2b2f36; color: var(--muted); border: 1px solid var(--line); }
+.field select:focus, .field input:focus { border-color: var(--accent); outline: none; }
 
-.notes { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 10px; }
-.notes .add { display: flex; gap: 8px; }
+/* ── Badges & pastilles de statut (douces, lisibles sur fond sombre) ────────── */
+.badge { font-size: 11px; padding: 4px 9px; border-radius: var(--pill); font-weight: 600; letter-spacing: .01em; }
+.badge.suspect { background: color-mix(in srgb, var(--danger) 18%, transparent); color: var(--danger); border: 1px solid color-mix(in srgb, var(--danger) 40%, transparent); }
+.badge.relance { background: color-mix(in srgb, #f9a8d4 18%, transparent); color: #f9a8d4; border: 1px solid color-mix(in srgb, #f9a8d4 38%, transparent); }
+.badge.opp { background: var(--card-2); color: var(--muted); border: 1px solid var(--line); }
+.shell[data-brand="prodigio"] .badge { border-radius: 2px; text-transform: uppercase; letter-spacing: .1em; font-size: 10px; font-weight: 500; }
+
+/* ── Notes datées ───────────────────────────────────────────────────────────── */
+.notes { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 12px; }
+.notes .add { display: flex; gap: 9px; }
 .notes textarea {
-  flex: 1; background: var(--bg-2); border: 1px solid var(--line); color: var(--text);
-  border-radius: 9px; padding: 8px; font-size: 13px; resize: vertical; min-height: 38px; font-family: inherit;
+  flex: 1; background: color-mix(in srgb, var(--bg) 60%, transparent); border: 1px solid var(--line); color: var(--text);
+  border-radius: var(--radius-sm); padding: 9px; font-size: 13px; resize: vertical; min-height: 40px; font-family: var(--body);
 }
-.note-item { font-size: 13px; padding: 7px 0; border-bottom: 1px dashed var(--line); }
-.note-item .when { color: var(--muted); font-size: 11px; }
+.notes textarea:focus { border-color: var(--accent); outline: none; }
+.note-item { font-size: 13px; padding: 8px 0; border-bottom: 1px dashed var(--line); line-height: 1.5; }
+.note-item .when { color: var(--muted); font-size: 11px; margin-bottom: 2px; }
 
-/* ── Modal ───────────────────────────────────────────────────────────────── */
-.modal-bg { position: fixed; inset: 0; background: rgba(2,6,14,.7); display: flex; align-items: flex-end; justify-content: center; z-index: 50; }
+/* ── Modale ─────────────────────────────────────────────────────────────────── */
+.modal-bg { position: fixed; inset: 0; background: rgba(0, 0, 0, .68); backdrop-filter: blur(6px); display: flex; align-items: flex-end; justify-content: center; z-index: 50; animation: fade .25s var(--ease) both; }
 @media (min-width: 560px) { .modal-bg { align-items: center; } }
-.modal { background: var(--card); border: 1px solid var(--line); border-radius: 18px 18px 0 0; width: 100%; max-width: 520px; padding: 18px; max-height: 90vh; overflow: auto; }
-@media (min-width: 560px) { .modal { border-radius: 18px; } }
-.modal h3 { margin: 0 0 14px; }
-.modal .field { margin-bottom: 10px; }
-.modal .field input, .modal .field select { width: 100%; padding: 10px; font-size: 15px; }
-.modal .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.modal {
+  background: var(--bg-2); border: 1px solid var(--line);
+  border-radius: 22px 22px 0 0; width: 100%; max-width: 540px; padding: 22px; max-height: 90vh; overflow: auto;
+  box-shadow: var(--shadow); animation: sheetUp .35s var(--ease) both;
+}
+@media (min-width: 560px) { .modal { border-radius: var(--radius); } }
+.modal h3 { font-family: var(--display); margin: 0 0 16px; font-size: 20px; }
+.modal .field { margin-bottom: 11px; }
+.modal .field input, .modal .field select { width: 100%; padding: 11px; font-size: 15px; }
+.modal .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
 
-.empty { text-align: center; color: var(--muted); padding: 40px 16px; }
-.fab { position: fixed; right: 18px; bottom: 18px; z-index: 30; }
-.fab .btn { box-shadow: 0 8px 24px rgba(0,0,0,.4); border-radius: 999px; padding: 14px 18px; font-size: 15px; }
-.banner { background: #1b2740; border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+/* ── Divers ─────────────────────────────────────────────────────────────────── */
+.empty { text-align: center; color: var(--muted); padding: 48px 16px; line-height: 1.6; }
+.fab { position: fixed; right: 20px; bottom: 20px; z-index: 30; }
+.fab .btn { box-shadow: 0 14px 36px -12px rgba(0, 0, 0, .7); border-radius: var(--pill); padding: 15px 20px; font-size: 15px; }
+.shell[data-brand="prodigio"] .fab .btn { border-radius: 3px; }
+
+.banner {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 13px 15px; font-size: 13px; color: var(--muted); margin-bottom: 16px; line-height: 1.55;
+}
 .banner b { color: var(--text); }
+
+/* ── Micro-interactions : apparition en cascade légère ──────────────────────── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes sheetUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
+.doors .door:nth-child(2) { animation-delay: .08s; }
+.cards .card:nth-child(1), .grid .tile:nth-child(1) { animation-delay: .02s; }
+.cards .card:nth-child(2), .grid .tile:nth-child(2) { animation-delay: .06s; }
+.cards .card:nth-child(3), .grid .tile:nth-child(3) { animation-delay: .10s; }
+.cards .card:nth-child(4), .grid .tile:nth-child(4) { animation-delay: .14s; }
+.cards .card:nth-child(5), .grid .tile:nth-child(5) { animation-delay: .18s; }
+.cards .card:nth-child(6), .grid .tile:nth-child(6) { animation-delay: .22s; }
+.cards .card:nth-child(7), .grid .tile:nth-child(7) { animation-delay: .26s; }
+.cards .card:nth-child(8), .grid .tile:nth-child(8) { animation-delay: .30s; }
+.cards .card:nth-child(n+9), .grid .tile:nth-child(n+9) { animation-delay: .34s; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

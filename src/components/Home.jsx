@@ -4,27 +4,47 @@ import { isDemo } from '../lib/dataClient'
 export default function Home() {
   return (
     <div className="home">
-      <div className="brand">PROSPECTION · COLD CALL</div>
-      <h2>Choisis ton activité</h2>
+      <div className="home-eyebrow">PROSPECTION · COLD CALL</div>
+      <h1 className="home-title">Deux univers, un seul moteur</h1>
+      <p className="home-lead">Choisis ta porte d'entrée.</p>
+
       <div className="doors">
-        <Link to="/indescale" className="door">
-          <h3>INDESCALE</h3>
-          <p>Agence marketing premium. Explore un secteur → une catégorie → une ville, et tombe sur une liste de dirigeants prête à appeler.</p>
-          <span className="tag">11 secteurs · enrichissement auto →</span>
+        {/* INDESCALE — dark mode tech / growth */}
+        <Link to="/indescale" className="door door-indescale">
+          <div className="door-aura" aria-hidden="true" />
+          <div className="door-inner">
+            <div className="door-eyebrow">AGENCE MARKETING PREMIUM</div>
+            <div className="door-name">INDESCALE</div>
+            <p className="door-desc">
+              Explore un secteur → une catégorie → une ville, et tombe sur une liste de
+              dirigeants prête à appeler. Enrichissement automatique.
+            </p>
+            <span className="door-cta">Entrer dans l'univers growth →</span>
+          </div>
         </Link>
-        <Link to="/prodigio" className="door">
-          <h3>PRODIGIO</h3>
-          <p>Immobilier de luxe. Tes agences de prestige et marchands de biens, centralisés et rangés par ville.</p>
-          <span className="tag">Agences de luxe · Marchands de biens →</span>
+
+        {/* PRODIGIO — luxe éditorial / immobilier d'exception */}
+        <Link to="/prodigio" className="door door-prodigio">
+          <div className="door-inner">
+            <div className="door-eyebrow">POUR L'IMMOBILIER D'EXCEPTION</div>
+            <div className="door-name">Prodigio</div>
+            <p className="door-desc">
+              Vos agences de prestige et marchands de biens, centralisés et rangés par ville.
+              Le calme, l'espace, la précision.
+            </p>
+            <span className="door-cta">Entrer dans l'univers luxe →</span>
+          </div>
         </Link>
       </div>
-      <div style={{ marginTop: 28 }}>
+
+      <div className="home-foot">
         <Link to="/relances" className="pill">📅 Mes relances du jour (tous secteurs)</Link>
       </div>
+
       {isDemo && (
-        <div className="banner" style={{ marginTop: 22, textAlign: 'left' }}>
-          <b>Mode démo</b> — l'app tourne sans clés API, avec des données d'exemple (fictives, signalées).
-          Branche <b>Supabase</b> + <b>Google Places</b> pour passer en données réelles et persistantes.
+        <div className="banner home-banner">
+          <b>Mode démo</b> — PRODIGIO affiche déjà les 71 prospects réels ; INDESCALE tourne sur
+          des exemples. Branche <b>Supabase</b> + <b>Google Places</b> pour la donnée réelle et persistante.
         </div>
       )}
     </div>
