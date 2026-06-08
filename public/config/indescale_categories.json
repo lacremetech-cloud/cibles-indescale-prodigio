@@ -1,0 +1,171 @@
+{
+  "_meta": {
+    "description": "Configuration des secteurs et catégories INDESCALE pour l'app de prospection. Éditable à la main. Chaque catégorie = un type d'entreprise à prospecter en cold call, démarché en ads. Le champ 'public_cible' sert d'aide au discours commercial, pas au scraping.",
+    "canal_acquisition_par_defaut": "Meta Ads / Google Ads",
+    "villes_par_defaut": ["Montpellier", "Nîmes", "Béziers", "Marseille", "Aix-en-Provence", "Toulon", "Nice", "Lyon", "Toulouse", "Perpignan", "Avignon"]
+  },
+  "secteurs": [
+    {
+      "id": "habitat-exterieur",
+      "nom": "Habitat extérieur & extension",
+      "categories": [
+        { "nom": "Cuisines équipées haut de gamme", "ticket": "15 000 – 60 000 €", "public_cible": "Propriétaires CSP+, primo-rénovateurs", "requete_scraping": "cuisiniste haut de gamme" },
+        { "nom": "Pergolas bioclimatiques", "ticket": "8 500 – 40 000 €", "public_cible": "Propriétaires maison avec terrasse/jardin", "requete_scraping": "pergola bioclimatique installateur" },
+        { "nom": "Piscines", "ticket": "25 000 – 80 000 €", "public_cible": "Propriétaires maison, familles aisées", "requete_scraping": "constructeur de piscine" },
+        { "nom": "Piscines premium (débordement/miroir)", "ticket": "80 000 – 400 000 €", "public_cible": "Propriétaires villa / résidence secondaire", "requete_scraping": "piscine débordement luxe" },
+        { "nom": "Abris de piscine", "ticket": "8 000 – 40 000 €", "public_cible": "Propriétaires de piscine", "requete_scraping": "abri de piscine" },
+        { "nom": "Spas / jacuzzis / spas de nage", "ticket": "8 000 – 30 000 €", "public_cible": "Propriétaires CSP+, bien-être", "requete_scraping": "vente spa jacuzzi" },
+        { "nom": "Maisons autonomes / studios de jardin", "ticket": "20 000 – 100 000 €", "public_cible": "Propriétaires terrain, télétravailleurs, bailleurs", "requete_scraping": "studio de jardin habitable" },
+        { "nom": "Vérandas & extensions vitrées", "ticket": "15 000 – 50 000 €", "public_cible": "Propriétaires maison, familles", "requete_scraping": "véranda extension" },
+        { "nom": "Stores / pergolas toile / brise-soleil", "ticket": "3 000 – 12 000 €", "public_cible": "Propriétaires maison, terrasse", "requete_scraping": "store banne pergola toile" },
+        { "nom": "Portails / clôtures / motorisation", "ticket": "3 000 – 15 000 €", "public_cible": "Propriétaires maison", "requete_scraping": "portail clôture installateur" },
+        { "nom": "Saunas extérieurs / bains nordiques", "ticket": "6 000 – 20 000 €", "public_cible": "Propriétaires CSP+, bien-être", "requete_scraping": "sauna extérieur bain nordique" },
+        { "nom": "Carports solaires / ombrières PV", "ticket": "10 000 – 40 000 €", "public_cible": "Propriétaires, éco + économies", "requete_scraping": "carport solaire ombrière photovoltaïque" },
+        { "nom": "Cuisines d'été extérieures", "ticket": "8 000 – 30 000 €", "public_cible": "Propriétaires maison, art de vivre", "requete_scraping": "cuisine d'été extérieure" },
+        { "nom": "Pool house / orangerie / dépendance", "ticket": "50 000 – 250 000 €", "public_cible": "Propriétaires villa, haut de gamme", "requete_scraping": "pool house construction" },
+        { "nom": "Aménagement paysager haut de gamme", "ticket": "20 000 – 300 000 €", "public_cible": "Propriétaires villa, fortunés", "requete_scraping": "paysagiste haut de gamme" },
+        { "nom": "Court de tennis / padel privatif", "ticket": "40 000 – 120 000 €", "public_cible": "Propriétaires villa, passionnés sport", "requete_scraping": "constructeur court de padel tennis" }
+      ]
+    },
+    {
+      "id": "batiment-renovation",
+      "nom": "Bâtiment & rénovation",
+      "categories": [
+        { "nom": "Constructeurs de maisons individuelles (CCMI)", "ticket": "200 000 – 500 000 €", "public_cible": "Primo-accédants 30-39 ans, familles", "requete_scraping": "constructeur maison individuelle" },
+        { "nom": "Rénovation globale / tous corps d'état", "ticket": "30 000 – 150 000 €", "public_cible": "Propriétaires de biens anciens", "requete_scraping": "entreprise rénovation tous corps d'état" },
+        { "nom": "Maîtres d'œuvre / architectes", "ticket": "8-15 % du chantier", "public_cible": "Propriétaires de projets ambitieux", "requete_scraping": "maître d'œuvre architecte" },
+        { "nom": "Couvreurs / réfection toiture", "ticket": "8 000 – 30 000 €", "public_cible": "Propriétaires maison, toiture vieillissante", "requete_scraping": "couvreur réfection toiture" },
+        { "nom": "Salles de bain (rénovation complète)", "ticket": "4 000 – 16 000 €", "public_cible": "Propriétaires, seniors (MaPrimeAdapt')", "requete_scraping": "rénovation salle de bain" },
+        { "nom": "Maçonnerie / extension / surélévation", "ticket": "20 000 – 100 000 €", "public_cible": "Propriétaires qui agrandissent", "requete_scraping": "maçonnerie extension surélévation" },
+        { "nom": "Ravalement de façade / ITE", "ticket": "10 000 – 40 000 €", "public_cible": "Copropriétés, propriétaires maison", "requete_scraping": "ravalement façade isolation extérieure" },
+        { "nom": "Charpente / ossature bois", "ticket": "15 000 – 60 000 €", "public_cible": "Propriétaires construction / rénovation", "requete_scraping": "charpentier ossature bois" },
+        { "nom": "Terrassement / VRD", "ticket": "10 000 – 50 000 €", "public_cible": "Propriétaires terrain, constructeurs", "requete_scraping": "terrassement VRD" },
+        { "nom": "Menuiserie intérieure / placards sur-mesure", "ticket": "5 000 – 25 000 €", "public_cible": "Propriétaires en rénovation", "requete_scraping": "menuiserie intérieure sur-mesure" },
+        { "nom": "Plâtrerie / staff / cloisons", "ticket": "5 000 – 20 000 €", "public_cible": "Propriétaires, rénovation", "requete_scraping": "plâtrier staff cloisons" }
+      ]
+    },
+    {
+      "id": "energie",
+      "nom": "Énergie & rénovation énergétique",
+      "categories": [
+        { "nom": "Panneaux solaires / batteries", "ticket": "10 000 – 30 000 €", "public_cible": "Propriétaires maison, éco + économies", "requete_scraping": "installateur panneaux solaires" },
+        { "nom": "Pompes à chaleur", "ticket": "12 000 – 25 000 €", "public_cible": "Propriétaires maison, remplacement chauffage", "requete_scraping": "installateur pompe à chaleur" },
+        { "nom": "Rénovation énergétique d'ampleur", "ticket": "30 000 – 80 000 €", "public_cible": "Propriétaires passoires thermiques (DPE F/G)", "requete_scraping": "rénovation énergétique globale" },
+        { "nom": "Isolation (combles, ITE, ITI)", "ticket": "8 000 – 40 000 €", "public_cible": "Propriétaires maison ancienne", "requete_scraping": "isolation thermique entreprise" },
+        { "nom": "Menuiseries (fenêtres, portes, baies)", "ticket": "8 000 – 40 000 €", "public_cible": "Propriétaires maison, rénovation", "requete_scraping": "menuiserie fenêtres installateur" },
+        { "nom": "Bornes de recharge VE", "ticket": "1 500 – 15 000 €", "public_cible": "Propriétaires VE, copros, flottes entreprises", "requete_scraping": "installateur borne de recharge véhicule électrique" },
+        { "nom": "Domotique / maison connectée (milieu de gamme)", "ticket": "5 000 – 30 000 €", "public_cible": "Propriétaires rénovation, néo-constructeurs", "requete_scraping": "domotique maison connectée installateur" },
+        { "nom": "Adoucisseurs d'eau / traitement", "ticket": "2 000 – 6 000 €", "public_cible": "Propriétaires en zones calcaires", "requete_scraping": "adoucisseur d'eau installateur" }
+      ]
+    },
+    {
+      "id": "experience-domicile",
+      "nom": "Expérience & loisir à domicile (+1 M€)",
+      "categories": [
+        { "nom": "Home cinéma / salle de projection privée", "ticket": "30 000 – 200 000 €", "public_cible": "Propriétaires villa / résidence secondaire +1 M€", "requete_scraping": "installateur home cinéma" },
+        { "nom": "Salle de sport / home gym", "ticket": "20 000 – 150 000 €", "public_cible": "Fortunés, passionnés fitness/longévité", "requete_scraping": "aménagement home gym domicile" },
+        { "nom": "Spa intérieur / hammam / piscine intérieure", "ticket": "30 000 – 300 000 €", "public_cible": "Propriétaires villa, bien-être premium", "requete_scraping": "spa hammam intérieur sur-mesure" },
+        { "nom": "Golf simulateur indoor", "ticket": "30 000 – 100 000 €", "public_cible": "Dirigeants, golfeurs aisés", "requete_scraping": "simulateur de golf indoor installation" },
+        { "nom": "Domotique luxe intégrée (Crestron, KNX)", "ticket": "50 000 – 300 000 €", "public_cible": "Propriétaires villa neuve / rénovation lourde", "requete_scraping": "intégrateur domotique luxe Crestron KNX" },
+        { "nom": "Ascenseur privatif de villa", "ticket": "25 000 – 80 000 €", "public_cible": "Propriétaires villa, seniors aisés", "requete_scraping": "ascenseur privatif maison" },
+        { "nom": "Cryothérapie / récupération / longévité", "ticket": "20 000 – 100 000 €", "public_cible": "Fortunés, biohacking / bien-être", "requete_scraping": "cryothérapie domicile équipement" }
+      ]
+    },
+    {
+      "id": "maison-finitions",
+      "nom": "Maison & finitions haut de gamme",
+      "categories": [
+        { "nom": "Dressing & rangements sur-mesure", "ticket": "5 000 – 25 000 €", "public_cible": "Propriétaires CSP+, rénovateurs", "requete_scraping": "dressing sur-mesure" },
+        { "nom": "Escaliers design / verrières d'architecte", "ticket": "15 000 – 60 000 €", "public_cible": "Propriétaires villa / loft, rénovation", "requete_scraping": "escalier design verrière sur-mesure" },
+        { "nom": "Portes & façades sur-mesure, menuiserie d'exception", "ticket": "20 000 – 100 000 €", "public_cible": "Propriétaires villa haut de gamme", "requete_scraping": "menuiserie d'exception porte sur-mesure" },
+        { "nom": "Marbrerie / pierre naturelle / sols nobles", "ticket": "30 000 – 200 000 €", "public_cible": "Propriétaires villa, fortunés", "requete_scraping": "marbrerie pierre naturelle" },
+        { "nom": "Parquet / sols haut de gamme", "ticket": "8 000 – 40 000 €", "public_cible": "Propriétaires CSP+, rénovation", "requete_scraping": "parqueteur sol haut de gamme" },
+        { "nom": "Peinture décorative / enduits d'art", "ticket": "5 000 – 30 000 €", "public_cible": "Propriétaires haut de gamme", "requete_scraping": "peinture décorative enduit d'art" },
+        { "nom": "Éclairage architectural / design lumière", "ticket": "15 000 – 80 000 €", "public_cible": "Propriétaires villa neuve / rénovation", "requete_scraping": "éclairage architectural concepteur lumière" },
+        { "nom": "Mobilier sur-mesure / ébénisterie d'art", "ticket": "20 000 – 150 000 €", "public_cible": "Fortunés, amateurs de design", "requete_scraping": "ébéniste mobilier sur-mesure" },
+        { "nom": "Cheminées / poêles design haut de gamme", "ticket": "5 000 – 20 000 €", "public_cible": "Propriétaires maison, art de vivre", "requete_scraping": "cheminée poêle design" }
+      ]
+    },
+    {
+      "id": "mobilite",
+      "nom": "Mobilité & véhicules loisir",
+      "categories": [
+        { "nom": "Vans aménagés", "ticket": "45 000 – 90 000 €", "public_cible": "Couples/familles, passionnés vanlife", "requete_scraping": "aménagement van fourgon" },
+        { "nom": "Camping-cars", "ticket": "50 000 – 120 000 €", "public_cible": "Retraités aisés, familles, voyageurs", "requete_scraping": "concessionnaire camping-car" },
+        { "nom": "Bateaux / semi-rigides / jet-skis", "ticket": "15 000 – 200 000 €", "public_cible": "Propriétaires littoral, loisirs nautiques aisés", "requete_scraping": "vente bateau jet-ski" },
+        { "nom": "Motos / motos custom", "ticket": "10 000 – 40 000 €", "public_cible": "Passionnés moto, hommes 30-55 ans", "requete_scraping": "concessionnaire moto custom" },
+        { "nom": "Vélos électriques premium / speed bikes", "ticket": "4 000 – 12 000 €", "public_cible": "Urbains CSP+, cyclistes sportifs", "requete_scraping": "vélo électrique premium magasin" },
+        { "nom": "Garage galerie pour voitures de collection", "ticket": "30 000 – 150 000 €", "public_cible": "Collectionneurs auto fortunés", "requete_scraping": "aménagement garage voiture collection" }
+      ]
+    },
+    {
+      "id": "automobile",
+      "nom": "Automobile",
+      "categories": [
+        { "nom": "Concession premium / occasion haut de gamme", "ticket": "30 000 – 80 000 €", "public_cible": "Acheteurs CSP+, cadres, dirigeants", "requete_scraping": "concession automobile premium occasion" },
+        { "nom": "Véhicules de prestige / collection / sportives", "ticket": "50 000 – 300 000 €", "public_cible": "Fortunés, passionnés auto", "requete_scraping": "vente voiture de prestige collection" },
+        { "nom": "Mandataires / import", "ticket": "15 000 – 50 000 €", "public_cible": "Acheteurs orientés bon plan, familles", "requete_scraping": "mandataire automobile import" },
+        { "nom": "Covering automobile", "ticket": "1 500 – 5 000 €", "public_cible": "Passionnés auto, jeunes actifs", "requete_scraping": "covering automobile" },
+        { "nom": "Préparation / detailing / sonorisation", "ticket": "2 000 – 15 000 €", "public_cible": "Passionnés auto, propriétaires premium", "requete_scraping": "detailing automobile préparation" }
+      ]
+    },
+    {
+      "id": "services-sante",
+      "nom": "Services premium & santé esthétique",
+      "categories": [
+        { "nom": "Cliniques dentaires / implants", "ticket": "5 000 – 25 000 €", "public_cible": "Adultes 40+, soucieux d'esthétique", "requete_scraping": "clinique dentaire implant" },
+        { "nom": "Dentaire esthétique / facettes", "ticket": "5 000 – 20 000 €", "public_cible": "Adultes CSP+, 25-55 ans", "requete_scraping": "facettes dentaires esthétique" },
+        { "nom": "Greffe de cheveux", "ticket": "3 000 – 12 000 €", "public_cible": "Hommes 25-50 ans, calvitie", "requete_scraping": "clinique greffe de cheveux" },
+        { "nom": "Médecine esthétique / chirurgie", "ticket": "3 000 – 20 000 €", "public_cible": "Femmes et hommes CSP+, 30-60 ans", "requete_scraping": "médecine esthétique chirurgie" },
+        { "nom": "Ophtalmo laser / chirurgie réfractive", "ticket": "2 000 – 5 000 €", "public_cible": "Adultes 25-50 ans, porteurs de lunettes", "requete_scraping": "chirurgie réfractive laser yeux" },
+        { "nom": "PMA / cliniques de fertilité", "ticket": "5 000 – 15 000 €", "public_cible": "Couples 30-45 ans", "requete_scraping": "clinique fertilité PMA" },
+        { "nom": "Avocats spécialisés (affaires, divorce, pénal)", "ticket": "Honoraires élevés", "public_cible": "Dirigeants, particuliers fortunés", "requete_scraping": "avocat d'affaires cabinet" },
+        { "nom": "Gestion de patrimoine / fiscalistes", "ticket": "Honoraires élevés", "public_cible": "Dirigeants, professions libérales, fortunés", "requete_scraping": "conseiller gestion de patrimoine" },
+        { "nom": "Formation pro / reconversion (B2C adulte)", "ticket": "5 000 – 20 000 €", "public_cible": "Actifs en reconversion, entrepreneurs", "requete_scraping": "organisme formation professionnelle" }
+      ]
+    },
+    {
+      "id": "evenementiel",
+      "nom": "Événementiel & art de vivre haut de gamme",
+      "categories": [
+        { "nom": "Wedding planners / organisation de mariage", "ticket": "15 000 – 80 000 €", "public_cible": "Couples aisés, 28-40 ans", "requete_scraping": "wedding planner organisation mariage" },
+        { "nom": "Lieux de réception / domaines / châteaux", "ticket": "10 000 – 60 000 €", "public_cible": "Couples, entreprises événementiel", "requete_scraping": "domaine château réception mariage" },
+        { "nom": "Traiteurs premium / gastronomiques", "ticket": "5 000 – 40 000 €", "public_cible": "Couples, entreprises, particuliers CSP+", "requete_scraping": "traiteur gastronomique événementiel" },
+        { "nom": "Photographes / vidéastes mariage haut de gamme", "ticket": "3 000 – 10 000 €", "public_cible": "Couples aisés", "requete_scraping": "photographe vidéaste mariage" },
+        { "nom": "Location matériel événementiel premium", "ticket": "3 000 – 20 000 €", "public_cible": "Organisateurs, entreprises, particuliers", "requete_scraping": "location matériel événementiel premium" }
+      ]
+    },
+    {
+      "id": "animaux",
+      "nom": "Animaux premium",
+      "categories": [
+        { "nom": "Élevages de chiens / chats de race", "ticket": "2 000 – 8 000 €", "public_cible": "Familles CSP+, passionnés", "requete_scraping": "élevage chien de race" },
+        { "nom": "Élevages / pension de chevaux", "ticket": "5 000 – 50 000 €", "public_cible": "Cavaliers, familles fortunées", "requete_scraping": "élevage pension chevaux" },
+        { "nom": "Cliniques vétérinaires spécialisées", "ticket": "1 000 – 10 000 €", "public_cible": "Propriétaires d'animaux CSP+", "requete_scraping": "clinique vétérinaire spécialisée" },
+        { "nom": "Accessoires / mobilier / services premium animaux", "ticket": "500 – 5 000 €", "public_cible": "Propriétaires d'animaux aisés", "requete_scraping": "toilettage services premium animaux" }
+      ]
+    },
+    {
+      "id": "education",
+      "nom": "Éducation & formation à gros ticket",
+      "_note": "Client = l'école privée payante qui doit remplir ses promos. On lui amène des candidats-étudiants. Cibler le privé payant, pas le public/gratuit (INSA, 42, La Fémis).",
+      "categories": [
+        { "nom": "Commerce / business schools", "ticket": "30 000 – 75 000 €", "public_cible": "Lycéens/étudiants + parents CSP+", "exemples": "HEC, ESSEC, EM Lyon, KEDGE, Montpellier BS", "requete_scraping": "école de commerce privée" },
+        { "nom": "Ingénieurs privées", "ticket": "25 000 – 50 000 €", "public_cible": "Lycéens/étudiants + parents", "exemples": "CESI, ECE, ESILV, EPF", "requete_scraping": "école d'ingénieurs privée" },
+        { "nom": "Informatique / dev / cybersécurité", "ticket": "20 000 – 45 000 €", "public_cible": "Lycéens tech, reconversion", "exemples": "Epitech, EPITA, Ynov, Guardia", "requete_scraping": "école informatique privée" },
+        { "nom": "IA / data / big data", "ticket": "20 000 – 50 000 €", "public_cible": "Étudiants, cadres en reconversion", "exemples": "Albert School, Aivancity, Ironhack", "requete_scraping": "école intelligence artificielle data" },
+        { "nom": "Cinéma / audiovisuel", "ticket": "25 000 – 50 000 €", "public_cible": "Lycéens passionnés + parents", "exemples": "3IS, ESRA, EICAR, CLCF", "requete_scraping": "école cinéma audiovisuel privée" },
+        { "nom": "Jeux vidéo / animation 3D", "ticket": "25 000 – 55 000 €", "public_cible": "Lycéens créatifs/gamers + parents", "exemples": "Rubika, ArtFX, ISART, LISAA", "requete_scraping": "école jeux vidéo animation 3D" },
+        { "nom": "Design / mode / arts appliqués", "ticket": "20 000 – 45 000 €", "public_cible": "Lycéens créatifs + parents", "exemples": "Strate, École de Condé, ESMOD", "requete_scraping": "école design mode arts appliqués" },
+        { "nom": "Architecture / archi d'intérieur", "ticket": "25 000 – 50 000 €", "public_cible": "Étudiants + parents", "exemples": "ESAIL, Camondo, Charpentier", "requete_scraping": "école architecture intérieur privée" },
+        { "nom": "Communication / marketing / digital", "ticket": "25 000 – 45 000 €", "public_cible": "Lycéens post-bac + parents", "exemples": "Sup de Pub, EFAP, ISCOM", "requete_scraping": "école communication marketing privée" },
+        { "nom": "MBA / Executive Education / mastères spécialisés", "ticket": "15 000 – 60 000 €", "public_cible": "Cadres, dirigeants, entreprises", "exemples": "INSEAD, HEC Exec, emlyon Exec", "requete_scraping": "MBA executive education" }
+      ]
+    }
+  ],
+  "cible_transversale_franchiseur": {
+    "nom": "Franchiseur / tête de réseau",
+    "note": "Type de client premium transverse à plusieurs secteurs. Le client est une tête de réseau qui veut RECRUTER DES FRANCHISÉS (on lui amène des candidats-entrepreneurs), pas vendre un produit final. Cibler les réseaux à fort droit d'entrée + redevances. Éviter mode/habillement, hyper/supermarchés, fast-food traditionnel.",
+    "secteurs_porteurs": ["Amélioration habitat & cuisine", "Piscine & spa", "Restauration à fort branding", "Services à la personne / B2B"]
+  }
+}
