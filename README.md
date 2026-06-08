@@ -2,7 +2,7 @@
 
 Outil CRM mobile-first pour démarcher des **dirigeants** : explore un secteur → une catégorie → une ville (INDESCALE), ou tes agences/marchands de luxe par ville (PRODIGIO), clique pour appeler, note le résultat. Tout depuis le téléphone ou l'ordinateur.
 
-> **État actuel : mode démo activé.** Sans clés API, l'app tourne avec des données d'exemple (fictives, signalées). Branche Supabase + Google Places pour passer en données réelles et persistantes.
+> **État actuel : mode démo activé.** Sans clés API : **PRODIGIO affiche déjà les 71 prospects RÉELS** du fichier maître (agences de luxe + marchands de biens), et **INDESCALE** tourne sur des exemples fictifs (signalés). Branche Supabase + Google Places pour rendre le tout persistant et enrichir INDESCALE.
 
 ---
 
@@ -20,8 +20,11 @@ Ouvre http://localhost:5173 → tu navigues, tu testes le CRM (statuts, notes, r
 ### a. Supabase (persistance)
 1. Crée un projet sur [supabase.com](https://supabase.com).
 2. SQL Editor → colle et exécute [`supabase/schema.sql`](supabase/schema.sql).
-3. Settings → API → récupère `URL`, clé `anon`, clé `service_role`.
-4. Renseigne `.env` (voir `.env.example`).
+3. SQL Editor → exécute [`supabase/seed-prodigio.sql`](supabase/seed-prodigio.sql) pour **importer les 71 prospects PRODIGIO réels** (56 agences de luxe + 15 marchands de biens) issus du fichier maître. Idempotent : relançable sans doublon.
+4. Settings → API → récupère `URL`, clé `anon`, clé `service_role`.
+5. Renseigne `.env` (voir `.env.example`).
+
+> Les 71 prospects PRODIGIO sont déjà visibles **en mode démo** (sans clé) via [`src/lib/prodigioData.js`](src/lib/prodigioData.js), généré depuis `PRODIGIO-prospection-master.xlsx`. Supabase ne sert qu'à les rendre **persistants et éditables**.
 
 ### b. Google Places API (New) — enrichissement INDESCALE
 1. [Google Cloud Console](https://console.cloud.google.com) → nouveau projet.
