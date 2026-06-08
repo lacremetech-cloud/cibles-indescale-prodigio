@@ -128,11 +128,11 @@
       "id": "evenementiel",
       "nom": "Événementiel & art de vivre haut de gamme",
       "categories": [
-        { "nom": "Wedding planners / organisation de mariage", "ticket": "15 000 – 80 000 €", "public_cible": "Couples aisés, 28-40 ans", "requete_scraping": "wedding planner organisation mariage" },
-        { "nom": "Lieux de réception / domaines / châteaux", "ticket": "10 000 – 60 000 €", "public_cible": "Couples, entreprises événementiel", "requete_scraping": "domaine château réception mariage" },
-        { "nom": "Traiteurs premium / gastronomiques", "ticket": "5 000 – 40 000 €", "public_cible": "Couples, entreprises, particuliers CSP+", "requete_scraping": "traiteur gastronomique événementiel" },
-        { "nom": "Photographes / vidéastes mariage haut de gamme", "ticket": "3 000 – 10 000 €", "public_cible": "Couples aisés", "requete_scraping": "photographe vidéaste mariage" },
-        { "nom": "Location matériel événementiel premium", "ticket": "3 000 – 20 000 €", "public_cible": "Organisateurs, entreprises, particuliers", "requete_scraping": "location matériel événementiel premium" }
+        { "nom": "Wedding planners / organisation de mariage", "ticket": "15 000 – 80 000 €", "public_cible": "Couples aisés, 28-40 ans", "requete_scraping": "wedding planner organisation mariage", "liste_figee": true },
+        { "nom": "Lieux de réception / domaines / châteaux", "ticket": "10 000 – 60 000 €", "public_cible": "Couples, entreprises événementiel", "requete_scraping": "domaine château réception mariage", "liste_figee": true },
+        { "nom": "Traiteurs premium / gastronomiques", "ticket": "5 000 – 40 000 €", "public_cible": "Couples, entreprises, particuliers CSP+", "requete_scraping": "traiteur gastronomique événementiel", "liste_figee": true },
+        { "nom": "Photographes / vidéastes mariage haut de gamme", "ticket": "3 000 – 10 000 €", "public_cible": "Couples aisés", "requete_scraping": "photographe vidéaste mariage", "liste_figee": true },
+        { "nom": "Location matériel événementiel premium", "ticket": "3 000 – 20 000 €", "public_cible": "Organisateurs, entreprises, particuliers", "requete_scraping": "location matériel événementiel premium", "liste_figee": true }
       ]
     },
     {
