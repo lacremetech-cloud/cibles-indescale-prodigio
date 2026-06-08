@@ -56,6 +56,7 @@ export default function ProspectCard({ prospect }) {
       {/* Badges d'alerte */}
       <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 8 }}>
         {suspect && <span className="badge suspect" title="Domaine email ≠ domaine site web">⚠ email à vérifier</span>}
+        {p.data?.dirigeant_incertain && <span className="badge suspect" title="Correspondance base entreprises incertaine">⚠ dirigeant à vérifier</span>}
         {relanceDue(p.date_relance) && !p.ne_plus_contacter && <span className="badge relance">📅 relance due</span>}
         {p.ne_plus_contacter && <span className="badge opp">🚫 ne plus contacter</span>}
         {p.note_priorite && <span className="pill">priorité : {p.note_priorite}</span>}

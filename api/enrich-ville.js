@@ -20,17 +20,22 @@ export default async function handler(req, res) {
   const supabase = createClient(SB_URL, SB_KEY)
   const query = `${requete_scraping || categorie} ${ville}`
 
-  try {
-    // 1) Google Places Text Search (New) — 1 appel = jusqu'à 20 entreprises, champs via FieldMask.
-    const places = await placesTextSearch(query, PLACES_KEY)
+  // Nb de pages Places (20 résultats/page). 1 par défaut pour tenir dans la durée
+  // d'une fonction serverless ; l'UI peut demander plus via { pages } (bouton « charger plus »).
+  const pages = Math.min(Math.max(parseInt(req.body?.pages, 10) || 1, 1), 3)
 
-    // 2) Enrichissement dirigeant (gratuit) + connecteur B2B (option), pour chaque entreprise.
-    const prospects = []
-    for (const place of places) {
-      const dir = await rechercheEntreprise(place.displayName?.text, ville)
+  try {
+    // 1) Google Places Text Search (New) — 20 entreprises/page, champs via FieldMask.
+    const places = await placesTextSearch(query, PLACES_KEY, pages)
+
+    // 2) Enrichissement dirigeant + contact, EN PARALLÈLE (concurrence limitée) pour
+    //    rester sous le timeout serverless même avec le scraping email.
+    const prospects = await mapWithConcurrency(places, 5, async (place) => {
+      const nom = place.displayName?.text || ''
+      const dir = await rechercheEntreprise(nom, ville)
       const base = {
         app: 'indescale', secteur_id: secteurId || null, categorie, ville,
-        entreprise: place.displayName?.text || '',
+        entreprise: nom,
         adresse: place.formattedAddress || '',
         telephone: place.nationalPhoneNumber || '',
         site_web: place.websiteUri || '',
@@ -41,14 +46,16 @@ export default async function handler(req, res) {
         siret: dir?.siret || null,
         forme_juridique: dir?.forme_juridique || null,
         portable_dirigeant: '', email: '', email_dirigeant: '', linkedin_dirigeant: '',
+        // Correspondance gouv incertaine → on signale au lieu d'affirmer (brief §11).
+        data: (dir?.dirigeant && dir.incertain) ? { dirigeant_incertain: true } : {},
         source: 'google_places' + (dir ? '+recherche_entreprises' : '')
       }
       // 3) Contact du dirigeant — stack le moins cher :
-      //    Pappers (option, données enrichies) → email du site officiel (gratuit) → connecteur B2B (option).
+      //    Pappers (option) → email du site officiel (gratuit) → connecteur B2B (option).
       const contact = await enrichContact(base)
       Object.assign(base, contact)
-      prospects.push(base)
-    }
+      return base
+    })
 
     // 4) Upsert (cache) — dédup sur (app, categorie, ville, place_id).
     let inserted = 0
@@ -80,8 +87,8 @@ export default async function handler(req, res) {
   }
 }
 
-// ── Google Places API (New) — Text Search avec pagination (jusqu'à 60 résultats) ──
-async function placesTextSearch(textQuery, key, maxPages = 3) {
+// ── Google Places API (New) — Text Search avec pagination (20 résultats/page) ──
+async function placesTextSearch(textQuery, key, maxPages = 1) {
   const out = []
   let pageToken = null
   for (let i = 0; i < maxPages; i++) {
@@ -122,12 +129,39 @@ async function rechercheEntreprise(nom, ville) {
   const dirigeant = d
     ? [d.prenoms, d.nom].filter(Boolean).join(' ').trim() || d.denomination || ''
     : ''
+  // Confiance : le nom de l'entreprise renvoyée par le gouv recoupe-t-il celui de Places ?
+  // Sans recoupement, on garde le dirigeant mais on le marque « à vérifier ».
+  const nomGouv = e.nom_complet || e.nom_raison_sociale || ''
   return {
     dirigeant,
     siren: e.siren || null,
     siret: e.siege?.siret || null,
-    forme_juridique: e.nature_juridique || null
+    forme_juridique: e.nature_juridique || null,
+    incertain: !namesOverlap(nom, nomGouv)
   }
+}
+
+// Recoupement simple de noms (tokens > 2 lettres, sans accents/casse).
+function namesOverlap(a, b) {
+  const norm = s => (s || '').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(w => w.length > 2)
+  const A = new Set(norm(a)); const B = norm(b)
+  if (!A.size || !B.length) return false
+  return B.some(w => A.has(w))
+}
+
+// Exécute `fn` sur chaque item avec une concurrence maximale (préserve l'ordre).
+async function mapWithConcurrency(items, limit, fn) {
+  const out = new Array(items.length)
+  let i = 0
+  async function worker() {
+    while (i < items.length) {
+      const idx = i++
+      out[idx] = await fn(items[idx], idx)
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, worker))
+  return out
 }
 
 // ── Pipeline contact : du moins cher au plus cher. JAMAIS d'invention (brief §11). ──
@@ -184,10 +218,11 @@ async function enrichPappers(siren) {
 // Extraction d'un email depuis le site officiel — best-effort, jamais inventé.
 async function scrapeWebsiteEmail(siteWeb) {
   const base = siteWeb.startsWith('http') ? siteWeb : 'https://' + siteWeb
-  const pages = [base, base.replace(/\/$/, '') + '/contact', base.replace(/\/$/, '') + '/mentions-legales']
+  // Homepage + /contact suffisent dans la plupart des cas ; on borne pour tenir le timeout.
+  const pages = [base, base.replace(/\/$/, '') + '/contact']
   for (const url of pages) {
     try {
-      const r = await fetch(url, { signal: AbortSignal.timeout(6000), redirect: 'follow' })
+      const r = await fetch(url, { signal: AbortSignal.timeout(4500), redirect: 'follow' })
       if (!r.ok) continue
       const html = await r.text()
       const found = (html.match(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/gi) || [])
