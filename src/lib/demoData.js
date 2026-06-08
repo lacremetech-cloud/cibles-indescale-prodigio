@@ -5,6 +5,7 @@
 // (voir src/lib/prodigioData.js), affichés tels quels.
 
 import { PRODIGIO_PROSPECTS } from './prodigioData'
+import { CINEMA_PROSPECTS } from './cinemaData'
 
 let _id = 0
 const id = () => 'demo-' + (++_id)
@@ -48,7 +49,7 @@ function todayPlus(days) {
 export function seedProspects() {
   // INDESCALE = démo fictive ; PRODIGIO = vraies données du fichier maître.
   // Copie profonde pour que le store mémoire soit mutable sans toucher la source.
-  return [...DEMO_PROSPECTS, ...PRODIGIO_PROSPECTS].map(p => ({
+  return [...DEMO_PROSPECTS, ...CINEMA_PROSPECTS, ...PRODIGIO_PROSPECTS].map(p => ({
     qualification: '', date_relance: null, ne_plus_contacter: false, data: {}, ...p
   }))
 }

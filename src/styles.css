@@ -294,6 +294,7 @@ a { color: inherit; }
 .card .c-dir { color: var(--muted); font-size: 13px; margin-top: 4px; }
 .card .c-dir b { color: var(--text); font-weight: 600; }
 .card .c-addr { color: var(--muted); font-size: 12px; margin-top: 7px; line-height: 1.45; }
+.card .c-note { color: var(--muted); font-size: 12px; margin-top: 7px; line-height: 1.5; font-style: italic; opacity: .92; }
 
 .actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 14px; }
 .act {

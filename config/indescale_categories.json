@@ -62,7 +62,7 @@
       "id": "experience-domicile",
       "nom": "Expérience & loisir à domicile (+1 M€)",
       "categories": [
-        { "nom": "Home cinéma / salle de projection privée", "ticket": "30 000 – 200 000 €", "public_cible": "Propriétaires villa / résidence secondaire +1 M€", "requete_scraping": "installateur home cinéma" },
+        { "nom": "Home cinéma / salle de projection privée", "ticket": "30 000 – 200 000 €", "public_cible": "Propriétaires villa / résidence secondaire +1 M€", "requete_scraping": "installateur home cinéma", "liste_figee": true },
         { "nom": "Salle de sport / home gym", "ticket": "20 000 – 150 000 €", "public_cible": "Fortunés, passionnés fitness/longévité", "requete_scraping": "aménagement home gym domicile" },
         { "nom": "Spa intérieur / hammam / piscine intérieure", "ticket": "30 000 – 300 000 €", "public_cible": "Propriétaires villa, bien-être premium", "requete_scraping": "spa hammam intérieur sur-mesure" },
         { "nom": "Golf simulateur indoor", "ticket": "30 000 – 100 000 €", "public_cible": "Dirigeants, golfeurs aisés", "requete_scraping": "simulateur de golf indoor installation" },

@@ -49,6 +49,7 @@ export default function ProspectCard({ prospect }) {
             <div className="c-dir">Dirigeant : <b>{p.dirigeant_principal}</b>{p.forme_juridique ? ` · ${p.forme_juridique}` : ''}</div>
           )}
           {(p.adresse || p.ville) && <div className="c-addr">{p.adresse || p.ville}</div>}
+        {p.data?.note && <div className="c-note">{p.data.note}</div>}
         </div>
         {p.note_avis != null && <div className="c-rating">★ {p.note_avis}</div>}
       </div>

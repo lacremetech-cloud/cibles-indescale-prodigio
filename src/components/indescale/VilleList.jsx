@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Header from '../Header.jsx'
-import { useConfig, findSecteur, villesFromConfig } from '../../lib/config'
+import CrmView from '../crm/CrmView.jsx'
+import { useConfig, findSecteur, findCategorie, villesFromConfig } from '../../lib/config'
 import { listProspects, subscribe, isDemo } from '../../lib/dataClient'
 
 export default function VilleList() {
@@ -9,6 +10,9 @@ export default function VilleList() {
   const cat = decodeURIComponent(categorie)
   const { config } = useConfig()
   const [counts, setCounts] = useState({})
+
+  const secteurEarly = config ? findSecteur(config, secteurId) : null
+  const catObj = secteurEarly ? findCategorie(secteurEarly, cat) : null
 
   useEffect(() => {
     let active = true
@@ -26,6 +30,21 @@ export default function VilleList() {
 
   if (!config) return <><Header title="INDESCALE" /><div className="empty">Chargement…</div></>
   const secteur = findSecteur(config, secteurId)
+
+  // Catégorie « liste figée » (ex. Home cinéma) : pas de villes, on affiche directement
+  // la liste de cibles enrichies (importée d'un fichier), comme PRODIGIO.
+  if (catObj?.liste_figee) {
+    const filter = { app: 'indescale', secteur_id: secteurId, categorie: cat }
+    return (
+      <CrmView
+        title={cat}
+        subtitle={`${secteur?.nom || ''} · cibles enrichies`}
+        filter={filter}
+        addBase={filter}
+      />
+    )
+  }
+
   const villes = villesFromConfig(config)
 
   return (
