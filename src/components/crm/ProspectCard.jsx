@@ -22,6 +22,17 @@ export default function ProspectCard({ prospect }) {
   const stdPhone = p.telephone
   const linkedin = p.linkedin_dirigeant || linkedinSearchHref(p.dirigeant_principal, p.entreprise)
 
+  // Pour les fiches INDESCALE en liste figée, ville=pays — on extrait la ville réelle
+  // depuis « Siège : … » de data.note pour la rendre apparente sur la carte.
+  function extractSiege(note) {
+    if (!note) return null
+    const m = note.match(/Si[èe]ge\s*:\s*([^.]+?)(?=\.\s|\.$|$)/i)
+    return m ? m[1].trim().replace(/\s+/g, ' ') : null
+  }
+  const siegeFromNote = !p.adresse ? extractSiege(p.data?.note) : null
+  const displayAddr = p.adresse || siegeFromNote
+    || (p.ville && p.zone ? `${p.zone}, ${p.ville}` : p.ville)
+
   async function patch(fields) {
     setP(prev => ({ ...prev, ...fields }))
     try { await updateProspect(p.id, fields) } catch (e) { console.error(e) }
@@ -48,7 +59,7 @@ export default function ProspectCard({ prospect }) {
           {p.dirigeant_principal && (
             <div className="c-dir">Dirigeant : <b>{p.dirigeant_principal}</b>{p.forme_juridique ? ` · ${p.forme_juridique}` : ''}</div>
           )}
-          {(p.adresse || p.ville) && <div className="c-addr">{p.adresse || p.ville}</div>}
+          {displayAddr && <div className="c-addr">📍 {displayAddr}</div>}
         {p.data?.note && <div className="c-note">{p.data.note}</div>}
         </div>
         {p.note_avis != null && <div className="c-rating">★ {p.note_avis}</div>}
