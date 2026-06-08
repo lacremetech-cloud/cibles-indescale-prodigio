@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
 import Header from '../Header.jsx'
 import ProspectCard from './ProspectCard.jsx'
+import KanbanBoard from './KanbanBoard.jsx'
 import AddProspectModal from './AddProspectModal.jsx'
-import { listProspects, subscribe, isDemo } from '../../lib/dataClient'
+import { listProspects, subscribe, isDemo, updateProspect } from '../../lib/dataClient'
 import { STATUTS, estContacte } from '../../lib/statuses'
 import { exportCsv } from '../../lib/exportCsv'
 
@@ -14,6 +15,7 @@ export default function CrmView({ title, subtitle, filter, addBase, groupByVille
   const [q, setQ] = useState('')
   const [hideOpp, setHideOpp] = useState(true)
   const [showAdd, setShowAdd] = useState(false)
+  const [vue, setVue] = useState('liste') // 'liste' | 'kanban'
 
   useEffect(() => {
     let active = true
@@ -22,6 +24,12 @@ export default function CrmView({ title, subtitle, filter, addBase, groupByVille
     const unsub = isDemo ? subscribe(load) : () => {}
     return () => { active = false; unsub() }
   }, [JSON.stringify(filter)])
+
+  // Déplacement Kanban : maj optimiste locale + persistance.
+  async function moveProspect(id, nouveauStatut) {
+    setRows(prev => prev ? prev.map(r => (r.id === id ? { ...r, statut: nouveauStatut } : r)) : prev)
+    try { await updateProspect(id, { statut: nouveauStatut }) } catch (e) { console.error(e) }
+  }
 
   const filtered = useMemo(() => {
     let r = rows || []
@@ -61,18 +69,26 @@ export default function CrmView({ title, subtitle, filter, addBase, groupByVille
       <div className="progress"><span style={{ width: pct + '%' }} /></div>
 
       <div className="toolbar">
+        <div className="seg">
+          <button className={'seg-btn' + (vue === 'liste' ? ' on' : '')} onClick={() => setVue('liste')}>☰ Liste</button>
+          <button className={'seg-btn' + (vue === 'kanban' ? ' on' : '')} onClick={() => { setStatut(''); setVue('kanban') }}>▦ Kanban</button>
+        </div>
         <input placeholder="🔍 Rechercher…" value={q} onChange={e => setQ(e.target.value)} />
-        <select value={statut} onChange={e => setStatut(e.target.value)}>
-          <option value="">Tous statuts</option>
-          {STATUTS.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
-        </select>
-        <select value={tri} onChange={e => setTri(e.target.value)}>
-          <option value="entreprise">Tri : nom</option>
-          <option value="statut">Tri : statut</option>
-          <option value="relance">Tri : relance</option>
-          <option value="priorite">Tri : priorité</option>
-          <option value="ville">Tri : ville</option>
-        </select>
+        {vue === 'liste' && (
+          <select value={statut} onChange={e => setStatut(e.target.value)}>
+            <option value="">Tous statuts</option>
+            {STATUTS.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
+          </select>
+        )}
+        {vue === 'liste' && (
+          <select value={tri} onChange={e => setTri(e.target.value)}>
+            <option value="entreprise">Tri : nom</option>
+            <option value="statut">Tri : statut</option>
+            <option value="relance">Tri : relance</option>
+            <option value="priorite">Tri : priorité</option>
+            <option value="ville">Tri : ville</option>
+          </select>
+        )}
         <label className="pill" style={{ cursor: 'pointer', display: 'flex', gap: 6, alignItems: 'center' }}>
           <input type="checkbox" checked={hideOpp} onChange={e => setHideOpp(e.target.checked)} />
           masquer opposition
@@ -86,7 +102,9 @@ export default function CrmView({ title, subtitle, filter, addBase, groupByVille
         <div className="empty">Aucun prospect ici. Utilise « + Ajouter » {filter.app === 'indescale' ? 'ou « Rafraîchir cette ville »' : ''}.</div>
       )}
 
-      {grouped ? (
+      {vue === 'kanban' ? (
+        rows && <KanbanBoard rows={filtered} onMove={moveProspect} />
+      ) : grouped ? (
         grouped.map(([ville, items]) => (
           <div key={ville}>
             <div className="section-label">{ville} · {items.length}</div>

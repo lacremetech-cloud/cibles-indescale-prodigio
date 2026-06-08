@@ -389,3 +389,52 @@ a { color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
+
+/* ─── Bascule segmentée Liste / Kanban ─────────────────────────────────────── */
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; }
+.seg-btn {
+  appearance: none; border: 0; background: transparent; color: var(--muted);
+  font: inherit; font-size: 13px; padding: 8px 12px; cursor: pointer; line-height: 1;
+}
+.seg-btn + .seg-btn { border-left: 1px solid var(--line); }
+.seg-btn.on { background: var(--accent); color: #fff; }
+.shell[data-brand="prodigio"] .seg-btn.on { background: var(--text); color: var(--bg); }
+
+/* ─── Kanban ────────────────────────────────────────────────────────────────── */
+.kanban {
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(248px, 1fr);
+  gap: 12px; overflow-x: auto; padding-bottom: 10px; scroll-snap-type: x proximity;
+}
+.kcol {
+  scroll-snap-align: start; background: var(--bg-2); border: 1px solid var(--line);
+  border-radius: var(--radius-sm); display: flex; flex-direction: column; min-height: 120px;
+  transition: outline-color .15s, background .15s;
+}
+.kcol.over { outline: 2px dashed var(--accent); outline-offset: -2px; background: var(--card-2); }
+.kcol-head {
+  display: flex; align-items: center; gap: 8px; padding: 11px 12px;
+  border-top: 3px solid var(--accent); border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  position: sticky; top: 0; background: var(--bg-2); z-index: 1;
+}
+.kcol-dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.kcol-name { font-size: 13px; font-weight: 600; color: var(--text); flex: 1; line-height: 1.2; }
+.kcol-count { font-size: 12px; color: var(--muted); background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px; }
+.kcol-body { display: flex; flex-direction: column; gap: 8px; padding: 10px; flex: 1; }
+.kcol-empty { color: var(--muted); font-size: 12px; text-align: center; padding: 8px 0; opacity: .6; }
+
+.kcard {
+  background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+  border-radius: 10px; padding: 10px 11px; cursor: grab; user-select: none;
+}
+.kcard:active { cursor: grabbing; }
+.kc-name { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.3; }
+.kc-dir { font-size: 12px; color: var(--muted); margin-top: 3px; }
+.kc-meta { font-size: 11px; color: var(--muted); margin-top: 3px; opacity: .85; }
+.kc-foot { display: flex; align-items: center; gap: 8px; margin-top: 9px; flex-wrap: wrap; }
+.pill.sm { font-size: 11px; padding: 2px 8px; }
+.kc-call { font-size: 12px; color: var(--accent-2); text-decoration: none; white-space: nowrap; }
+.kc-call.disabled { color: var(--muted); opacity: .5; }
+.kc-status {
+  width: 100%; margin-top: 9px; font: inherit; font-size: 12px; padding: 6px 8px;
+  background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 8px;
+}
