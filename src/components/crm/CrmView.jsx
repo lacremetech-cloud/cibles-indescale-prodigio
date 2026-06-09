@@ -39,7 +39,7 @@ export default function CrmView({ title, subtitle, filter, addBase, groupByVille
     [rows]
   )
   const reseauOptions = useMemo(
-    () => [...new Set((rows || []).map(r => r.data?.reseau_franchise).filter(Boolean))].sort((a, b) => a.localeCompare(b)),
+    () => [...new Set((rows || []).map(r => normaliseReseau(r.data?.reseau_franchise)).filter(Boolean))].sort((a, b) => a.localeCompare(b)),
     [rows]
   )
 
@@ -47,7 +47,7 @@ export default function CrmView({ title, subtitle, filter, addBase, groupByVille
     let r = rows || []
     if (statut) r = r.filter(x => x.statut === statut)
     if (villeFilter) r = r.filter(x => x.ville === villeFilter)
-    if (reseauFilter) r = r.filter(x => x.data?.reseau_franchise === reseauFilter)
+    if (reseauFilter) r = r.filter(x => normaliseReseau(x.data?.reseau_franchise) === reseauFilter)
     if (withPortable) r = r.filter(x => (x.portable_dirigeant || '').trim() !== '')
     if (hideOpp) r = r.filter(x => !x.ne_plus_contacter)
     if (q.trim()) {
@@ -118,7 +118,7 @@ export default function CrmView({ title, subtitle, filter, addBase, groupByVille
         {vue === 'liste' && reseauOptions.length > 1 && (
           <select value={reseauFilter} onChange={e => setReseauFilter(e.target.value)}>
             <option value="">Tous réseaux ({reseauOptions.length})</option>
-            {reseauOptions.map(r => <option key={r} value={r}>{r.length > 40 ? r.slice(0, 40) + '…' : r}</option>)}
+            {reseauOptions.map(r => <option key={r} value={r}>{r}</option>)}
           </select>
         )}
         <label className="pill" style={{ cursor: 'pointer', display: 'flex', gap: 6, alignItems: 'center' }}>
@@ -162,4 +162,43 @@ export default function CrmView({ title, subtitle, filter, addBase, groupByVille
 function prio(p) {
   const m = { haute: 0, moyenne: 1, basse: 2 }
   return m[(p || '').toLowerCase()] ?? 1.5
+}
+
+// Réduit "BARNES master franchise Suisse" / "BARNES intégré, non franchise" / "BARNES (intégré)" → "BARNES"
+// pour que le select Réseau affiche les vraies marques (15 lignes max) et pas 50 variantes.
+const RESEAUX_CANONIQUES = [
+  ['Sotheby', "Sotheby's"],
+  ['Christie', "Christie's"],
+  ["BARNES", 'BARNES'],
+  ['Coldwell', 'Coldwell Banker'],
+  ['John Taylor', 'John Taylor'],
+  ['Daniel Féau', 'Daniel Féau'],
+  ['Daniel Feau', 'Daniel Féau'],
+  ['Junot', 'Junot'],
+  ['Émile Garcin', 'Émile Garcin'],
+  ['Emile Garcin', 'Émile Garcin'],
+  ['Vaneau', 'Vaneau'],
+  ['Marc Foujols', 'Marc Foujols'],
+  ['Naef', 'Naef Prestige / Knight Frank'],
+  ['Knight Frank', 'Naef Prestige / Knight Frank'],
+  ['Patrice Besse', 'Patrice Besse'],
+  ['Espaces Atypiques', 'Espaces Atypiques'],
+  ['Steiger', "Steiger & Cie"],
+  ['Carlton International', 'Carlton International'],
+  ['Engel', 'Engel & Völkers'],
+  ['Savills', 'Savills'],
+  ['Capi', 'Capi'],
+  ['Hyde Park', 'Hyde Park'],
+  ['Vingt Paris', 'Vingt Paris'],
+  ['Caroli', 'Caroli'],
+]
+
+function normaliseReseau(raw) {
+  if (!raw) return ''
+  const s = String(raw)
+  for (const [pat, canon] of RESEAUX_CANONIQUES) {
+    if (s.toLowerCase().includes(pat.toLowerCase())) return canon
+  }
+  if (/ind[ée]pendant|familial/i.test(s)) return 'Indépendant / Familial'
+  return 'Autre'
 }
