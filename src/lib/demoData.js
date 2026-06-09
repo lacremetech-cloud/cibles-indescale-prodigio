@@ -17,6 +17,7 @@ import { LIEUX_RECEPTION_PROSPECTS } from './lieuxReceptionData'
 import { TRAITEURS_PREMIUM_PROSPECTS } from './traiteursPremiumData'
 import { PHOTOGRAPHES_MARIAGE_PROSPECTS } from './photographesMariageData'
 import { LOCATION_MATERIEL_PROSPECTS } from './locationMaterielData'
+import { BATEAUX_JET_SKI_PROSPECTS } from './bateauxJetSkiData'
 
 let _id = 0
 const id = () => 'demo-' + (++_id)
@@ -74,6 +75,7 @@ export function seedProspects() {
     ...TRAITEURS_PREMIUM_PROSPECTS,
     ...PHOTOGRAPHES_MARIAGE_PROSPECTS,
     ...LOCATION_MATERIEL_PROSPECTS,
+    ...BATEAUX_JET_SKI_PROSPECTS,
     ...PRODIGIO_PROSPECTS,
   ].map(p => ({
     qualification: '', date_relance: null, ne_plus_contacter: false, data: {}, ...p
