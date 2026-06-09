@@ -165,13 +165,22 @@ function prio(p) {
 }
 
 // Réduit "BARNES master franchise Suisse" / "BARNES intégré, non franchise" / "BARNES (intégré)" → "BARNES"
-// pour que le select Réseau affiche les vraies marques (15 lignes max) et pas 50 variantes.
+// pour que le select Réseau affiche les vraies marques et pas 100+ variantes brutes.
+// Ordre IMPORTANT : patterns spécifiques en premier (ex. "Mercure Forbes" avant "Mercure" simple).
 const RESEAUX_CANONIQUES = [
+  // Grandes franchises luxe internationales
   ['Sotheby', "Sotheby's"],
   ['Christie', "Christie's"],
-  ["BARNES", 'BARNES'],
+  ['BARNES', 'BARNES'],
   ['Coldwell', 'Coldwell Banker'],
   ['John Taylor', 'John Taylor'],
+  ['Engel', 'Engel & Völkers'],
+  ['Savills', 'Savills'],
+  ['Beauchamp', 'Beauchamp Estates'],
+  ['Lucas Fox', 'Lucas Fox'],
+  ['Knight Frank', 'Knight Frank / Naef Prestige'],
+  ['Naef', 'Knight Frank / Naef Prestige'],
+  // Grands réseaux français luxe
   ['Daniel Féau', 'Daniel Féau'],
   ['Daniel Feau', 'Daniel Féau'],
   ['Junot', 'Junot'],
@@ -179,18 +188,37 @@ const RESEAUX_CANONIQUES = [
   ['Emile Garcin', 'Émile Garcin'],
   ['Vaneau', 'Vaneau'],
   ['Marc Foujols', 'Marc Foujols'],
-  ['Naef', 'Naef Prestige / Knight Frank'],
-  ['Knight Frank', 'Naef Prestige / Knight Frank'],
   ['Patrice Besse', 'Patrice Besse'],
   ['Espaces Atypiques', 'Espaces Atypiques'],
-  ['Steiger', "Steiger & Cie"],
+  ['Mercure Forbes', 'Mercure / Forbes Global Properties'],
+  ['Groupe Mercure', 'Mercure / Forbes Global Properties'],
+  ['Magrey', 'Magrey & Sons'],
+  ['Michaël Zingraf', 'Michaël Zingraf'],
+  ['Michael Zingraf', 'Michaël Zingraf'],
+  ['Prestant', 'Prestant Realty'],
   ['Carlton International', 'Carlton International'],
-  ['Engel', 'Engel & Völkers'],
-  ['Savills', 'Savills'],
-  ['Capi', 'Capi'],
+  ['Steiger', "Steiger & Cie"],
+  ['Caroli', 'Caroli Real Estate'],
+  // Régionaux luxe Riviera / Alpes
+  ['Cimalpes', 'Cimalpes'],
+  ['Vallat', 'Groupe Vallat'],
+  ['Compagnie des Alpes', 'Compagnie des Alpes'],
+  // Niches & autres
+  ['Vinea', 'Vinea Transaction (viticole)'],
+  ['Pierres Blanches', 'Pierres Blanches'],
+  ['Belles Pierres', 'Belles Pierres'],
   ['Hyde Park', 'Hyde Park'],
   ['Vingt Paris', 'Vingt Paris'],
-  ['Caroli', 'Caroli'],
+  // Régionaux Hérault / Occitanie
+  ['Imagimmo', 'Imagimmo / Côté CHIC'],
+  ['Côté CHIC', 'Imagimmo / Côté CHIC'],
+  ['Groupe Jeannin', 'Groupe Jeannin'],
+  ['Cofim', 'Cofim Immobilier'],
+  ['Cimm', 'Cimm Immobilier'],
+  // Réseaux mandataires
+  ['Capi', 'CapiFrance Luxe'],
+  ['iad', 'iad France'],
+  ['Expertimo', 'Expertimo'],
 ]
 
 function normaliseReseau(raw) {
