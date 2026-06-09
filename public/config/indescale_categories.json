@@ -78,7 +78,7 @@
         { "nom": "Dressing & rangements sur-mesure", "ticket": "5 000 – 25 000 €", "public_cible": "Propriétaires CSP+, rénovateurs", "requete_scraping": "dressing sur-mesure" },
         { "nom": "Escaliers design / verrières d'architecte", "ticket": "15 000 – 60 000 €", "public_cible": "Propriétaires villa / loft, rénovation", "requete_scraping": "escalier design verrière sur-mesure" },
         { "nom": "Portes & façades sur-mesure, menuiserie d'exception", "ticket": "20 000 – 100 000 €", "public_cible": "Propriétaires villa haut de gamme", "requete_scraping": "menuiserie d'exception porte sur-mesure" },
-        { "nom": "Marbrerie / pierre naturelle / sols nobles", "ticket": "30 000 – 200 000 €", "public_cible": "Propriétaires villa, fortunés", "requete_scraping": "marbrerie pierre naturelle" },
+        { "nom": "Marbrerie / pierre naturelle / sols nobles", "ticket": "30 000 – 200 000 €", "public_cible": "Propriétaires villa, fortunés", "requete_scraping": "marbrerie pierre naturelle", "liste_figee": true },
         { "nom": "Parquet / sols haut de gamme", "ticket": "8 000 – 40 000 €", "public_cible": "Propriétaires CSP+, rénovation", "requete_scraping": "parqueteur sol haut de gamme" },
         { "nom": "Peinture décorative / enduits d'art", "ticket": "5 000 – 30 000 €", "public_cible": "Propriétaires haut de gamme", "requete_scraping": "peinture décorative enduit d'art" },
         { "nom": "Éclairage architectural / design lumière", "ticket": "15 000 – 80 000 €", "public_cible": "Propriétaires villa neuve / rénovation", "requete_scraping": "éclairage architectural concepteur lumière" },
