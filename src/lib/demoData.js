@@ -22,6 +22,7 @@ import { MEDECINE_ESTHETIQUE_PROSPECTS } from './medecineEsthetiqueData'
 import { DENTAIRE_ESTHETIQUE_PROSPECTS } from './dentaireEsthetiqueData'
 import { IMPLANTS_DENTAIRES_PROSPECTS } from './implantsDentairesData'
 import { GREFFE_CHEVEUX_PROSPECTS } from './greffeCheveuxData'
+import { PMA_FERTILITE_PROSPECTS } from './pmaFertiliteData'
 
 let _id = 0
 const id = () => 'demo-' + (++_id)
@@ -84,6 +85,7 @@ export function seedProspects() {
     ...DENTAIRE_ESTHETIQUE_PROSPECTS,
     ...IMPLANTS_DENTAIRES_PROSPECTS,
     ...GREFFE_CHEVEUX_PROSPECTS,
+    ...PMA_FERTILITE_PROSPECTS,
     ...PRODIGIO_PROSPECTS,
   ].map(p => ({
     qualification: '', date_relance: null, ne_plus_contacter: false, data: {}, ...p
