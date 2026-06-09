@@ -16,6 +16,9 @@ export default function CrmView({ title, subtitle, filter, addBase, groupByVille
   const [hideOpp, setHideOpp] = useState(true)
   const [showAdd, setShowAdd] = useState(false)
   const [vue, setVue] = useState('liste') // 'liste' | 'kanban'
+  const [villeFilter, setVilleFilter] = useState('')
+  const [reseauFilter, setReseauFilter] = useState('')
+  const [withPortable, setWithPortable] = useState(false)
 
   useEffect(() => {
     let active = true
@@ -31,13 +34,30 @@ export default function CrmView({ title, subtitle, filter, addBase, groupByVille
     try { await updateProspect(id, { statut: nouveauStatut }) } catch (e) { console.error(e) }
   }
 
+  const villeOptions = useMemo(
+    () => [...new Set((rows || []).map(r => r.ville).filter(Boolean))].sort((a, b) => a.localeCompare(b)),
+    [rows]
+  )
+  const reseauOptions = useMemo(
+    () => [...new Set((rows || []).map(r => r.data?.reseau_franchise).filter(Boolean))].sort((a, b) => a.localeCompare(b)),
+    [rows]
+  )
+
   const filtered = useMemo(() => {
     let r = rows || []
     if (statut) r = r.filter(x => x.statut === statut)
+    if (villeFilter) r = r.filter(x => x.ville === villeFilter)
+    if (reseauFilter) r = r.filter(x => x.data?.reseau_franchise === reseauFilter)
+    if (withPortable) r = r.filter(x => (x.portable_dirigeant || '').trim() !== '')
     if (hideOpp) r = r.filter(x => !x.ne_plus_contacter)
     if (q.trim()) {
       const s = q.toLowerCase()
-      r = r.filter(x => [x.entreprise, x.dirigeant_principal, x.ville].filter(Boolean).join(' ').toLowerCase().includes(s))
+      r = r.filter(x => [
+        x.entreprise, x.dirigeant_principal, x.ville, x.zone, x.adresse,
+        x.telephone, x.portable_dirigeant, x.email_dirigeant,
+        x.data?.reseau_franchise, x.data?.specialisation_percue,
+        x.data?.echantillon_mandats_1m_plus, x.data?.signaux_stagnation
+      ].filter(Boolean).join(' ').toLowerCase().includes(s))
     }
     r = [...r].sort((a, b) => {
       if (tri === 'relance') return (a.date_relance || '9999').localeCompare(b.date_relance || '9999')
@@ -47,7 +67,7 @@ export default function CrmView({ title, subtitle, filter, addBase, groupByVille
       return (a.entreprise || '').localeCompare(b.entreprise || '')
     })
     return r
-  }, [rows, statut, tri, q, hideOpp])
+  }, [rows, statut, tri, q, hideOpp, villeFilter, reseauFilter, withPortable])
 
   const total = (rows || []).length
   const contactes = (rows || []).filter(x => estContacte(x.statut)).length
@@ -89,6 +109,22 @@ export default function CrmView({ title, subtitle, filter, addBase, groupByVille
             <option value="ville">Tri : ville</option>
           </select>
         )}
+        {vue === 'liste' && villeOptions.length > 1 && (
+          <select value={villeFilter} onChange={e => setVilleFilter(e.target.value)}>
+            <option value="">Toutes villes ({villeOptions.length})</option>
+            {villeOptions.map(v => <option key={v} value={v}>{v}</option>)}
+          </select>
+        )}
+        {vue === 'liste' && reseauOptions.length > 1 && (
+          <select value={reseauFilter} onChange={e => setReseauFilter(e.target.value)}>
+            <option value="">Tous réseaux ({reseauOptions.length})</option>
+            {reseauOptions.map(r => <option key={r} value={r}>{r.length > 40 ? r.slice(0, 40) + '…' : r}</option>)}
+          </select>
+        )}
+        <label className="pill" style={{ cursor: 'pointer', display: 'flex', gap: 6, alignItems: 'center' }}>
+          <input type="checkbox" checked={withPortable} onChange={e => setWithPortable(e.target.checked)} />
+          📱 avec portable
+        </label>
         <label className="pill" style={{ cursor: 'pointer', display: 'flex', gap: 6, alignItems: 'center' }}>
           <input type="checkbox" checked={hideOpp} onChange={e => setHideOpp(e.target.checked)} />
           masquer opposition
