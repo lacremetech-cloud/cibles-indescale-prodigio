@@ -18,6 +18,7 @@ import { TRAITEURS_PREMIUM_PROSPECTS } from './traiteursPremiumData'
 import { PHOTOGRAPHES_MARIAGE_PROSPECTS } from './photographesMariageData'
 import { LOCATION_MATERIEL_PROSPECTS } from './locationMaterielData'
 import { BATEAUX_JET_SKI_PROSPECTS } from './bateauxJetSkiData'
+import { MEDECINE_ESTHETIQUE_PROSPECTS } from './medecineEsthetiqueData'
 
 let _id = 0
 const id = () => 'demo-' + (++_id)
@@ -76,6 +77,7 @@ export function seedProspects() {
     ...PHOTOGRAPHES_MARIAGE_PROSPECTS,
     ...LOCATION_MATERIEL_PROSPECTS,
     ...BATEAUX_JET_SKI_PROSPECTS,
+    ...MEDECINE_ESTHETIQUE_PROSPECTS,
     ...PRODIGIO_PROSPECTS,
   ].map(p => ({
     qualification: '', date_relance: null, ne_plus_contacter: false, data: {}, ...p
