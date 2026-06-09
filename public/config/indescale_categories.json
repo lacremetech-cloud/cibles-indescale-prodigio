@@ -115,7 +115,7 @@
       "categories": [
         { "nom": "Cliniques dentaires / implants", "ticket": "5 000 – 25 000 €", "public_cible": "Adultes 40+, soucieux d'esthétique", "requete_scraping": "clinique dentaire implant", "liste_figee": true },
         { "nom": "Dentaire esthétique / facettes", "ticket": "5 000 – 20 000 €", "public_cible": "Adultes CSP+, 25-55 ans", "requete_scraping": "facettes dentaires esthétique", "liste_figee": true },
-        { "nom": "Greffe de cheveux", "ticket": "3 000 – 12 000 €", "public_cible": "Hommes 25-50 ans, calvitie", "requete_scraping": "clinique greffe de cheveux" },
+        { "nom": "Greffe de cheveux", "ticket": "3 000 – 12 000 €", "public_cible": "Hommes 25-50 ans, calvitie", "requete_scraping": "clinique greffe de cheveux", "liste_figee": true },
         { "nom": "Médecine esthétique / chirurgie", "ticket": "3 000 – 20 000 €", "public_cible": "Femmes et hommes CSP+, 30-60 ans", "requete_scraping": "médecine esthétique chirurgie", "liste_figee": true },
         { "nom": "Ophtalmo laser / chirurgie réfractive", "ticket": "2 000 – 5 000 €", "public_cible": "Adultes 25-50 ans, porteurs de lunettes", "requete_scraping": "chirurgie réfractive laser yeux" },
         { "nom": "PMA / cliniques de fertilité", "ticket": "5 000 – 15 000 €", "public_cible": "Couples 30-45 ans", "requete_scraping": "clinique fertilité PMA" },
