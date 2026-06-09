@@ -92,7 +92,7 @@
       "categories": [
         { "nom": "Vans aménagés", "ticket": "45 000 – 90 000 €", "public_cible": "Couples/familles, passionnés vanlife", "requete_scraping": "aménagement van fourgon" },
         { "nom": "Camping-cars", "ticket": "50 000 – 120 000 €", "public_cible": "Retraités aisés, familles, voyageurs", "requete_scraping": "concessionnaire camping-car" },
-        { "nom": "Bateaux / semi-rigides / jet-skis", "ticket": "15 000 – 200 000 €", "public_cible": "Propriétaires littoral, loisirs nautiques aisés", "requete_scraping": "vente bateau jet-ski" },
+        { "nom": "Bateaux / semi-rigides / jet-skis", "ticket": "15 000 – 200 000 €", "public_cible": "Propriétaires littoral, loisirs nautiques aisés", "requete_scraping": "vente bateau jet-ski", "liste_figee": true },
         { "nom": "Motos / motos custom", "ticket": "10 000 – 40 000 €", "public_cible": "Passionnés moto, hommes 30-55 ans", "requete_scraping": "concessionnaire moto custom" },
         { "nom": "Vélos électriques premium / speed bikes", "ticket": "4 000 – 12 000 €", "public_cible": "Urbains CSP+, cyclistes sportifs", "requete_scraping": "vélo électrique premium magasin" },
         { "nom": "Garage galerie pour voitures de collection", "ticket": "30 000 – 150 000 €", "public_cible": "Collectionneurs auto fortunés", "requete_scraping": "aménagement garage voiture collection" }
