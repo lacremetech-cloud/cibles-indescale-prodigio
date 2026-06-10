@@ -6,23 +6,23 @@
    ════════════════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* Variables de base (neutres) — surchargées par marque plus bas. */
-  --bg: #0a0a0c;
-  --bg-2: #0d0d10;
-  --card: rgba(255, 255, 255, .04);
-  --card-2: rgba(255, 255, 255, .07);
-  --line: rgba(255, 255, 255, .12);
-  --text: #f3f1f6;
-  --muted: #a9a6b4;
+  /* Variables de base (neutres LIGHT) — surchargées par marque plus bas. */
+  --bg: #F7F7FA;
+  --bg-2: #FFFFFF;
+  --card: #FFFFFF;
+  --card-2: #F4F4F8;
+  --line: rgba(15, 15, 30, .09);
+  --text: #1A1B25;
+  --muted: #6B6F7E;
   --accent: #7c5cff;
   --accent-2: #b69cff;
-  --on-accent: #0a0612;
+  --on-accent: #ffffff;
 
-  --green: #34d399;
-  --green-bg: rgba(52, 211, 153, .12);
-  --grey-bg: rgba(255, 255, 255, .04);
-  --danger: #fb7185;
-  --warn: #fbbf24;
+  --green: #10b981;
+  --green-bg: rgba(16, 185, 129, .10);
+  --grey-bg: rgba(15, 15, 30, .04);
+  --danger: #ef4444;
+  --warn: #f59e0b;
 
   --display: 'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --body: 'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -30,8 +30,8 @@
   --radius: 16px;
   --radius-sm: 12px;
   --pill: 999px;
-  --shadow: 0 18px 50px -20px rgba(0, 0, 0, .7);
-  --shadow-soft: 0 10px 30px -16px rgba(0, 0, 0, .6);
+  --shadow: 0 12px 30px -16px rgba(15, 15, 30, .18);
+  --shadow-soft: 0 6px 18px -10px rgba(15, 15, 30, .12);
   --ease: cubic-bezier(.22, .61, .36, 1);
 }
 
@@ -58,53 +58,56 @@ a { color: inherit; }
 .glow { display: none; }
 .app { position: relative; z-index: 1; max-width: 1040px; margin: 0 auto; padding: 0 16px 110px; }
 
-/* ════════════ UNIVERS INDESCALE — dark / violet / growth ════════════════════ */
+/* ════════════ UNIVERS INDESCALE — LIGHT / accent violet / growth ═════════════ */
 .shell[data-brand="indescale"] {
-  --bg: #0A0612;
-  --bg-2: #0D0A14;
-  --card: rgba(255, 255, 255, .035);
-  --card-2: rgba(180, 156, 255, .08);
-  --line: rgba(180, 156, 255, .16);
-  --text: #F3F0FA;
-  --muted: #C9C4D4;
+  --bg: #F7F5FB;
+  --bg-2: #FFFFFF;
+  --card: #FFFFFF;
+  --card-2: #F1EDFA;
+  --line: rgba(124, 92, 255, .15);
+  --text: #1A1230;
+  --muted: #6A647C;
   --accent: #7C5CFF;
-  --accent-2: #B69CFF;
+  --accent-2: #5B3FE0;
   --on-accent: #ffffff;
   --display: 'Clash Display', 'General Sans', sans-serif;
   --body: 'General Sans', -apple-system, sans-serif;
   --radius: 18px;
   --radius-sm: 14px;
+  --shadow: 0 12px 32px -18px rgba(124, 92, 255, .25);
+  --shadow-soft: 0 6px 16px -10px rgba(124, 92, 255, .15);
 }
-/* Halo violet diffus en arrière-plan */
+/* Halo violet doux en arrière-plan (light mode) */
 .shell[data-brand="indescale"] .glow {
   display: block; position: fixed; inset: 0; z-index: 0; pointer-events: none;
   background:
-    radial-gradient(60% 45% at 78% 8%, rgba(124, 92, 255, .28), transparent 70%),
-    radial-gradient(55% 40% at 12% 30%, rgba(182, 156, 255, .14), transparent 70%);
-  filter: saturate(1.1);
+    radial-gradient(60% 45% at 78% 8%, rgba(124, 92, 255, .10), transparent 70%),
+    radial-gradient(55% 40% at 12% 30%, rgba(182, 156, 255, .08), transparent 70%);
 }
 
-/* ════════════ UNIVERS PRODIGIO — noir & blanc éditorial / luxe ══════════════ */
+/* ════════════ UNIVERS PRODIGIO — LIGHT / accent champagne éditorial / luxe ═══ */
 .shell[data-brand="prodigio"] {
-  --bg: #0B0B0C;
-  --bg-2: #100F10;
-  --card: rgba(255, 255, 255, .025);
-  --card-2: rgba(255, 255, 255, .045);
-  --line: rgba(255, 255, 255, .13);
-  --text: #F4F2EC;
-  --muted: #9E9A92;
-  --accent: #C9A66B;      /* champagne discret */
-  --accent-2: #E7DCC8;
-  --on-accent: #0B0B0C;
+  --bg: #FAF8F2;
+  --bg-2: #FFFFFF;
+  --card: #FFFFFF;
+  --card-2: #F5F1E5;
+  --line: rgba(40, 30, 15, .12);
+  --text: #1B1810;
+  --muted: #7A7064;
+  --accent: #B0853F;      /* champagne plus saturé pour lisibilité sur fond clair */
+  --accent-2: #C9A66B;
+  --on-accent: #FFFFFF;
   --display: 'Playfair Display', Georgia, serif;
   --body: 'General Sans', -apple-system, sans-serif;
   --radius: 5px;          /* sobre, architectural */
   --radius-sm: 4px;
-  --green: #b9c4a8;
+  --green: #6b8e3d;
+  --shadow: 0 10px 28px -16px rgba(40, 30, 15, .18);
+  --shadow-soft: 0 5px 14px -8px rgba(40, 30, 15, .12);
 }
 .shell[data-brand="prodigio"] {
   background:
-    radial-gradient(110% 80% at 50% -20%, #141312, #0B0B0C 65%);
+    radial-gradient(110% 80% at 50% -20%, #FFFDF6, #FAF8F2 65%);
 }
 
 /* ── Header / topbar ────────────────────────────────────────────────────────── */
@@ -235,10 +238,11 @@ a { color: inherit; }
 /* ── Barre d'outils CRM ─────────────────────────────────────────────────────── */
 .toolbar { display: flex; flex-wrap: wrap; gap: 9px; align-items: center; margin-bottom: 12px; }
 .toolbar select, .toolbar input {
-  background: var(--card); border: 1px solid var(--line); color: var(--text);
+  background: var(--bg-2); border: 1px solid var(--line); color: var(--text);
   border-radius: var(--radius-sm); padding: 10px 12px; font-size: 14px; outline: none; font-family: var(--body);
-  transition: border-color .2s var(--ease);
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
 }
+.toolbar select:hover, .toolbar input:hover { border-color: color-mix(in srgb, var(--accent) 50%, var(--line)); }
 .toolbar select:focus, .toolbar input:focus { border-color: var(--accent); }
 .toolbar .spacer { flex: 1; }
 
@@ -264,9 +268,9 @@ a { color: inherit; }
   border-radius: 2px; text-transform: uppercase; letter-spacing: .12em; font-size: 12px; font-weight: 500;
 }
 .shell[data-brand="prodigio"] .btn.primary {
-  background: transparent; color: var(--accent-2); border: 1px solid var(--accent);
+  background: var(--accent); color: #FFFFFF; border: 1px solid var(--accent);
 }
-.shell[data-brand="prodigio"] .btn.primary:hover { background: color-mix(in srgb, var(--accent) 14%, transparent); filter: none; }
+.shell[data-brand="prodigio"] .btn.primary:hover { background: color-mix(in srgb, var(--accent) 85%, #000); filter: none; }
 
 /* ── Progression ────────────────────────────────────────────────────────────── */
 .progress { height: 7px; border-radius: var(--pill); background: var(--card-2); overflow: hidden; margin: 6px 0 18px; }
@@ -320,7 +324,7 @@ a { color: inherit; }
 .meta-row label { font-size: 11px; color: var(--muted); display: block; margin-bottom: 4px; letter-spacing: .03em; }
 .field { display: flex; flex-direction: column; }
 .field select, .field input {
-  background: color-mix(in srgb, var(--bg) 60%, transparent); border: 1px solid var(--line); color: var(--text);
+  background: var(--bg-2); border: 1px solid var(--line); color: var(--text);
   border-radius: var(--radius-sm); padding: 8px 10px; font-size: 13px; min-width: 120px; font-family: var(--body);
   transition: border-color .2s var(--ease);
 }
@@ -337,7 +341,7 @@ a { color: inherit; }
 .notes { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 12px; }
 .notes .add { display: flex; gap: 9px; }
 .notes textarea {
-  flex: 1; background: color-mix(in srgb, var(--bg) 60%, transparent); border: 1px solid var(--line); color: var(--text);
+  flex: 1; background: var(--bg-2); border: 1px solid var(--line); color: var(--text);
   border-radius: var(--radius-sm); padding: 9px; font-size: 13px; resize: vertical; min-height: 40px; font-family: var(--body);
 }
 .notes textarea:focus { border-color: var(--accent); outline: none; }
@@ -345,7 +349,7 @@ a { color: inherit; }
 .note-item .when { color: var(--muted); font-size: 11px; margin-bottom: 2px; }
 
 /* ── Modale ─────────────────────────────────────────────────────────────────── */
-.modal-bg { position: fixed; inset: 0; background: rgba(0, 0, 0, .68); backdrop-filter: blur(6px); display: flex; align-items: flex-end; justify-content: center; z-index: 50; animation: fade .25s var(--ease) both; }
+.modal-bg { position: fixed; inset: 0; background: rgba(15, 15, 30, .42); backdrop-filter: blur(6px); display: flex; align-items: flex-end; justify-content: center; z-index: 50; animation: fade .25s var(--ease) both; }
 @media (min-width: 560px) { .modal-bg { align-items: center; } }
 .modal {
   background: var(--bg-2); border: 1px solid var(--line);
@@ -436,5 +440,5 @@ a { color: inherit; }
 .kc-call.disabled { color: var(--muted); opacity: .5; }
 .kc-status {
   width: 100%; margin-top: 9px; font: inherit; font-size: 12px; padding: 6px 8px;
-  background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 8px;
+  background: var(--bg-2); color: var(--text); border: 1px solid var(--line); border-radius: 8px;
 }
