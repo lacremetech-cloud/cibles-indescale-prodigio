@@ -118,7 +118,6 @@
         { "nom": "Greffe de cheveux", "ticket": "3 000 – 12 000 €", "public_cible": "Hommes 25-50 ans, calvitie", "requete_scraping": "clinique greffe de cheveux", "liste_figee": true },
         { "nom": "Médecine esthétique / chirurgie", "ticket": "3 000 – 20 000 €", "public_cible": "Femmes et hommes CSP+, 30-60 ans", "requete_scraping": "médecine esthétique chirurgie", "liste_figee": true },
         { "nom": "Ophtalmo laser / chirurgie réfractive", "ticket": "2 000 – 5 000 €", "public_cible": "Adultes 25-50 ans, porteurs de lunettes", "requete_scraping": "chirurgie réfractive laser yeux" },
-        { "nom": "PMA / cliniques de fertilité", "ticket": "5 000 – 15 000 €", "public_cible": "Couples 30-45 ans", "requete_scraping": "clinique fertilité PMA" },
         { "nom": "Avocats spécialisés (affaires, divorce, pénal)", "ticket": "Honoraires élevés", "public_cible": "Dirigeants, particuliers fortunés", "requete_scraping": "avocat d'affaires cabinet" },
         { "nom": "Gestion de patrimoine / fiscalistes", "ticket": "Honoraires élevés", "public_cible": "Dirigeants, professions libérales, fortunés", "requete_scraping": "conseiller gestion de patrimoine" },
         { "nom": "Formation pro / reconversion (B2C adulte)", "ticket": "5 000 – 20 000 €", "public_cible": "Actifs en reconversion, entrepreneurs", "requete_scraping": "organisme formation professionnelle" }
