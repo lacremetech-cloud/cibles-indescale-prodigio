@@ -19,6 +19,7 @@ export default function CrmView({ title, subtitle, filter, addBase, groupByVille
   const [villeFilter, setVilleFilter] = useState('')
   const [reseauFilter, setReseauFilter] = useState('')
   const [withPortable, setWithPortable] = useState(false)
+  const [cibleFilter, setCibleFilter] = useState('')
 
   useEffect(() => {
     let active = true
@@ -49,6 +50,10 @@ export default function CrmView({ title, subtitle, filter, addBase, groupByVille
     if (villeFilter) r = r.filter(x => x.ville === villeFilter)
     if (reseauFilter) r = r.filter(x => normaliseReseau(x.data?.reseau_franchise) === reseauFilter)
     if (withPortable) r = r.filter(x => (x.portable_dirigeant || '').trim() !== '')
+    if (cibleFilter) {
+      if (cibleFilter === '__none__') r = r.filter(x => !x.qualification_cible)
+      else r = r.filter(x => x.qualification_cible === cibleFilter)
+    }
     if (hideOpp) r = r.filter(x => !x.ne_plus_contacter)
     if (q.trim()) {
       const s = q.toLowerCase()
@@ -67,7 +72,7 @@ export default function CrmView({ title, subtitle, filter, addBase, groupByVille
       return (a.entreprise || '').localeCompare(b.entreprise || '')
     })
     return r
-  }, [rows, statut, tri, q, hideOpp, villeFilter, reseauFilter, withPortable])
+  }, [rows, statut, tri, q, hideOpp, villeFilter, reseauFilter, withPortable, cibleFilter])
 
   const total = (rows || []).length
   const contactes = (rows || []).filter(x => estContacte(x.statut)).length
@@ -125,6 +130,15 @@ export default function CrmView({ title, subtitle, filter, addBase, groupByVille
           <input type="checkbox" checked={withPortable} onChange={e => setWithPortable(e.target.checked)} />
           📱 avec portable
         </label>
+        {vue === 'liste' && filter.app === 'prodigio' && (
+          <select value={cibleFilter} onChange={e => setCibleFilter(e.target.value)}>
+            <option value="">Cibles : toutes</option>
+            <option value="cible_plus">✅ CIBLE +</option>
+            <option value="cible_moins">🟡 CIBLE −</option>
+            <option value="pas_cible">❌ PAS CIBLE</option>
+            <option value="__none__">⚪ non qualifié</option>
+          </select>
+        )}
         <label className="pill" style={{ cursor: 'pointer', display: 'flex', gap: 6, alignItems: 'center' }}>
           <input type="checkbox" checked={hideOpp} onChange={e => setHideOpp(e.target.checked)} />
           masquer opposition

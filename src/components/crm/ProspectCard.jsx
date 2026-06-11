@@ -75,6 +75,27 @@ export default function ProspectCard({ prospect }) {
         {p.source && <span className="pill">{p.source}</span>}
       </div>
 
+      {/* Qualification cible — PRODIGIO uniquement (revue manuelle des prospects) */}
+      {p.app === 'prodigio' && (
+        <div className="cible-row">
+          <button
+            type="button"
+            className={'cible-btn cible-plus' + (p.qualification_cible === 'cible_plus' ? ' on' : '')}
+            onClick={() => patch({ qualification_cible: p.qualification_cible === 'cible_plus' ? '' : 'cible_plus' })}
+          >✅ CIBLE +</button>
+          <button
+            type="button"
+            className={'cible-btn cible-moins' + (p.qualification_cible === 'cible_moins' ? ' on' : '')}
+            onClick={() => patch({ qualification_cible: p.qualification_cible === 'cible_moins' ? '' : 'cible_moins' })}
+          >🟡 CIBLE −</button>
+          <button
+            type="button"
+            className={'cible-btn cible-pas' + (p.qualification_cible === 'pas_cible' ? ' on' : '')}
+            onClick={() => patch({ qualification_cible: p.qualification_cible === 'pas_cible' ? '' : 'pas_cible' })}
+          >❌ PAS CIBLE</button>
+        </div>
+      )}
+
       {/* Actions d'appel / contact — le portable du dirigeant est prioritaire (vert) */}
       <div className="actions">
         {dirPhone ? (
