@@ -31,6 +31,15 @@ import { PEINTURE_DECORATIVE_PROSPECTS } from './peintureDecorativeData'
 import { ECLAIRAGE_ARCHI_PROSPECTS } from './eclairageArchiData'
 import { MOBILIER_SUR_MESURE_PROSPECTS } from './mobilierSurMesureData'
 import { CHEMINEES_DESIGN_PROSPECTS } from './chemineesDesignData'
+import { OPHTALMO_LASER_PROSPECTS } from './ophtalmoLaserData'
+import { AVOCATS_SPECIALISES_PROSPECTS } from './avocatsSpecialisesData'
+import { GESTION_PATRIMOINE_PROSPECTS } from './gestionPatrimoineData'
+import { FORMATION_PRO_PROSPECTS } from './formationProData'
+import { VANS_AMENAGES_PROSPECTS } from './vansAmenagesData'
+import { CAMPING_CARS_PROSPECTS } from './campingCarsData'
+import { MOTOS_CUSTOM_PROSPECTS } from './motosCustomData'
+import { VELOS_PREMIUM_PROSPECTS } from './velosPremiumData'
+import { GARAGE_COLLECTION_PROSPECTS } from './garageCollectionData'
 
 let _id = 0
 const id = () => 'demo-' + (++_id)
@@ -102,6 +111,15 @@ export function seedProspects() {
     ...ECLAIRAGE_ARCHI_PROSPECTS,
     ...MOBILIER_SUR_MESURE_PROSPECTS,
     ...CHEMINEES_DESIGN_PROSPECTS,
+    ...OPHTALMO_LASER_PROSPECTS,
+    ...AVOCATS_SPECIALISES_PROSPECTS,
+    ...GESTION_PATRIMOINE_PROSPECTS,
+    ...FORMATION_PRO_PROSPECTS,
+    ...VANS_AMENAGES_PROSPECTS,
+    ...CAMPING_CARS_PROSPECTS,
+    ...MOTOS_CUSTOM_PROSPECTS,
+    ...VELOS_PREMIUM_PROSPECTS,
+    ...GARAGE_COLLECTION_PROSPECTS,
     ...PRODIGIO_PROSPECTS,
   ].map(p => ({
     qualification: '', date_relance: null, ne_plus_contacter: false, data: {}, ...p

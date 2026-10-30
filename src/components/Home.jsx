@@ -4,7 +4,6 @@ import { isDemo } from '../lib/dataClient'
 export default function Home() {
   return (
     <div className="home">
-      <div className="home-eyebrow">PROSPECTION · COLD CALL</div>
       <h1 className="home-title">Deux univers, un seul moteur</h1>
       <p className="home-lead">Choisis ta porte d'entrée.</p>
 
