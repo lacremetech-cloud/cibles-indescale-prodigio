@@ -23,6 +23,14 @@ import { DENTAIRE_ESTHETIQUE_PROSPECTS } from './dentaireEsthetiqueData'
 import { IMPLANTS_DENTAIRES_PROSPECTS } from './implantsDentairesData'
 import { GREFFE_CHEVEUX_PROSPECTS } from './greffeCheveuxData'
 import { MARBRERIE_PROSPECTS } from './marbrerieData'
+import { DRESSING_PROSPECTS } from './dressingData'
+import { ESCALIERS_DESIGN_PROSPECTS } from './escaliersDesignData'
+import { MENUISERIE_EXCEPTION_PROSPECTS } from './menuiserieExceptionData'
+import { PARQUET_HDG_PROSPECTS } from './parquetHdgData'
+import { PEINTURE_DECORATIVE_PROSPECTS } from './peintureDecorativeData'
+import { ECLAIRAGE_ARCHI_PROSPECTS } from './eclairageArchiData'
+import { MOBILIER_SUR_MESURE_PROSPECTS } from './mobilierSurMesureData'
+import { CHEMINEES_DESIGN_PROSPECTS } from './chemineesDesignData'
 
 let _id = 0
 const id = () => 'demo-' + (++_id)
@@ -86,6 +94,14 @@ export function seedProspects() {
     ...IMPLANTS_DENTAIRES_PROSPECTS,
     ...GREFFE_CHEVEUX_PROSPECTS,
     ...MARBRERIE_PROSPECTS,
+    ...DRESSING_PROSPECTS,
+    ...ESCALIERS_DESIGN_PROSPECTS,
+    ...MENUISERIE_EXCEPTION_PROSPECTS,
+    ...PARQUET_HDG_PROSPECTS,
+    ...PEINTURE_DECORATIVE_PROSPECTS,
+    ...ECLAIRAGE_ARCHI_PROSPECTS,
+    ...MOBILIER_SUR_MESURE_PROSPECTS,
+    ...CHEMINEES_DESIGN_PROSPECTS,
     ...PRODIGIO_PROSPECTS,
   ].map(p => ({
     qualification: '', date_relance: null, ne_plus_contacter: false, data: {}, ...p

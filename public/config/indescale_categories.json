@@ -75,15 +75,15 @@
       "id": "maison-finitions",
       "nom": "Maison & finitions haut de gamme",
       "categories": [
-        { "nom": "Dressing & rangements sur-mesure", "ticket": "5 000 – 25 000 €", "public_cible": "Propriétaires CSP+, rénovateurs", "requete_scraping": "dressing sur-mesure" },
-        { "nom": "Escaliers design / verrières d'architecte", "ticket": "15 000 – 60 000 €", "public_cible": "Propriétaires villa / loft, rénovation", "requete_scraping": "escalier design verrière sur-mesure" },
-        { "nom": "Portes & façades sur-mesure, menuiserie d'exception", "ticket": "20 000 – 100 000 €", "public_cible": "Propriétaires villa haut de gamme", "requete_scraping": "menuiserie d'exception porte sur-mesure" },
+        { "nom": "Dressing & rangements sur-mesure", "ticket": "5 000 – 25 000 €", "public_cible": "Propriétaires CSP+, rénovateurs", "requete_scraping": "dressing sur-mesure" , "liste_figee": true },
+        { "nom": "Escaliers design / verrières d'architecte", "ticket": "15 000 – 60 000 €", "public_cible": "Propriétaires villa / loft, rénovation", "requete_scraping": "escalier design verrière sur-mesure" , "liste_figee": true },
+        { "nom": "Portes & façades sur-mesure, menuiserie d'exception", "ticket": "20 000 – 100 000 €", "public_cible": "Propriétaires villa haut de gamme", "requete_scraping": "menuiserie d'exception porte sur-mesure" , "liste_figee": true },
         { "nom": "Marbrerie / pierre naturelle / sols nobles", "ticket": "30 000 – 200 000 €", "public_cible": "Propriétaires villa, fortunés", "requete_scraping": "marbrerie pierre naturelle", "liste_figee": true },
-        { "nom": "Parquet / sols haut de gamme", "ticket": "8 000 – 40 000 €", "public_cible": "Propriétaires CSP+, rénovation", "requete_scraping": "parqueteur sol haut de gamme" },
-        { "nom": "Peinture décorative / enduits d'art", "ticket": "5 000 – 30 000 €", "public_cible": "Propriétaires haut de gamme", "requete_scraping": "peinture décorative enduit d'art" },
-        { "nom": "Éclairage architectural / design lumière", "ticket": "15 000 – 80 000 €", "public_cible": "Propriétaires villa neuve / rénovation", "requete_scraping": "éclairage architectural concepteur lumière" },
+        { "nom": "Parquet / sols haut de gamme", "ticket": "8 000 – 40 000 €", "public_cible": "Propriétaires CSP+, rénovation", "requete_scraping": "parqueteur sol haut de gamme" , "liste_figee": true },
+        { "nom": "Peinture décorative / enduits d'art", "ticket": "5 000 – 30 000 €", "public_cible": "Propriétaires haut de gamme", "requete_scraping": "peinture décorative enduit d'art" , "liste_figee": true },
+        { "nom": "Éclairage architectural / design lumière", "ticket": "15 000 – 80 000 €", "public_cible": "Propriétaires villa neuve / rénovation", "requete_scraping": "éclairage architectural concepteur lumière" , "liste_figee": true },
         { "nom": "Mobilier sur-mesure / ébénisterie d'art", "ticket": "20 000 – 150 000 €", "public_cible": "Fortunés, amateurs de design", "requete_scraping": "ébéniste mobilier sur-mesure", "liste_figee": true },
-        { "nom": "Cheminées / poêles design haut de gamme", "ticket": "5 000 – 20 000 €", "public_cible": "Propriétaires maison, art de vivre", "requete_scraping": "cheminée poêle design" }
+        { "nom": "Cheminées / poêles design haut de gamme", "ticket": "5 000 – 20 000 €", "public_cible": "Propriétaires maison, art de vivre", "requete_scraping": "cheminée poêle design" , "liste_figee": true }
       ]
     },
     {
