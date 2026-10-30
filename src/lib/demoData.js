@@ -40,6 +40,15 @@ import { CAMPING_CARS_PROSPECTS } from './campingCarsData'
 import { MOTOS_CUSTOM_PROSPECTS } from './motosCustomData'
 import { VELOS_PREMIUM_PROSPECTS } from './velosPremiumData'
 import { GARAGE_COLLECTION_PROSPECTS } from './garageCollectionData'
+import { CONCESSION_PREMIUM_PROSPECTS } from './concessionPremiumData'
+import { VEHICULES_PRESTIGE_PROSPECTS } from './vehiculesPrestigeData'
+import { MANDATAIRES_AUTO_PROSPECTS } from './mandatairesAutoData'
+import { COVERING_AUTO_PROSPECTS } from './coveringAutoData'
+import { DETAILING_AUTO_PROSPECTS } from './detailingAutoData'
+import { ELEVAGES_CHIENS_CHATS_PROSPECTS } from './elevagesChiensChatsData'
+import { CHEVAUX_PROSPECTS } from './chevauxData'
+import { VETERINAIRES_PROSPECTS } from './veterinairesData'
+import { ANIMAUX_PREMIUM_SERVICES_PROSPECTS } from './animauxPremiumServicesData'
 
 let _id = 0
 const id = () => 'demo-' + (++_id)
@@ -120,6 +129,15 @@ export function seedProspects() {
     ...MOTOS_CUSTOM_PROSPECTS,
     ...VELOS_PREMIUM_PROSPECTS,
     ...GARAGE_COLLECTION_PROSPECTS,
+    ...CONCESSION_PREMIUM_PROSPECTS,
+    ...VEHICULES_PRESTIGE_PROSPECTS,
+    ...MANDATAIRES_AUTO_PROSPECTS,
+    ...COVERING_AUTO_PROSPECTS,
+    ...DETAILING_AUTO_PROSPECTS,
+    ...ELEVAGES_CHIENS_CHATS_PROSPECTS,
+    ...CHEVAUX_PROSPECTS,
+    ...VETERINAIRES_PROSPECTS,
+    ...ANIMAUX_PREMIUM_SERVICES_PROSPECTS,
     ...PRODIGIO_PROSPECTS,
   ].map(p => ({
     qualification: '', date_relance: null, ne_plus_contacter: false, data: {}, ...p

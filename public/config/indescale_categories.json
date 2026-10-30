@@ -102,11 +102,11 @@
       "id": "automobile",
       "nom": "Automobile",
       "categories": [
-        { "nom": "Concession premium / occasion haut de gamme", "ticket": "30 000 – 80 000 €", "public_cible": "Acheteurs CSP+, cadres, dirigeants", "requete_scraping": "concession automobile premium occasion" },
-        { "nom": "Véhicules de prestige / collection / sportives", "ticket": "50 000 – 300 000 €", "public_cible": "Fortunés, passionnés auto", "requete_scraping": "vente voiture de prestige collection" },
-        { "nom": "Mandataires / import", "ticket": "15 000 – 50 000 €", "public_cible": "Acheteurs orientés bon plan, familles", "requete_scraping": "mandataire automobile import" },
-        { "nom": "Covering automobile", "ticket": "1 500 – 5 000 €", "public_cible": "Passionnés auto, jeunes actifs", "requete_scraping": "covering automobile" },
-        { "nom": "Préparation / detailing / sonorisation", "ticket": "2 000 – 15 000 €", "public_cible": "Passionnés auto, propriétaires premium", "requete_scraping": "detailing automobile préparation" }
+        { "nom": "Concession premium / occasion haut de gamme", "ticket": "30 000 – 80 000 €", "public_cible": "Acheteurs CSP+, cadres, dirigeants", "requete_scraping": "concession automobile premium occasion" , "liste_figee": true },
+        { "nom": "Véhicules de prestige / collection / sportives", "ticket": "50 000 – 300 000 €", "public_cible": "Fortunés, passionnés auto", "requete_scraping": "vente voiture de prestige collection" , "liste_figee": true },
+        { "nom": "Mandataires / import", "ticket": "15 000 – 50 000 €", "public_cible": "Acheteurs orientés bon plan, familles", "requete_scraping": "mandataire automobile import" , "liste_figee": true },
+        { "nom": "Covering automobile", "ticket": "1 500 – 5 000 €", "public_cible": "Passionnés auto, jeunes actifs", "requete_scraping": "covering automobile" , "liste_figee": true },
+        { "nom": "Préparation / detailing / sonorisation", "ticket": "2 000 – 15 000 €", "public_cible": "Passionnés auto, propriétaires premium", "requete_scraping": "detailing automobile préparation" , "liste_figee": true }
       ]
     },
     {
@@ -138,10 +138,10 @@
       "id": "animaux",
       "nom": "Animaux premium",
       "categories": [
-        { "nom": "Élevages de chiens / chats de race", "ticket": "2 000 – 8 000 €", "public_cible": "Familles CSP+, passionnés", "requete_scraping": "élevage chien de race" },
-        { "nom": "Élevages / pension de chevaux", "ticket": "5 000 – 50 000 €", "public_cible": "Cavaliers, familles fortunées", "requete_scraping": "élevage pension chevaux" },
-        { "nom": "Cliniques vétérinaires spécialisées", "ticket": "1 000 – 10 000 €", "public_cible": "Propriétaires d'animaux CSP+", "requete_scraping": "clinique vétérinaire spécialisée" },
-        { "nom": "Accessoires / mobilier / services premium animaux", "ticket": "500 – 5 000 €", "public_cible": "Propriétaires d'animaux aisés", "requete_scraping": "toilettage services premium animaux" }
+        { "nom": "Élevages de chiens / chats de race", "ticket": "2 000 – 8 000 €", "public_cible": "Familles CSP+, passionnés", "requete_scraping": "élevage chien de race" , "liste_figee": true },
+        { "nom": "Élevages / pension de chevaux", "ticket": "5 000 – 50 000 €", "public_cible": "Cavaliers, familles fortunées", "requete_scraping": "élevage pension chevaux" , "liste_figee": true },
+        { "nom": "Cliniques vétérinaires spécialisées", "ticket": "1 000 – 10 000 €", "public_cible": "Propriétaires d'animaux CSP+", "requete_scraping": "clinique vétérinaire spécialisée" , "liste_figee": true },
+        { "nom": "Accessoires / mobilier / services premium animaux", "ticket": "500 – 5 000 €", "public_cible": "Propriétaires d'animaux aisés", "requete_scraping": "toilettage services premium animaux" , "liste_figee": true }
       ]
     },
     {
