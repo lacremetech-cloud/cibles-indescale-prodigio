@@ -59,45 +59,22 @@ import { ECOLES_DESIGN_MODE_PROSPECTS } from './ecolesDesignModeData'
 import { ECOLES_ARCHI_PROSPECTS } from './ecolesArchiData'
 import { ECOLES_COM_PROSPECTS } from './ecolesComData'
 import { MBA_EXECUTIVE_PROSPECTS } from './mbaExecutiveData'
+import { CUISINES_HDG_PROSPECTS } from './cuisinesHdgData'
+import { PERGOLAS_PROSPECTS } from './pergolasData'
+import { PISCINES_PROSPECTS } from './piscinesData'
+import { PISCINES_PREMIUM_PROSPECTS } from './piscinesPremiumData'
+import { ABRIS_PISCINE_PROSPECTS } from './abrisPiscineData'
+import { SPAS_JACUZZIS_PROSPECTS } from './spasJacuzzisData'
+import { STUDIOS_JARDIN_PROSPECTS } from './studiosJardinData'
+import { VERANDAS_PROSPECTS } from './verandasData'
+import { STORES_PROSPECTS } from './storesData'
 
 let _id = 0
 const id = () => 'demo-' + (++_id)
 
-export const DEMO_PROSPECTS = [
-  // ── INDESCALE : Piscines × Montpellier ─────────────────────────────────────
-  {
-    id: id(), app: 'indescale', secteur_id: 'habitat-exterieur', categorie: 'Piscines',
-    ville: 'Montpellier', entreprise: '[DÉMO] Piscines du Lez',
-    adresse: "12 av. de la Mer, 34000 Montpellier", telephone: '04 00 00 00 01',
-    portable_dirigeant: '06 00 00 00 01', site_web: 'https://piscines-du-lez-demo.fr',
-    email: 'contact@piscines-du-lez-demo.fr', email_dirigeant: '', dirigeant_principal: 'Jean Démo',
-    linkedin_dirigeant: '', siren: '900000001', forme_juridique: 'SAS', note_avis: 4.7,
-    note_priorite: 'Haute', statut: 'À contacter', source: 'démo'
-  },
-  {
-    id: id(), app: 'indescale', secteur_id: 'habitat-exterieur', categorie: 'Piscines',
-    ville: 'Montpellier', entreprise: '[DÉMO] Aqua Sud Construction',
-    adresse: "5 rue des Pins, 34070 Montpellier", telephone: '04 00 00 00 02',
-    portable_dirigeant: '', site_web: 'https://aquasud-demo.fr',
-    email: '', email_dirigeant: '', dirigeant_principal: 'Sophie Exemple',
-    linkedin_dirigeant: '', siren: '900000002', forme_juridique: 'SARL', note_avis: 4.2,
-    note_priorite: 'Moyenne', statut: 'À rappeler', date_relance: todayPlus(0), source: 'démo'
-  },
-  {
-    id: id(), app: 'indescale', secteur_id: 'habitat-exterieur', categorie: 'Piscines',
-    ville: 'Montpellier', entreprise: '[DÉMO] Bleu Piscine Méditerranée',
-    adresse: "88 route de Palavas, 34000 Montpellier", telephone: '04 00 00 00 03',
-    portable_dirigeant: '06 00 00 00 03', site_web: '',
-    email: '', email_dirigeant: '', dirigeant_principal: 'Karim Test',
-    linkedin_dirigeant: '', siren: '900000003', forme_juridique: 'EURL', note_avis: 4.9,
-    note_priorite: 'Haute', statut: 'RDV pris', source: 'démo'
-  }
-]
-
-function todayPlus(days) {
-  const d = new Date(); d.setDate(d.getDate() + days)
-  return d.toISOString().slice(0, 10)
-}
+// Plus de données de démo fictives : toutes les catégories INDESCALE sont peuplées
+// de cibles réelles (listes figées). DEMO_PROSPECTS reste vide.
+export const DEMO_PROSPECTS = []
 
 export function seedProspects() {
   // INDESCALE = démo fictive ; PRODIGIO = vraies données du fichier maître.
@@ -158,6 +135,15 @@ export function seedProspects() {
     ...ECOLES_ARCHI_PROSPECTS,
     ...ECOLES_COM_PROSPECTS,
     ...MBA_EXECUTIVE_PROSPECTS,
+    ...CUISINES_HDG_PROSPECTS,
+    ...PERGOLAS_PROSPECTS,
+    ...PISCINES_PROSPECTS,
+    ...PISCINES_PREMIUM_PROSPECTS,
+    ...ABRIS_PISCINE_PROSPECTS,
+    ...SPAS_JACUZZIS_PROSPECTS,
+    ...STUDIOS_JARDIN_PROSPECTS,
+    ...VERANDAS_PROSPECTS,
+    ...STORES_PROSPECTS,
     ...PRODIGIO_PROSPECTS,
   ].map(p => ({
     qualification: '', date_relance: null, ne_plus_contacter: false, data: {}, ...p
