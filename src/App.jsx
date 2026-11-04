@@ -6,6 +6,7 @@ import VilleList from './components/indescale/VilleList.jsx'
 import ProdigioHome from './components/prodigio/ProdigioHome.jsx'
 import ProdigioCrm from './components/prodigio/ProdigioCrm.jsx'
 import RelancesView from './components/crm/RelancesView.jsx'
+import AuthGate from './components/AuthGate.jsx'
 
 // La marque pilote toute la direction artistique : INDESCALE (dark/violet tech)
 // vs PRODIGIO (noir & blanc éditorial). On la déduit de l'URL et on la pose sur
@@ -21,6 +22,7 @@ export default function App() {
   const brand = brandFromPath(pathname)
 
   return (
+    <AuthGate>
     <div className="shell" data-brand={brand}>
       <div className="glow" aria-hidden="true" />
       <div className="app">
@@ -36,5 +38,6 @@ export default function App() {
         </Routes>
       </div>
     </div>
+    </AuthGate>
   )
 }
