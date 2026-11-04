@@ -7,13 +7,15 @@ import ProdigioHome from './components/prodigio/ProdigioHome.jsx'
 import ProdigioCrm from './components/prodigio/ProdigioCrm.jsx'
 import RelancesView from './components/crm/RelancesView.jsx'
 import AuthGate from './components/AuthGate.jsx'
+import StudioHome from './components/studio/StudioHome.jsx'
+import StudioSecteur from './components/studio/StudioSecteur.jsx'
 
 // La marque pilote toute la direction artistique : INDESCALE (dark/violet tech)
 // vs PRODIGIO (noir & blanc éditorial). On la déduit de l'URL et on la pose sur
 // le conteneur racine `data-brand`, d'où cascadent toutes les variables CSS.
 function brandFromPath(pathname) {
   if (pathname.startsWith('/prodigio')) return 'prodigio'
-  if (pathname.startsWith('/indescale')) return 'indescale'
+  if (pathname.startsWith('/indescale') || pathname.startsWith('/studio')) return 'indescale'
   return 'home'
 }
 
@@ -33,6 +35,8 @@ export default function App() {
           <Route path="/indescale/:secteurId" element={<CategorieList />} />
           <Route path="/indescale/:secteurId/:categorie" element={<VilleList />} />
           <Route path="/indescale/:secteurId/:categorie/:ville" element={<VilleList />} />
+          <Route path="/studio" element={<StudioHome />} />
+          <Route path="/studio/:secteurId" element={<StudioSecteur />} />
           <Route path="/prodigio" element={<ProdigioHome />} />
           <Route path="/prodigio/:type" element={<ProdigioCrm />} />
         </Routes>

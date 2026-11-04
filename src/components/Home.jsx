@@ -36,6 +36,11 @@ export default function Home() {
         </Link>
       </div>
 
+      <Link to="/studio" className="tile" style={{ marginTop: 18 }}>
+        <div className="t-title">🎨 INDESCALE Studio</div>
+        <div className="t-meta">Audit de secteur → templates → maquettes envoyées en prospection. Suis chaque étape et lance la suivante.</div>
+      </Link>
+
       <div className="home-foot">
         <Link to="/relances" className="pill">📅 Mes relances du jour (tous secteurs)</Link>
       </div>

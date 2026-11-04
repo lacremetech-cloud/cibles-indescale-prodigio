@@ -461,3 +461,14 @@ a { color: inherit; }
   width: 100%; margin-top: 9px; font: inherit; font-size: 12px; padding: 6px 8px;
   background: var(--bg-2); color: var(--text); border: 1px solid var(--line); border-radius: 8px;
 }
+
+/* ── Studio : rendu des livrables markdown ─────────────────────────────────── */
+.md { font-size: 14px; line-height: 1.6; color: var(--text); }
+.md h1, .md h2, .md h3 { font-family: var(--display); margin: 18px 0 8px; line-height: 1.25; }
+.md h1 { font-size: 22px; } .md h2 { font-size: 18px; } .md h3 { font-size: 15px; }
+.md p, .md ul, .md ol { margin: 8px 0; } .md ul, .md ol { padding-left: 20px; }
+.md a { color: var(--accent); }
+.md table { border-collapse: collapse; width: 100%; font-size: 13px; display: block; overflow-x: auto; }
+.md th, .md td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+.md code { background: var(--card-2); padding: 1px 5px; border-radius: 5px; font-size: 12px; }
+.md blockquote { border-left: 3px solid var(--accent); padding-left: 12px; color: var(--muted); margin: 10px 0; }
