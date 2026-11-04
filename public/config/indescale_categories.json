@@ -149,16 +149,16 @@
       "nom": "Éducation & formation à gros ticket",
       "_note": "Client = l'école privée payante qui doit remplir ses promos. On lui amène des candidats-étudiants. Cibler le privé payant, pas le public/gratuit (INSA, 42, La Fémis).",
       "categories": [
-        { "nom": "Commerce / business schools", "ticket": "30 000 – 75 000 €", "public_cible": "Lycéens/étudiants + parents CSP+", "exemples": "HEC, ESSEC, EM Lyon, KEDGE, Montpellier BS", "requete_scraping": "école de commerce privée" },
-        { "nom": "Ingénieurs privées", "ticket": "25 000 – 50 000 €", "public_cible": "Lycéens/étudiants + parents", "exemples": "CESI, ECE, ESILV, EPF", "requete_scraping": "école d'ingénieurs privée" },
-        { "nom": "Informatique / dev / cybersécurité", "ticket": "20 000 – 45 000 €", "public_cible": "Lycéens tech, reconversion", "exemples": "Epitech, EPITA, Ynov, Guardia", "requete_scraping": "école informatique privée" },
-        { "nom": "IA / data / big data", "ticket": "20 000 – 50 000 €", "public_cible": "Étudiants, cadres en reconversion", "exemples": "Albert School, Aivancity, Ironhack", "requete_scraping": "école intelligence artificielle data" },
-        { "nom": "Cinéma / audiovisuel", "ticket": "25 000 – 50 000 €", "public_cible": "Lycéens passionnés + parents", "exemples": "3IS, ESRA, EICAR, CLCF", "requete_scraping": "école cinéma audiovisuel privée" },
-        { "nom": "Jeux vidéo / animation 3D", "ticket": "25 000 – 55 000 €", "public_cible": "Lycéens créatifs/gamers + parents", "exemples": "Rubika, ArtFX, ISART, LISAA", "requete_scraping": "école jeux vidéo animation 3D" },
-        { "nom": "Design / mode / arts appliqués", "ticket": "20 000 – 45 000 €", "public_cible": "Lycéens créatifs + parents", "exemples": "Strate, École de Condé, ESMOD", "requete_scraping": "école design mode arts appliqués" },
-        { "nom": "Architecture / archi d'intérieur", "ticket": "25 000 – 50 000 €", "public_cible": "Étudiants + parents", "exemples": "ESAIL, Camondo, Charpentier", "requete_scraping": "école architecture intérieur privée" },
-        { "nom": "Communication / marketing / digital", "ticket": "25 000 – 45 000 €", "public_cible": "Lycéens post-bac + parents", "exemples": "Sup de Pub, EFAP, ISCOM", "requete_scraping": "école communication marketing privée" },
-        { "nom": "MBA / Executive Education / mastères spécialisés", "ticket": "15 000 – 60 000 €", "public_cible": "Cadres, dirigeants, entreprises", "exemples": "INSEAD, HEC Exec, emlyon Exec", "requete_scraping": "MBA executive education" }
+        { "nom": "Commerce / business schools", "ticket": "30 000 – 75 000 €", "public_cible": "Lycéens/étudiants + parents CSP+", "exemples": "HEC, ESSEC, EM Lyon, KEDGE, Montpellier BS", "requete_scraping": "école de commerce privée" , "liste_figee": true },
+        { "nom": "Ingénieurs privées", "ticket": "25 000 – 50 000 €", "public_cible": "Lycéens/étudiants + parents", "exemples": "CESI, ECE, ESILV, EPF", "requete_scraping": "école d'ingénieurs privée" , "liste_figee": true },
+        { "nom": "Informatique / dev / cybersécurité", "ticket": "20 000 – 45 000 €", "public_cible": "Lycéens tech, reconversion", "exemples": "Epitech, EPITA, Ynov, Guardia", "requete_scraping": "école informatique privée" , "liste_figee": true },
+        { "nom": "IA / data / big data", "ticket": "20 000 – 50 000 €", "public_cible": "Étudiants, cadres en reconversion", "exemples": "Albert School, Aivancity, Ironhack", "requete_scraping": "école intelligence artificielle data" , "liste_figee": true },
+        { "nom": "Cinéma / audiovisuel", "ticket": "25 000 – 50 000 €", "public_cible": "Lycéens passionnés + parents", "exemples": "3IS, ESRA, EICAR, CLCF", "requete_scraping": "école cinéma audiovisuel privée" , "liste_figee": true },
+        { "nom": "Jeux vidéo / animation 3D", "ticket": "25 000 – 55 000 €", "public_cible": "Lycéens créatifs/gamers + parents", "exemples": "Rubika, ArtFX, ISART, LISAA", "requete_scraping": "école jeux vidéo animation 3D" , "liste_figee": true },
+        { "nom": "Design / mode / arts appliqués", "ticket": "20 000 – 45 000 €", "public_cible": "Lycéens créatifs + parents", "exemples": "Strate, École de Condé, ESMOD", "requete_scraping": "école design mode arts appliqués" , "liste_figee": true },
+        { "nom": "Architecture / archi d'intérieur", "ticket": "25 000 – 50 000 €", "public_cible": "Étudiants + parents", "exemples": "ESAIL, Camondo, Charpentier", "requete_scraping": "école architecture intérieur privée" , "liste_figee": true },
+        { "nom": "Communication / marketing / digital", "ticket": "25 000 – 45 000 €", "public_cible": "Lycéens post-bac + parents", "exemples": "Sup de Pub, EFAP, ISCOM", "requete_scraping": "école communication marketing privée" , "liste_figee": true },
+        { "nom": "MBA / Executive Education / mastères spécialisés", "ticket": "15 000 – 60 000 €", "public_cible": "Cadres, dirigeants, entreprises", "exemples": "INSEAD, HEC Exec, emlyon Exec", "requete_scraping": "MBA executive education" , "liste_figee": true }
       ]
     }
   ],

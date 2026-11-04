@@ -49,6 +49,16 @@ import { ELEVAGES_CHIENS_CHATS_PROSPECTS } from './elevagesChiensChatsData'
 import { CHEVAUX_PROSPECTS } from './chevauxData'
 import { VETERINAIRES_PROSPECTS } from './veterinairesData'
 import { ANIMAUX_PREMIUM_SERVICES_PROSPECTS } from './animauxPremiumServicesData'
+import { BUSINESS_SCHOOLS_PROSPECTS } from './businessSchoolsData'
+import { ECOLES_INGENIEURS_PROSPECTS } from './ecolesIngenieursData'
+import { ECOLES_INFO_PROSPECTS } from './ecolesInfoData'
+import { ECOLES_IA_DATA_PROSPECTS } from './ecolesIaDataData'
+import { ECOLES_CINEMA_PROSPECTS } from './ecolesCinemaData'
+import { ECOLES_JEUX_VIDEO_PROSPECTS } from './ecolesJeuxVideoData'
+import { ECOLES_DESIGN_MODE_PROSPECTS } from './ecolesDesignModeData'
+import { ECOLES_ARCHI_PROSPECTS } from './ecolesArchiData'
+import { ECOLES_COM_PROSPECTS } from './ecolesComData'
+import { MBA_EXECUTIVE_PROSPECTS } from './mbaExecutiveData'
 
 let _id = 0
 const id = () => 'demo-' + (++_id)
@@ -138,6 +148,16 @@ export function seedProspects() {
     ...CHEVAUX_PROSPECTS,
     ...VETERINAIRES_PROSPECTS,
     ...ANIMAUX_PREMIUM_SERVICES_PROSPECTS,
+    ...BUSINESS_SCHOOLS_PROSPECTS,
+    ...ECOLES_INGENIEURS_PROSPECTS,
+    ...ECOLES_INFO_PROSPECTS,
+    ...ECOLES_IA_DATA_PROSPECTS,
+    ...ECOLES_CINEMA_PROSPECTS,
+    ...ECOLES_JEUX_VIDEO_PROSPECTS,
+    ...ECOLES_DESIGN_MODE_PROSPECTS,
+    ...ECOLES_ARCHI_PROSPECTS,
+    ...ECOLES_COM_PROSPECTS,
+    ...MBA_EXECUTIVE_PROSPECTS,
     ...PRODIGIO_PROSPECTS,
   ].map(p => ({
     qualification: '', date_relance: null, ne_plus_contacter: false, data: {}, ...p
