@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr" data-type="service">
+<html lang="fr" data-type="service" data-direction="B">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +9,7 @@
 <meta name="description" content="{{p.nom_complet}}, chirurgien-dentiste à {{adresse.ville}}. Une prise en charge expliquée pas à pas : soins, implants, honoraires et accès.">
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link rel="stylesheet" href="https://fonts.bunny.net/css?family=outfit:300,400,500,600&display=swap">
-<link rel="preload" as="image" href="assets/docteure.webp">
+<link rel="preload" as="image" href="assets/dentiste-f.webp">
 <style>
 :root{
   /* ===== Tokens (injectables par le générateur) ===== */
@@ -262,6 +262,9 @@ a:hover .lien,.lien:hover{background-size:100% 1px}
 .barre-mobile .btn{min-height:46px;padding:0 14px}
 @media (min-width:1080px){.barre-mobile{display:none}}
 .apercu .barre-mobile{display:none}
+.hon .encart{margin:18px 0 6px;padding:14px 16px;border-radius:14px;border:1px dashed rgba(91,122,76,.45);background:var(--couleur-fond-2);font-size:13.5px;line-height:1.45;color:var(--couleur-texte-2)}
+.hon .encart strong{display:block;font-size:15px;font-weight:500;color:var(--couleur-texte);margin-bottom:4px}
+.hon .carte:nth-child(2) .encart{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5);color:#EEF3E8}.hon .carte:nth-child(2) .encart strong{color:#fff}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -296,7 +299,7 @@ a:hover .lien,.lien:hover{background-size:100% 1px}
       </div>
     </div>
     <figure class="portrait" data-portrait>
-      <div class="cadre"><img src="assets/{{p.photo}}.webp" width="960" height="1440" alt="{{p.nom_complet}}, chirurgien-dentiste" fetchpriority="high"></div>
+      <div class="cadre"><img src="assets/{{p.photo}}-grand.webp" width="1280" height="853" alt="{{p.nom_complet}}, chirurgien-dentiste" fetchpriority="high"></div>
       <span class="icone-flot i1" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7.5 3.5c-2.5 0-4 2-4 4.6 0 2.4 1 3.6 1.6 6.2.6 2.8 1 6.2 2.6 6.2 1.5 0 1.6-3.8 2.4-5.4.5-1 1.3-1 1.8 0 .8 1.6.9 5.4 2.4 5.4 1.6 0 2-3.4 2.6-6.2.6-2.6 1.6-3.8 1.6-6.2 0-2.6-1.5-4.6-4-4.6-1.8 0-2.6 1-4.4 1s-2.8-1-4.6-1z"/></svg></span>
       <span class="icone-flot i2" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="15" cy="8" r="4.5"/><path d="M11.8 11.2L4 19"/></svg></span>
       <div class="flottante f1" data-f><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></i><span><small>Ouvert aussi</small><strong>{{faits_cles.3.valeur}} {{faits_cles.3.libelle}}</strong></span></div>
@@ -335,7 +338,7 @@ a:hover .lien,.lien:hover{background-size:100% 1px}
 
 <section class="section zone-grise" id="approche" aria-labelledby="t-app">
   <div class="conteneur split">
-    <div class="photo"><img loading="lazy" src="assets/ecrans-grand.webp" srcset="assets/ecrans.webp 800w, assets/ecrans-grand.webp 1600w" sizes="(min-width:1000px) 560px, 92vw" width="1600" height="1067" alt="Deux praticiens examinent une imagerie à l'écran"><p class="mot">Plan de traitement écrit et daté, remis avant toute décision.</p></div>
+    <div class="photo"><img loading="lazy" src="assets/radio-grand.webp" srcset="assets/radio.webp 640w, assets/radio-grand.webp 1280w" sizes="(min-width:1000px) 560px, 92vw" width="1600" height="1067" alt="Praticien examinant une radiographie dentaire"><p class="mot">Plan de traitement écrit et daté, remis avant toute décision.</p></div>
     <div>
       <p class="surtitre">Une autre façon de consulter</p>
       <h2 id="t-app">Un cabinet clair, <span class="doux">une prise en charge humaine.</span></h2>
@@ -350,7 +353,7 @@ a:hover .lien,.lien:hover{background-size:100% 1px}
   <div class="conteneur">
     <div class="tete centre"><p class="surtitre">Le cabinet</p><h2 id="t-lieu">Un lieu calme, <span class="doux">pensé pour l'accueil.</span></h2></div>
     <div class="galerie">
-      <div class="cadre g1"><img loading="lazy" src="assets/cabinet-pierre-grand.webp" srcset="assets/cabinet-pierre.webp 800w, assets/cabinet-pierre-grand.webp 1600w" sizes="(min-width:900px) 50vw, 92vw" width="1600" height="1067" alt="Salle de soins lumineuse"></div>
+      <div class="cadre g1"><img loading="lazy" src="assets/cabinet-pierre-grand.webp" srcset="assets/cabinet-pierre.webp 640w, assets/cabinet-pierre-grand.webp 1280w" sizes="(min-width:900px) 50vw, 92vw" width="1600" height="1067" alt="Salle de soins lumineuse"></div>
       <div class="cadre g2"><img loading="lazy" src="assets/salle-bleue.webp" width="800" height="533" alt="Fauteuil de soins dans une salle claire"></div>
       <div class="cadre g3"><img loading="lazy" src="assets/brosses.webp" width="800" height="1000" alt="Brosses à dents en bambou"></div>
     </div>
@@ -367,18 +370,18 @@ a:hover .lien,.lien:hover{background-size:100% 1px}
 <section class="section zone-grise" id="honoraires" aria-labelledby="t-hon">
   <div class="conteneur">
     <div class="tete centre"><p class="surtitre">Honoraires indicatifs</p><h2 id="t-hon">Le prix, <span class="doux">avant le premier soin.</span></h2><p>{{situation_conventionnelle}}. Le devis détaillé précède toujours le traitement.</p></div>
-    <div class="hon" data-repete="honoraires_vedette"><template><div class="carte"><span class="acte">{{item.acte}}</span><div class="montant"><span data-si="item.honoraires">{{item.honoraires}}</span><span data-si="item.vide">— €</span><small data-si="item.vide">Honoraires indicatifs à compléter par le cabinet</small></div><p class="pc">{{item.prise_en_charge}}</p></div></template></div>
+    <div class="hon" data-repete="honoraires_vedette"><template><div class="carte"><span class="acte">{{item.acte}}</span><div class="montant" data-si="item.honoraires">{{item.honoraires}}</div><p class="encart" data-si="item.vide"><strong>Honoraires à afficher</strong>Les recommandations de l'Ordre (juin 2026) demandent d'afficher les tarifs des actes courants.</p><p class="pc">{{item.prise_en_charge}}</p></div></template></div>
     <div class="mentions"><p><strong>Sécurité sociale.</strong> {{mention_secu}}</p><p><strong>Accès aux soins.</strong> {{mention_css_ame}}</p><p><strong>Paiement.</strong> {{modes_paiement}}. Aucun mode de règlement n'est imposé.</p></div>
     <details class="tableau"><summary>Voir tous les honoraires <span>{{honoraires.length}} actes</span></summary>
       <table><caption>Montants à compléter par le cabinet : aucun tarif n'est inventé. <a href="https://annuairesante.ameli.fr/" rel="noopener">Annuaire santé ameli</a></caption><thead><tr><th scope="col">Acte</th><th scope="col">Honoraires</th></tr></thead>
-      <tbody data-repete="honoraires"><template><tr><td>{{item.acte}}<small>{{item.prise_en_charge}}</small></td><td><span data-si="item.honoraires">{{item.honoraires}}</span><span data-si="item.vide" class="vide">À compléter</span></td></tr></template></tbody></table>
+      <tbody data-repete="honoraires"><template><tr><td>{{item.acte}}<small>{{item.prise_en_charge}}</small></td><td><span data-si="item.honoraires">{{item.honoraires}}</span><span data-si="item.vide" class="vide">À afficher</span></td></tr></template></tbody></table>
     </details>
   </div>
 </section>
 
 <section class="section" id="venir" aria-labelledby="t-venir">
   <div class="conteneur venir">
-    <div class="photo"><img loading="lazy" src="assets/dentiste-soin-grand.webp" srcset="assets/dentiste-soin.webp 800w, assets/dentiste-soin-grand.webp 1600w" sizes="(min-width:1000px) 640px, 92vw" width="1600" height="1067" alt="Praticien en tenue de soin"></div>
+    <div class="photo"><img loading="lazy" src="assets/dentiste-soin-grand.webp" srcset="assets/dentiste-soin.webp 640w, assets/dentiste-soin-grand.webp 1280w" sizes="(min-width:1000px) 640px, 92vw" width="1600" height="1067" alt="Praticien en tenue de soin"></div>
     <div class="carte">
       <span class="pin" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
       <h2 id="t-venir">Venir au cabinet</h2>
@@ -443,7 +446,7 @@ a:hover .lien,.lien:hover{background-size:100% 1px}
    "civilite": "Dr",
    "prenom": "Camille",
    "nom": "Exemple",
-   "photo": "docteure",
+   "photo": "dentiste-f",
    "rpps": "RPPS EXEMPLE",
    "conseil_departemental": "Conseil départemental de l'Ordre EXEMPLE",
    "specialite_qualifiee": "",
@@ -523,20 +526,20 @@ a:hover .lien,.lien:hover{background-size:100% 1px}
    "prenom": "Léa",
    "nom": "EXEMPLE",
    "fonction": "Assistante dentaire",
-   "photo": "dentiste-f"
+   "photo": "assistante"
   },
   {
    "prenom": "Hugo",
    "nom": "EXEMPLE",
    "fonction": "Assistant dentaire",
-   "photo": "soignant"
+   "photo": "dentiste-modele"
   }
  ],
  "equipements": [
   {
    "nom": "Imagerie 3D (CBCT)",
    "usage": "Mesurer l'os avant la pose.",
-   "photo": "ecrans"
+   "photo": "radio"
   },
   {
    "nom": "Empreinte optique",

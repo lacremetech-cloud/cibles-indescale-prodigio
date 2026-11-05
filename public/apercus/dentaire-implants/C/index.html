@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr" data-type="service">
+<html lang="fr" data-type="service" data-direction="C">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +9,7 @@
 <meta name="description" content="{{nom_cabinet}} à {{adresse.ville}} : soins, implants, équipe, honoraires, accès et demande de rendez-vous.">
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link rel="stylesheet" href="https://fonts.bunny.net/css?family=lexend:300,400,500,600,700&display=swap">
-<link rel="preload" as="image" href="assets/soignant-grand.webp">
+<link rel="preload" as="image" href="assets/dentiste-soin-grand.webp">
 <style>
 :root{
   /* ===== Tokens (injectables par le générateur) ===== */
@@ -252,6 +252,9 @@ a:hover .lien,.lien:hover{background-size:100% 1.5px}
 .barre-mobile .btn{min-height:46px;padding:0 16px}
 @media (min-width:1080px){.barre-mobile{display:none}}
 .apercu .barre-mobile{display:none}
+.hon .encart{margin:16px 0 6px;padding:14px 16px;border-radius:14px;border:1px dashed rgba(28,86,214,.35);background:var(--couleur-principale-pale);font-size:13.5px;line-height:1.45;color:var(--couleur-texte-2)}
+.hon .encart strong{display:block;font-size:15px;color:var(--couleur-texte);margin-bottom:4px}
+.hon .carte:nth-child(2) .encart{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.5);color:#E3ECFF}.hon .carte:nth-child(2) .encart strong{color:#fff}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -284,7 +287,7 @@ a:hover .lien,.lien:hover{background-size:100% 1.5px}
       <div class="ctas" data-h><a class="btn" href="#rdv">Demander un rendez-vous<span class="rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="btn blanc" href="#soins">Nos soins<span class="rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
     </div>
     <figure class="photo-hero" data-photo>
-      <div class="cadre"><img src="assets/{{p.photo}}-grand.webp" srcset="assets/{{p.photo}}.webp 800w, assets/{{p.photo}}-grand.webp 1600w" sizes="(min-width:1000px) 520px, 92vw" width="1600" height="1067" alt="{{p.nom_complet}}" fetchpriority="high"></div>
+      <div class="cadre"><img src="assets/{{p.photo}}-grand.webp" srcset="assets/{{p.photo}}.webp 640w, assets/{{p.photo}}-grand.webp 1600w" sizes="(min-width:1000px) 520px, 92vw" width="1600" height="1067" alt="{{p.nom_complet}}" fetchpriority="high"></div>
       <span class="pastille p1" data-p data-si="equipements"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></i>{{equipements.0.nom}}</span>
       <span class="pastille p2" data-p><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></i>{{faits_cles.3.valeur}} {{faits_cles.3.libelle}}</span>
       <span class="badge-ex">Photo d'illustration</span>
@@ -307,7 +310,7 @@ a:hover .lien,.lien:hover{background-size:100% 1.5px}
 
 <section class="section" id="cabinet" aria-labelledby="t-cab">
   <div class="conteneur split">
-    <div class="photos"><div class="grand"><img loading="lazy" src="assets/cabinet-pierre-grand.webp" srcset="assets/cabinet-pierre.webp 800w, assets/cabinet-pierre-grand.webp 1600w" sizes="(min-width:1000px) 560px, 92vw" width="1600" height="1067" alt="Salle de soins lumineuse"></div><span class="pastille"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg></i>Devis remis avant tout soin</span></div>
+    <div class="photos"><div class="grand"><img loading="lazy" src="assets/cabinet-pierre-grand.webp" srcset="assets/cabinet-pierre.webp 640w, assets/cabinet-pierre-grand.webp 1280w" sizes="(min-width:1000px) 560px, 92vw" width="1600" height="1067" alt="Salle de soins lumineuse"></div><span class="pastille"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg></i>Devis remis avant tout soin</span></div>
     <div>
       <p class="surtitre">Le cabinet</p>
       <h2 id="t-cab">Des soins expliqués, <span class="bleu">un plan écrit.</span></h2>
@@ -331,9 +334,9 @@ a:hover .lien,.lien:hover{background-size:100% 1.5px}
   <div class="conteneur">
     <div class="tete"><p class="surtitre">Le lieu</p><h2 id="t-lieu">Le cabinet, <span class="bleu">tel qu'il est</span></h2></div>
     <div class="galerie">
-      <figure class="g1"><img loading="lazy" src="assets/clinique-grand.webp" srcset="assets/clinique.webp 800w, assets/clinique-grand.webp 1600w" sizes="(min-width:900px) 60vw, 92vw" width="1600" height="1067" alt="Cabinet dentaire spacieux et lumineux"><span class="pastille"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></i>Équipement de radiologie 3D</span></figure>
+      <figure class="g1"><img loading="lazy" src="assets/clinique-grand.webp" srcset="assets/clinique.webp 640w, assets/clinique-grand.webp 1280w" sizes="(min-width:900px) 60vw, 92vw" width="1600" height="1067" alt="Cabinet dentaire spacieux et lumineux"><span class="pastille"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></i>Équipement de radiologie 3D</span></figure>
       <figure class="g2"><img loading="lazy" src="assets/salle-bleue.webp" width="800" height="533" alt="Salle de soins claire"><span class="pastille"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="4.5" r="1.8"/><path d="M12 7v6h5l2 6M12 10H8M9 21a5 5 0 0 1-1-9.5"/></svg></i>Accessible PMR</span></figure>
-      <figure class="g3"><img loading="lazy" src="assets/attente-equipe.webp" width="960" height="640" alt="Espace d'attente lumineux"><span class="pastille" data-si="lien_rdv"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i>Rendez-vous en ligne</span></figure>
+      <figure class="g3"><img loading="lazy" src="assets/unit.webp" width="640" height="427" alt="Unité de soins dentaires"><span class="pastille" data-si="lien_rdv"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i>Rendez-vous en ligne</span></figure>
     </div>
   </div>
 </section>
@@ -351,7 +354,7 @@ a:hover .lien,.lien:hover{background-size:100% 1.5px}
     </div>
     <div class="bandeau">
       <div><h2>Une question avant de venir ?</h2><p>L'équipe vous répond aux horaires d'ouverture.</p><a class="tel" href="tel:{{coordonnees.telephone_lien}}">{{coordonnees.telephone}}</a></div>
-      <div class="photo"><img loading="lazy" src="assets/dentiste-soin-grand.webp" srcset="assets/dentiste-soin.webp 800w, assets/dentiste-soin-grand.webp 1600w" sizes="(min-width:1000px) 480px, 92vw" width="1600" height="1067" alt="Praticien en tenue de soin"></div>
+      <div class="photo"><img loading="lazy" src="assets/radio-grand.webp" srcset="assets/radio.webp 640w, assets/radio-grand.webp 1280w" sizes="(min-width:1000px) 480px, 92vw" width="1600" height="1067" alt="Praticien examinant une radiographie dentaire"></div>
     </div>
   </div>
 </section>
@@ -359,11 +362,11 @@ a:hover .lien,.lien:hover{background-size:100% 1.5px}
 <section class="section alt" id="honoraires" aria-labelledby="t-hon">
   <div class="conteneur">
     <div class="tete"><p class="surtitre">Honoraires indicatifs</p><h2 id="t-hon">Des honoraires <span class="bleu">clairs</span></h2><p>{{situation_conventionnelle}}. Un devis détaillé précède toujours le traitement.</p></div>
-    <div class="hon" data-repete="honoraires_vedette"><template><div class="carte"><span class="acte">{{item.acte}}</span><div class="montant"><span data-si="item.honoraires">{{item.honoraires}}</span><span data-si="item.vide">— €</span><small data-si="item.vide">Honoraires indicatifs à compléter par le cabinet</small></div><p class="pc">{{item.prise_en_charge}}</p></div></template></div>
+    <div class="hon" data-repete="honoraires_vedette"><template><div class="carte"><span class="acte">{{item.acte}}</span><div class="montant" data-si="item.honoraires">{{item.honoraires}}</div><p class="encart" data-si="item.vide"><strong>Honoraires à afficher</strong>Les recommandations de l'Ordre (juin 2026) demandent d'afficher les tarifs des actes courants.</p><p class="pc">{{item.prise_en_charge}}</p></div></template></div>
     <div class="mentions"><p><strong>Sécurité sociale.</strong> {{mention_secu}}</p><p><strong>Accès aux soins.</strong> {{mention_css_ame}}</p><p><strong>Paiement.</strong> {{modes_paiement}}. Aucun mode de règlement n'est imposé.</p></div>
     <details class="tableau"><summary>Voir tous les honoraires <span>{{honoraires.length}} actes</span></summary>
       <table><caption>Montants à compléter par le cabinet : aucun tarif n'est inventé. <a class="lien" href="https://annuairesante.ameli.fr/" rel="noopener">Annuaire santé ameli</a></caption><thead><tr><th scope="col">Acte</th><th scope="col">Honoraires</th></tr></thead>
-      <tbody data-repete="honoraires"><template><tr><td>{{item.acte}}<small>{{item.prise_en_charge}}</small></td><td><span data-si="item.honoraires">{{item.honoraires}}</span><span data-si="item.vide" class="vide">À compléter</span></td></tr></template></tbody></table>
+      <tbody data-repete="honoraires"><template><tr><td>{{item.acte}}<small>{{item.prise_en_charge}}</small></td><td><span data-si="item.honoraires">{{item.honoraires}}</span><span data-si="item.vide" class="vide">À afficher</span></td></tr></template></tbody></table>
     </details>
   </div>
 </section>
@@ -435,7 +438,7 @@ a:hover .lien,.lien:hover{background-size:100% 1.5px}
    "civilite": "Dr",
    "prenom": "Camille",
    "nom": "Exemple",
-   "photo": "soignant",
+   "photo": "dentiste-soin",
    "rpps": "RPPS EXEMPLE",
    "conseil_departemental": "Conseil départemental de l'Ordre EXEMPLE",
    "specialite_qualifiee": "",
@@ -515,7 +518,7 @@ a:hover .lien,.lien:hover{background-size:100% 1.5px}
    "prenom": "Léa",
    "nom": "EXEMPLE",
    "fonction": "Assistante dentaire",
-   "photo": "dentiste-f"
+   "photo": "assistante"
   },
   {
    "prenom": "Hugo",
@@ -528,7 +531,7 @@ a:hover .lien,.lien:hover{background-size:100% 1.5px}
   {
    "nom": "Imagerie 3D (CBCT)",
    "usage": "Mesurer l'os avant la pose.",
-   "photo": "ecrans"
+   "photo": "radio"
   },
   {
    "nom": "Empreinte optique",

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr" data-type="service">
+<html lang="fr" data-type="service" data-direction="A">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -287,6 +287,9 @@ a.carte:hover,.carte.liee:hover{transform:translateY(-2px);box-shadow:var(--ombr
 @media (min-width:1080px){.barre-mobile{display:none}}
 .apercu .barre-mobile{display:none}
 .reduit .objet .dent,.reduit .objet::after{animation:none}
+.hon .encart{margin:14px 0 4px;padding:14px 16px;border-radius:14px;border:1px dashed rgba(37,99,235,.35);background:var(--couleur-principale-pale);font-size:13.5px;line-height:1.45;color:var(--couleur-texte-2)}
+.hon .encart strong{display:block;font-size:15px;color:var(--couleur-texte);margin-bottom:4px}
+.hon .carte:nth-child(2) .encart{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.5);color:#EAF2FF}.hon .carte:nth-child(2) .encart strong{color:#fff}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -345,7 +348,7 @@ a.carte:hover,.carte.liee:hover{transform:translateY(-2px);box-shadow:var(--ombr
 <section class="section" id="cabinet" aria-labelledby="t-cab">
   <div class="conteneur split">
     <div class="split-photos">
-      <div class="p1"><div class="cadre"><img loading="lazy" src="assets/cabinet-pierre.webp" srcset="assets/cabinet-pierre.webp 800w, assets/cabinet-pierre-grand.webp 1600w" sizes="(min-width:1000px) 560px, 92vw" width="800" height="533" alt="Salle de soins lumineuse avec un mur en pierre"></div></div>
+      <div class="p1"><div class="cadre"><img loading="lazy" src="assets/cabinet-pierre.webp" srcset="assets/cabinet-pierre.webp 640w, assets/cabinet-pierre-grand.webp 1280w" sizes="(min-width:1000px) 560px, 92vw" width="800" height="533" alt="Salle de soins lumineuse avec un mur en pierre"></div></div>
       <div class="p2"><div class="cadre"><img loading="lazy" src="assets/instruments.webp" width="1000" height="563" alt="Instruments dentaires rangés sur un plateau"></div></div>
     </div>
     <div>
@@ -370,7 +373,7 @@ a.carte:hover,.carte.liee:hover{transform:translateY(-2px);box-shadow:var(--ombr
 <section class="section" aria-labelledby="t-eng">
   <div class="conteneur">
     <div class="bande">
-      <div class="cadre"><img loading="lazy" src="assets/clinique-grand.webp" srcset="assets/clinique.webp 800w, assets/clinique-grand.webp 1600w" sizes="100vw" width="1600" height="1067" alt="Cabinet dentaire clair et spacieux"></div>
+      <div class="cadre"><img loading="lazy" src="assets/clinique-grand.webp" srcset="assets/clinique.webp 640w, assets/clinique-grand.webp 1280w" sizes="100vw" width="1600" height="1067" alt="Cabinet dentaire clair et spacieux"></div>
       <div class="contenu">
         <h2 id="t-eng">Ce qui ne change jamais, d'un patient à l'autre</h2>
         <ol class="points" data-repete="engagements"><template><li><b>{{nn}}</b><strong>{{item.titre}}</strong><span>{{item.texte}}</span></li></template></ol>
@@ -419,7 +422,7 @@ a.carte:hover,.carte.liee:hover{transform:translateY(-2px);box-shadow:var(--ombr
   <div class="conteneur">
     <div class="tete"><span class="surtitre">Honoraires</span><h2 id="t-hon">Des honoraires <span class="bleu">affichés</span></h2><p>{{situation_conventionnelle}}. Un devis détaillé précède toujours le traitement.</p></div>
     <div class="hon" data-repete="honoraires_vedette">
-      <template><div class="carte"><span class="acte">{{item.acte}}</span><div class="montant"><span data-si="item.honoraires">{{item.honoraires}}</span><span data-si="item.vide">— €</span><small data-si="item.vide">Honoraires indicatifs à compléter par le cabinet</small></div><p class="pc">{{item.prise_en_charge}}</p></div></template>
+      <template><div class="carte"><span class="acte">{{item.acte}}</span><div class="montant" data-si="item.honoraires">{{item.honoraires}}</div><p class="encart" data-si="item.vide"><strong>Honoraires à afficher</strong>Les recommandations de l'Ordre (juin 2026) demandent d'afficher les tarifs des actes courants.</p><p class="pc">{{item.prise_en_charge}}</p></div></template>
     </div>
     <div class="hon-mentions">
       <div class="carte"><h3>Sécurité sociale</h3><p>{{mention_secu}}</p></div>
@@ -430,7 +433,7 @@ a.carte:hover,.carte.liee:hover{transform:translateY(-2px);box-shadow:var(--ombr
       <summary>Voir tous les honoraires <span>{{honoraires.length}} actes</span></summary>
       <table><caption>Montants à compléter par le cabinet : aucun tarif n'est inventé. <a class="lien" href="https://annuairesante.ameli.fr/" rel="noopener">Annuaire santé ameli</a></caption>
         <thead><tr><th scope="col">Acte</th><th scope="col">Honoraires</th></tr></thead>
-        <tbody data-repete="honoraires"><template><tr><td>{{item.acte}}<small>{{item.prise_en_charge}}</small></td><td><span data-si="item.honoraires">{{item.honoraires}}</span><span data-si="item.vide" class="vide">À compléter</span></td></tr></template></tbody>
+        <tbody data-repete="honoraires"><template><tr><td>{{item.acte}}<small>{{item.prise_en_charge}}</small></td><td><span data-si="item.honoraires">{{item.honoraires}}</span><span data-si="item.vide" class="vide">À afficher</span></td></tr></template></tbody>
       </table>
     </details>
   </div>
@@ -453,7 +456,7 @@ a.carte:hover,.carte.liee:hover{transform:translateY(-2px);box-shadow:var(--ombr
       <p class="retour" data-retour hidden role="status">Maquette : ce formulaire n'est pas encore relié au cabinet.</p>
     </form>
     <div class="venir">
-      <div class="cadre"><img loading="lazy" src="assets/salle-claire-grand.webp" srcset="assets/salle-claire.webp 800w, assets/salle-claire-grand.webp 1600w" sizes="(min-width:1000px) 560px, 92vw" width="1600" height="1070" alt="Salle de soins claire"></div>
+      <div class="cadre"><img loading="lazy" src="assets/salle-claire-grand.webp" srcset="assets/salle-claire.webp 640w, assets/salle-claire-grand.webp 1280w" sizes="(min-width:1000px) 560px, 92vw" width="1600" height="1070" alt="Salle de soins claire"></div>
       <div class="info">
         <h3>Venir au cabinet</h3>
         <p class="adr">{{adresse.rue}}, {{adresse.quartier}} — {{adresse.ville}}<br>{{adresse.transports}}</p>
@@ -521,7 +524,7 @@ a.carte:hover,.carte.liee:hover{transform:translateY(-2px);box-shadow:var(--ombr
    "civilite": "Dr",
    "prenom": "Camille",
    "nom": "Exemple",
-   "photo": "docteure",
+   "photo": "dentiste-f",
    "rpps": "RPPS EXEMPLE",
    "conseil_departemental": "Conseil départemental de l'Ordre EXEMPLE",
    "specialite_qualifiee": "",
@@ -601,20 +604,20 @@ a.carte:hover,.carte.liee:hover{transform:translateY(-2px);box-shadow:var(--ombr
    "prenom": "Léa",
    "nom": "EXEMPLE",
    "fonction": "Assistante dentaire",
-   "photo": "dentiste-f"
+   "photo": "assistante"
   },
   {
    "prenom": "Hugo",
    "nom": "EXEMPLE",
    "fonction": "Assistant dentaire",
-   "photo": "soignant"
+   "photo": "dentiste-modele"
   }
  ],
  "equipements": [
   {
    "nom": "Imagerie 3D (CBCT)",
    "usage": "Mesurer l'os avant la pose.",
-   "photo": "ecrans"
+   "photo": "radio"
   },
   {
    "nom": "Empreinte optique",
