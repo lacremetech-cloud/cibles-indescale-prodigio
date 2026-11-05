@@ -66,18 +66,28 @@ export default function StudioSecteur() {
               {e.validation && actuelle && <div className="c-note">✋ Cette étape attend ta validation.</div>}
               {job?.resultat && <div className="c-note">{job.resultat}</div>}
 
-              {docs.map(d => (
-                <div key={d.id} style={{ marginTop: 12 }}>
-                  {d.image_url && <img src={d.image_url} alt={d.titre} style={{ width: '100%', borderRadius: 10, border: '1px solid var(--line)' }} />}
-                  <div className="actions">
-                    {d.contenu && <button className="act" onClick={() => setOuvert(d)}>📄 {d.titre}</button>}
-                    {d.url && <a className="act" href={d.url} target="_blank" rel="noreferrer">🔗 Ouvrir {d.contenu ? '' : d.titre}</a>}
-                    {e.n === 2 && d.type === 'template' && actuelle && (
-                      <button className="btn primary" onClick={() => validerTemplate(d.titre.replace(/^Direction\s*/i, '').trim())}>Valider {d.titre}</button>
-                    )}
-                  </div>
+              {docs.length > 0 && (
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: 12, marginTop: 12 }}>
+                  {docs.map(d => (
+                    <div key={d.id} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      {d.image_url ? (
+                        <a href={d.url || d.image_url} target="_blank" rel="noreferrer" title={`Ouvrir ${d.titre}`}
+                          style={{ display: 'block', height: 190, overflow: 'hidden', borderRadius: 10, border: '1px solid var(--line)', background: 'var(--card-2)' }}>
+                          <img src={d.image_url} alt={d.titre} loading="lazy"
+                            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
+                        </a>
+                      ) : null}
+                      <div className="actions" style={{ marginTop: 0 }}>
+                        {d.contenu && <button className="act" onClick={() => setOuvert(d)}>Lire : {d.titre}</button>}
+                        {d.url && <a className="act" href={d.url} target="_blank" rel="noreferrer">Ouvrir {d.titre}</a>}
+                        {e.n === 2 && d.type === 'template' && actuelle && (
+                          <button className="btn primary" onClick={() => validerTemplate(d.titre.replace(/^Direction\s*/i, '').trim())}>Valider</button>
+                        )}
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              )}
 
               {e.job && e.bouton && (actuelle || (e.n === 3 && s.etape >= 3)) && (
                 <div className="actions">
