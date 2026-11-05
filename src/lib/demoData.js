@@ -68,6 +68,15 @@ import { SPAS_JACUZZIS_PROSPECTS } from './spasJacuzzisData'
 import { STUDIOS_JARDIN_PROSPECTS } from './studiosJardinData'
 import { VERANDAS_PROSPECTS } from './verandasData'
 import { STORES_PROSPECTS } from './storesData'
+import { PORTAILS_CLOTURES_PROSPECTS } from './portailsCloturesData'
+import { SAUNAS_PROSPECTS } from './saunasData'
+import { CARPORTS_SOLAIRES_PROSPECTS } from './carportsSolairesData'
+import { CUISINES_ETE_PROSPECTS } from './cuisinesEteData'
+import { POOL_HOUSE_PROSPECTS } from './poolHouseData'
+import { PAYSAGISTE_PROSPECTS } from './paysagisteData'
+import { COURT_TENNIS_PADEL_PROSPECTS } from './courtTennisPadelData'
+import { CONSTRUCTEURS_MAISONS_PROSPECTS } from './constructeursMaisonsData'
+import { RENOVATION_GLOBALE_PROSPECTS } from './renovationGlobaleData'
 
 let _id = 0
 const id = () => 'demo-' + (++_id)
@@ -144,6 +153,15 @@ export function seedProspects() {
     ...STUDIOS_JARDIN_PROSPECTS,
     ...VERANDAS_PROSPECTS,
     ...STORES_PROSPECTS,
+    ...PORTAILS_CLOTURES_PROSPECTS,
+    ...SAUNAS_PROSPECTS,
+    ...CARPORTS_SOLAIRES_PROSPECTS,
+    ...CUISINES_ETE_PROSPECTS,
+    ...POOL_HOUSE_PROSPECTS,
+    ...PAYSAGISTE_PROSPECTS,
+    ...COURT_TENNIS_PADEL_PROSPECTS,
+    ...CONSTRUCTEURS_MAISONS_PROSPECTS,
+    ...RENOVATION_GLOBALE_PROSPECTS,
     ...PRODIGIO_PROSPECTS,
   ].map(p => ({
     qualification: '', date_relance: null, ne_plus_contacter: false, data: {}, ...p
