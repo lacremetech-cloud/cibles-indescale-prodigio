@@ -1,0 +1,955 @@
+<!doctype html>
+<html lang="fr" data-type="service">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="page-type" content="service"><meta name="site-kind" content="other">
+<title>{{p.nom_complet}}, chirurgien-dentiste à {{adresse.ville}} — {{nom_cabinet}}</title>
+<meta name="description" content="{{p.nom_complet}}, chirurgien-dentiste à {{adresse.ville}} : implantologie, parcours de soins, honoraires, accès et rendez-vous.">
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link rel="stylesheet" href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700,800&display=swap">
+<link rel="preload" as="image" href="assets/dent-3d.webp">
+<style>
+:root{
+  /* ===== Tokens (injectables par le générateur : couleur réelle du cabinet, etc.) ===== */
+  --couleur-principale:#2563EB;--couleur-principale-2:#0EA5C6;--couleur-principale-fonce:#1D4ED8;--couleur-principale-pale:#EAF2FF;
+  --couleur-texte:#0B1A3A;--couleur-texte-2:#44526E;--couleur-texte-3:#5D6A84;
+  --couleur-fond-haut:#E8F4FF;--couleur-fond-milieu:#E2F6F7;--couleur-fond-bas:#EAF3FF;
+  --couleur-carte:#FFFFFF;--couleur-carte-verre:rgba(255,255,255,.74);--couleur-filet:rgba(11,26,58,.08);
+  --couleur-pied:#0A1633;--couleur-pied-texte:#B9C3D8;
+  --degrade-principal:linear-gradient(100deg,var(--couleur-principale) 0%,var(--couleur-principale-2) 100%);
+  --ombre-carte:0 1px 2px rgba(11,26,58,.04),0 18px 40px -22px rgba(28,78,150,.35);
+  --ombre-carte-survol:0 1px 2px rgba(11,26,58,.05),0 26px 50px -24px rgba(28,78,150,.45);
+  --police:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --taille-h1:clamp(46px,8.2vw,112px);--taille-h1-2:clamp(28px,3.9vw,54px);--taille-h2:clamp(32px,5vw,60px);--taille-corps:17px;--taille-texte:16px;--taille-petit:14px;--taille-label:13px;
+  --marge:clamp(18px,4.5vw,56px);--largeur-max:1240px;--espace-section:clamp(56px,6.5vw,92px);
+  --rayon:28px;--rayon-moyen:20px;--rayon-petit:14px;--duree-survol:.25s;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font:400 var(--taille-corps)/1.6 var(--police);color:var(--couleur-texte);-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background:linear-gradient(180deg,var(--couleur-fond-haut) 0%,var(--couleur-fond-milieu) 38%,var(--couleur-fond-bas) 70%,var(--couleur-fond-milieu) 100%)}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--couleur-principale);outline-offset:3px;border-radius:10px}
+.lien-evitement{position:absolute;left:-9999px;top:0;z-index:100;background:var(--couleur-texte);color:#fff;padding:12px 16px;border-radius:10px}
+.lien-evitement:focus{left:12px;top:12px}
+.conteneur{width:100%;max-width:var(--largeur-max);margin:0 auto;padding:0 var(--marge)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.035em;line-height:1.04;text-wrap:balance}
+.bleu{background:var(--degrade-principal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.surtitre{display:inline-block;font-size:var(--taille-label);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--couleur-principale);margin:0 0 14px}
+.tete{text-align:center;max-width:760px;margin:0 auto 44px}
+.tete h2{font-size:var(--taille-h2)}
+.tete p{color:var(--couleur-texte-2);margin:16px auto 0;max-width:34em}
+.section{padding:var(--espace-section) 0}
+section{scroll-margin-top:90px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;border:0;cursor:pointer;
+  font:700 var(--taille-texte)/1 var(--police);text-decoration:none;transition:transform var(--duree-survol),box-shadow var(--duree-survol),background var(--duree-survol);white-space:nowrap}
+.btn svg{width:18px;height:18px;transition:transform var(--duree-survol)}
+.btn:hover{transform:translateY(-2px)}.btn:hover svg{transform:translateX(3px)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn-plein{background:var(--degrade-principal);color:#fff;box-shadow:0 12px 26px -12px rgba(37,99,235,.65)}
+.btn-plein:hover{box-shadow:0 16px 30px -12px rgba(37,99,235,.75)}
+.btn-blanc{background:#fff;color:var(--couleur-texte);box-shadow:var(--ombre-carte)}
+.lien{font-weight:700;color:var(--couleur-principale-fonce);text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/0 2px no-repeat;transition:background-size var(--duree-survol);padding-bottom:2px}
+a:hover .lien,.lien:hover{background-size:100% 2px}
+
+.maquette{background:var(--couleur-texte);color:#D7E0F2;font-size:var(--taille-label);text-align:center;padding:7px var(--marge);line-height:1.4}
+.maquette strong{color:#fff}
+
+.entete{position:sticky;top:0;z-index:30;padding:10px 10px 0}
+.barre-nav{max-width:var(--largeur-max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;
+  background:var(--couleur-carte-verre);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);border:1px solid rgba(255,255,255,.85);
+  border-radius:999px;padding:8px 8px 8px 16px;box-shadow:0 10px 30px -18px rgba(28,78,150,.4)}
+.marque{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0;font-weight:800;letter-spacing:-.02em}
+.marque img{width:26px;height:36px;object-fit:contain;flex:none}
+.marque span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:16px}
+.nav{display:none;gap:2px}
+.nav a{font-size:15px;font-weight:600;color:var(--couleur-texte-2);text-decoration:none;padding:10px 14px;border-radius:999px;transition:background var(--duree-survol),color var(--duree-survol)}
+.nav a:hover{background:#fff;color:var(--couleur-texte)}
+.barre-nav .btn{min-height:44px;padding:0 18px;font-size:15px;display:none}
+.menu-btn{flex:none;width:44px;height:44px;border-radius:50%;border:0;background:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:var(--ombre-carte)}
+.menu-btn span{display:block;width:18px;height:2px;border-radius:2px;background:var(--couleur-texte);box-shadow:0 -6px 0 var(--couleur-texte),0 6px 0 var(--couleur-texte)}
+.menu-mobile{display:none;max-width:var(--largeur-max);margin:8px auto 0;background:#fff;border-radius:var(--rayon-moyen);padding:8px;box-shadow:var(--ombre-carte)}
+.menu-mobile.ouvert{display:grid}
+.menu-mobile a{padding:14px 16px;border-radius:12px;text-decoration:none;font-weight:700}
+.menu-mobile a:hover{background:var(--couleur-principale-pale)}
+@media (min-width:1080px){.nav{display:flex}.barre-nav .btn{display:inline-flex}.menu-btn,.menu-mobile{display:none!important}}
+
+.hero{padding:36px 0 24px;position:relative}
+.hero .haut{display:grid;gap:8px;align-items:center}
+.pastille-haut{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:999px;padding:8px 14px 8px 10px;font-size:var(--taille-label);font-weight:700;box-shadow:var(--ombre-carte);margin:0 0 22px}
+.pastille-haut svg{width:18px;height:18px;color:var(--couleur-principale)}
+.hero h1{font-size:var(--taille-h1);line-height:.98}
+.hero h1 .l{display:block}
+.hero h1 .l2{font-size:var(--taille-h1-2);line-height:1.08;letter-spacing:-.03em;margin-top:.18em}
+.hero .sous{font-size:18px;color:var(--couleur-texte-2);max-width:30em;margin:22px 0 0}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero .ctas .btn{flex:1 1 200px}
+.chiffres{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:26px}
+.chiffre{background:#fff;border-radius:var(--rayon-petit);padding:12px 14px;box-shadow:var(--ombre-carte);min-width:0}
+.chiffre:nth-child(n+4){display:none}
+.chiffre strong{display:block;font-size:22px;font-weight:800;letter-spacing:-.03em}
+.chiffre span{font-size:12.5px;color:var(--couleur-texte-3);line-height:1.3;display:block}
+.objet{position:relative;justify-self:center;width:min(62vw,440px);aspect-ratio:704/1000;margin:30px 0 34px}
+.objet .dent{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 40px 40px rgba(28,90,160,.28));animation:flotte 7s ease-in-out infinite}
+.objet::after{content:"";position:absolute;left:18%;right:18%;bottom:-7%;height:8%;border-radius:50%;background:radial-gradient(closest-side,rgba(28,78,150,.28),transparent);animation:ombre 7s ease-in-out infinite}
+@keyframes flotte{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-14px) rotate(1.5deg)}}
+@keyframes ombre{0%,100%{transform:scaleX(1);opacity:1}50%{transform:scaleX(.86);opacity:.7}}
+.bulle{position:absolute;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff 0%,rgba(255,255,255,.6) 30%,rgba(190,230,255,.28) 62%,rgba(255,255,255,.1) 100%);box-shadow:inset -6px -8px 18px rgba(80,160,230,.2),0 10px 24px -12px rgba(28,78,150,.3)}
+.bulle.b1{width:58px;height:58px;left:-6%;top:8%}.bulle.b2{width:30px;height:30px;right:6%;top:0}.bulle.b3{width:42px;height:42px;right:-8%;bottom:30%}
+.puce-flottante{position:absolute;z-index:2;display:flex;align-items:center;gap:10px;background:var(--couleur-carte-verre);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.95);border-radius:16px;padding:10px 14px 10px 10px;box-shadow:var(--ombre-carte);font-size:13.5px;font-weight:700;line-height:1.25;white-space:nowrap}
+.puce-flottante i{flex:none;width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:var(--degrade-principal);color:#fff}
+.puce-flottante i svg{width:17px;height:17px}
+.puce-flottante small{display:block;font-weight:500;color:var(--couleur-texte-3);font-size:12px}
+.pf1{left:-16%;bottom:16%}.pf2{right:-10%;top:20%}
+@media (min-width:1300px){.pf2{right:-18%}}
+.badge-exemple{position:absolute;right:-4%;bottom:-14%;white-space:nowrap;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--couleur-texte-3)}
+@media (max-width:620px){.pf1{left:-10%;bottom:10%}.pf2{right:-12%;top:12%}.puce-flottante{font-size:12px;padding:8px 10px 8px 8px}.puce-flottante i{width:28px;height:28px}.puce-flottante small{font-size:11px}}
+@media (min-width:1000px){.hero{padding:56px 0 32px}.hero .haut{grid-template-columns:1.25fr .75fr;gap:24px}.hero .ctas .btn{flex:0 0 auto}.chiffres{max-width:540px}.objet{margin:0;width:min(100%,440px)}}
+
+.infos{list-style:none;margin:30px 0 0;padding:10px;display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--couleur-carte-verre);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.95);border-radius:var(--rayon-moyen);box-shadow:var(--ombre-carte)}
+.infos li{display:flex;gap:10px;align-items:center;padding:10px;min-width:0}
+.infos i{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--couleur-principale-pale);color:var(--couleur-principale)}
+.infos i svg{width:18px;height:18px}
+.infos strong{display:block;font-size:14px;line-height:1.25}
+.infos span{display:block;font-size:12.5px;color:var(--couleur-texte-3);line-height:1.3}
+.infos li:last-child{grid-column:1/-1}
+@media (min-width:1000px){.infos{grid-template-columns:repeat(5,1fr);padding:12px 16px}.infos li:last-child{grid-column:auto}}
+
+.carte{background:var(--couleur-carte);border-radius:var(--rayon-moyen);box-shadow:var(--ombre-carte);overflow:hidden;transition:transform var(--duree-survol),box-shadow var(--duree-survol)}
+a.carte,.carte.liee{text-decoration:none;color:inherit;display:block}
+a.carte:hover,.carte.liee:hover{transform:translateY(-2px);box-shadow:var(--ombre-carte-survol)}
+.cadre{overflow:hidden;background:#DDEBF5}
+.cadre img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.carte:hover .cadre img,.cadre:hover img,.membre:hover .cadre img{transform:scale(1.03)}
+
+.split{display:grid;gap:40px;align-items:center}
+.split-photos{position:relative;padding:0 0 36px}
+.split-photos .p1{border-radius:var(--rayon);box-shadow:var(--ombre-carte);aspect-ratio:1/1.05;background:#fff;padding:10px}
+.split-photos .p1 .cadre{border-radius:20px;height:100%}
+.split-photos .p2{position:absolute;right:-6px;bottom:0;width:46%;aspect-ratio:1;border-radius:24px;border:6px solid #fff;box-shadow:var(--ombre-carte);overflow:hidden}
+.split-photos .p2 .cadre{height:100%}
+.split h2{font-size:var(--taille-h2)}
+.split p{color:var(--couleur-texte-2);margin:18px 0 0;max-width:32em}
+.coches{list-style:none;margin:26px 0 30px;padding:0;display:grid;gap:12px}
+.coches li{display:flex;gap:12px;align-items:center;font-weight:600;font-size:var(--taille-texte)}
+.coches li::before{content:"";flex:none;width:26px;height:26px;border-radius:50%;background:#DDF6F2 center/14px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M2.5 7.5l3 3 6-7' fill='none' stroke='%230E8F84' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+@media (min-width:640px){.coches{grid-template-columns:1fr 1fr}}
+@media (min-width:1000px){.split{grid-template-columns:1fr 1fr;gap:80px}}
+
+.soins{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+.soin .cadre{aspect-ratio:4/3}
+.soin .corps{padding:14px 14px 16px}
+.soin h3{font-size:16px;letter-spacing:-.02em;line-height:1.2}
+.soin p{margin:6px 0 10px;font-size:14px;color:var(--couleur-texte-3);line-height:1.45}
+.soin .lien{font-size:14px}
+@media (min-width:900px){.soins{grid-template-columns:repeat(4,1fr);gap:20px}.soin .corps{padding:20px 20px 22px}.soin h3{font-size:19px}}
+
+.bande{position:relative;border-radius:var(--rayon);overflow:hidden;min-height:600px;display:flex;align-items:flex-end;color:#fff;isolation:isolate}
+.bande .cadre{position:absolute;inset:0;z-index:-2}
+.bande::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,28,66,.05) 0%,rgba(8,28,66,.5) 42%,rgba(8,28,66,.9) 100%)}
+.bande .contenu{padding:30px 22px;width:100%}
+.bande h2{font-size:var(--taille-h2);color:#fff;max-width:12em}
+.points{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:20px}
+.points li{border-top:1px solid rgba(255,255,255,.3);padding-top:16px}
+.points b{display:block;font-size:42px;font-weight:800;letter-spacing:-.04em;line-height:1}
+.points strong{display:block;font-size:19px;margin:10px 0 4px}
+.points span{color:#E1EAF7;font-size:15px}
+@media (min-width:900px){.bande{min-height:640px}.bande .contenu{padding:56px}.points{grid-template-columns:repeat(3,1fr);gap:40px}}
+
+.techs{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+.tech .cadre{aspect-ratio:1/1}
+.tech .corps{padding:14px 14px 16px}
+.tech h3{font-size:16px;letter-spacing:-.02em}
+.tech p{margin:4px 0 0;font-size:13.5px;color:var(--couleur-texte-3);line-height:1.4}
+@media (min-width:900px){.techs{grid-template-columns:repeat(4,1fr);gap:20px}.tech .cadre{aspect-ratio:4/3.2}.tech h3{font-size:18px}.tech p{font-size:14px}.tech .corps{padding:18px 20px 20px}}
+
+.etapes{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.etape{padding:24px}
+.etape .num{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:var(--degrade-principal);color:#fff;font-weight:800;font-size:18px;margin-bottom:18px}
+.etape h3{font-size:21px;letter-spacing:-.025em;line-height:1.15}
+.etape p{margin:8px 0 14px;color:var(--couleur-texte-2);font-size:15px}
+.etape .delai{display:inline-block;font-size:12.5px;font-weight:700;color:var(--couleur-principale-fonce);background:var(--couleur-principale-pale);border-radius:999px;padding:6px 12px}
+@media (min-width:760px){.etapes{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1100px){.etapes{grid-template-columns:repeat(4,1fr);gap:20px}}
+
+.equipe{display:grid;gap:16px}
+.membre{position:relative;border-radius:var(--rayon);overflow:hidden;box-shadow:var(--ombre-carte);background:#DDEBF5}
+.membre .cadre{aspect-ratio:1/1.08}
+@media (min-width:760px){.membre .cadre{aspect-ratio:4/5}}
+.membre .plaque{position:absolute;left:12px;right:12px;bottom:12px;display:grid;gap:8px}
+.membre .nom{background:rgba(255,255,255,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:16px;padding:12px 16px}
+.membre .nom strong{display:block;font-size:17px;letter-spacing:-.02em}
+.membre .nom span{display:block;font-size:13px;color:var(--couleur-texte-3);line-height:1.35}
+.membre .btn{min-height:46px;width:100%}
+@media (min-width:760px){.equipe{grid-template-columns:repeat(3,1fr);gap:20px}}
+
+.presentation{display:grid;gap:24px;align-items:center;padding:28px;margin-top:20px}
+.presentation .rond{width:132px;height:132px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 8px var(--couleur-principale-pale)}
+.presentation .rond img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.presentation blockquote{margin:0;font-size:clamp(21px,2.4vw,28px);font-weight:700;letter-spacing:-.025em;line-height:1.32}
+.presentation .signature{display:flex;align-items:center;gap:12px;margin:18px 0 0;color:var(--couleur-texte-3);font-size:15px}
+.presentation .signature::before{content:"";width:40px;height:2px;background:var(--degrade-principal)}
+@media (min-width:900px){.presentation{grid-template-columns:auto 1fr;gap:48px;padding:40px 56px}.presentation .rond{width:180px;height:180px}}
+
+.faits{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:12px}
+.fait{padding:18px 10px;text-align:center}
+.fait strong{display:block;font-size:clamp(36px,5vw,60px);font-weight:800;letter-spacing:-.05em;line-height:1.05}
+.fait span{display:block;margin-top:8px;font-size:14px;color:var(--couleur-texte-3);line-height:1.35}
+@media (min-width:900px){.faits{grid-template-columns:repeat(4,1fr);padding:28px}}
+
+.hon{display:grid;gap:14px}
+.hon .carte{padding:26px 24px;display:flex;flex-direction:column;gap:8px}
+.hon .acte{font-size:18px;font-weight:800;letter-spacing:-.02em}
+.hon .montant{font-size:42px;font-weight:800;letter-spacing:-.04em;line-height:1.1;margin-top:4px}
+.hon .montant small{display:block;font-size:12.5px;font-weight:600;letter-spacing:0;color:var(--couleur-texte-3);margin-top:4px;line-height:1.35}
+.hon .pc{font-size:14px;color:var(--couleur-texte-3);margin:auto 0 0;padding-top:12px;border-top:1px solid var(--couleur-filet)}
+.hon .carte:nth-child(2){background:var(--degrade-principal);color:#fff}
+.hon .carte:nth-child(2) .montant small,.hon .carte:nth-child(2) .pc{color:#E8F1FF;border-color:rgba(255,255,255,.28)}
+@media (min-width:900px){.hon{grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}}
+.hon-mentions{display:grid;gap:14px;margin-top:20px}
+.hon-mentions .carte{padding:20px 22px;font-size:14.5px;color:var(--couleur-texte-2)}
+.hon-mentions h3{font-size:16px;letter-spacing:-.01em;color:var(--couleur-texte);margin-bottom:6px}
+.hon-mentions p{margin:0}
+@media (min-width:900px){.hon-mentions{grid-template-columns:repeat(3,1fr);gap:20px}}
+.tableau{margin-top:20px;background:#fff;border-radius:18px;box-shadow:var(--ombre-carte);overflow:hidden}
+.tableau summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 22px;font-weight:800;min-height:58px}
+.tableau summary::-webkit-details-marker{display:none}
+.tableau summary span{font-size:13px;font-weight:600;color:var(--couleur-texte-3)}
+.tableau table{width:100%;border-collapse:collapse;font-size:14.5px}
+.tableau th{text-align:left;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--couleur-texte-3);padding:10px 22px;border-top:1px solid var(--couleur-filet)}
+.tableau th:last-child,.tableau td:last-child{text-align:right}
+.tableau td{padding:12px 22px;border-top:1px solid var(--couleur-filet);vertical-align:top}
+.tableau td small{display:block;color:var(--couleur-texte-3);font-size:13px}
+.tableau .vide{font-size:12.5px;font-weight:700;color:var(--couleur-principale-fonce);background:var(--couleur-principale-pale);border-radius:999px;padding:4px 10px;white-space:nowrap}
+.tableau caption{caption-side:bottom;text-align:left;padding:12px 22px 18px;font-size:13px;color:var(--couleur-texte-3)}
+
+.rdv{display:grid;gap:20px}
+.formulaire{padding:26px}
+.formulaire h2{font-size:clamp(30px,3.8vw,44px)}
+.formulaire .aide{color:var(--couleur-texte-3);font-size:14px;margin:10px 0 22px}
+.champs{display:grid;gap:14px}
+.champ label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
+.champ input,.champ select{width:100%;min-height:50px;border-radius:14px;border:1px solid #D5DFEC;background:#F7FAFE;padding:0 14px;font:500 16px var(--police);color:var(--couleur-texte);transition:border-color var(--duree-survol),box-shadow var(--duree-survol)}
+.champ input:focus,.champ select:focus{outline:0;border-color:var(--couleur-principale);box-shadow:0 0 0 4px rgba(37,99,235,.15)}
+.formulaire .btn{width:100%;margin-top:18px}
+.formulaire .retour{margin:14px 0 0;font-size:14px;font-weight:600;color:var(--couleur-principale-fonce);background:var(--couleur-principale-pale);border-radius:12px;padding:10px 14px}
+@media (min-width:640px){.champs{grid-template-columns:1fr 1fr}.champ.large{grid-column:1/-1}}
+.venir{position:relative;border-radius:var(--rayon);overflow:hidden;min-height:560px;box-shadow:var(--ombre-carte);display:flex;align-items:flex-end}
+.venir>.cadre{position:absolute;inset:0}
+.venir .info{position:relative;margin:12px;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:var(--rayon-moyen);padding:22px;width:calc(100% - 24px)}
+.venir h3{font-size:24px;letter-spacing:-.03em}
+.venir .adr{margin:8px 0 12px;color:var(--couleur-texte-2);font-size:15px}
+.horaires{width:100%;border-collapse:collapse;font-size:14.5px}
+.horaires td{padding:7px 0;border-top:1px solid var(--couleur-filet)}
+.horaires td:last-child{text-align:right;font-weight:700}
+.venir .tel{display:inline-block;margin-top:12px;font-size:22px;font-weight:800;letter-spacing:-.02em;text-decoration:none}
+.venir .petit{font-size:13px;color:var(--couleur-texte-3);margin:8px 0 0}
+@media (min-width:1000px){.rdv{grid-template-columns:1.05fr .95fr;gap:24px}.formulaire{padding:40px}}
+
+.faq{max-width:820px;margin:0 auto;display:grid;gap:10px}
+.faq details{background:#fff;border-radius:18px;box-shadow:var(--ombre-carte);transition:box-shadow var(--duree-survol)}
+.faq details:hover{box-shadow:var(--ombre-carte-survol)}
+.faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px 14px 20px;min-height:58px;font-weight:700;font-size:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";flex:none;width:30px;height:30px;border-radius:50%;background:var(--couleur-principale-pale) center/12px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 4.5l4 4 4-4' fill='none' stroke='%232563EB' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");transition:transform var(--duree-survol)}
+.faq details[open] summary::after{transform:rotate(180deg)}
+.faq details p{margin:0;padding:0 20px 18px;color:var(--couleur-texte-2);font-size:15px}
+.note{text-align:center;font-size:13px;color:var(--couleur-texte-3);margin:18px auto 0;max-width:40em}
+
+.cta{background:var(--degrade-principal);border-radius:var(--rayon);color:#fff;padding:40px 24px;position:relative;overflow:hidden;isolation:isolate}
+.cta::before{content:"";position:absolute;width:520px;height:520px;right:-160px;top:-220px;border-radius:50%;background:rgba(255,255,255,.12);z-index:-1}
+.cta::after{content:"";position:absolute;width:300px;height:300px;right:160px;bottom:-200px;border-radius:50%;background:rgba(255,255,255,.08);z-index:-1}
+.cta h2{font-size:clamp(32px,4.8vw,58px);color:#fff;max-width:12em}
+.cta p{color:#EAF2FF;margin:14px 0 26px;max-width:30em}
+.cta .btns{display:flex;flex-wrap:wrap;gap:12px}
+.cta .btn-blanc{color:var(--couleur-principale-fonce)}
+.cta .btn-verre{background:rgba(255,255,255,.16);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.5)}
+.cta img{display:none}
+@media (min-width:900px){.cta{padding:64px}.cta img{display:block;position:absolute;right:72px;top:50%;transform:translateY(-50%) rotate(8deg);width:200px;filter:drop-shadow(0 30px 30px rgba(0,0,0,.22))}}
+
+.pied{background:var(--couleur-pied);color:var(--couleur-pied-texte);margin-top:var(--espace-section);padding:60px 0 110px;font-size:14px}
+.pied .grille{display:grid;gap:30px}
+.pied .marque{color:#fff;font-size:20px}
+.pied h3{color:#fff;font-size:14px;margin:0 0 12px;font-weight:700;letter-spacing:0}
+.pied p{margin:0 0 6px}
+.pied a{color:#fff;text-decoration:none}
+.pied a:hover{text-decoration:underline}
+.pied .bas{margin-top:40px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);font-size:12.5px;line-height:1.6;color:#98A4BE}
+@media (min-width:900px){.pied .grille{grid-template-columns:1.3fr 1fr 1fr 1.2fr}.pied{padding-bottom:60px}}
+
+.barre-mobile{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:40;display:grid;grid-template-columns:1fr 1.4fr;gap:8px;padding:8px;border-radius:999px;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 14px 30px -14px rgba(28,78,150,.5)}
+.barre-mobile .btn{min-height:46px;padding:0 14px}
+@media (min-width:1080px){.barre-mobile{display:none}}
+.apercu .barre-mobile{display:none}
+.reduit .objet .dent,.reduit .objet::after{animation:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+<div class="maquette" role="note">Maquette proposée par <strong>INDESCALE Studio</strong> — entièrement personnalisable · Cabinet et données fictifs : <strong>EXEMPLE</strong></div>
+
+<header class="entete">
+  <div class="barre-nav">
+    <a class="marque" href="#haut" aria-label="{{nom_cabinet}}, accueil">
+      <img data-si="logo" src="{{logo}}" alt="" width="34" height="34">
+      <img data-si="!logo" src="assets/dent-3d.webp" alt="" width="26" height="36">
+      <span>{{nom_cabinet}}</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale"><a href="#soins">Soins</a><a href="#cabinet">Le cabinet</a><a href="#equipe">L'équipe</a><a href="#honoraires">Honoraires</a><a href="#questions">Questions</a><a href="#rdv">Contact</a></nav>
+    <a class="btn btn-plein" href="{{lien_rdv}}">Prendre rendez-vous</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-mobile" aria-label="Ouvrir le menu"><span></span></button>
+  </div>
+  <nav class="menu-mobile" id="menu-mobile" aria-label="Navigation mobile"><a href="#soins">Soins</a><a href="#cabinet">Le cabinet</a><a href="#equipe">L'équipe</a><a href="#honoraires">Honoraires</a><a href="#questions">Questions</a><a href="#rdv">Rendez-vous et accès</a></nav>
+</header>
+
+<main id="contenu">
+<section class="hero" id="haut" aria-labelledby="titre">
+  <div class="conteneur haut">
+    <div>
+      <p class="pastille-haut" data-h><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Cabinet dentaire · {{adresse.ville}}</p>
+      <h1 id="titre"><span class="l l1" data-h>{{p.nom_complet}},</span><span class="l l2" data-h><span class="bleu">chirurgien-dentiste</span> à {{adresse.ville}}</span></h1>
+      <p class="sous" data-h>Le {{p.nom_complet}} {{p.mention_exercice}}. Chaque étape vous est expliquée avant d'être réalisée.</p>
+      <div class="ctas" data-h>
+        <a class="btn btn-plein" href="{{lien_rdv}}">Prendre rendez-vous<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-blanc" href="#soins">Découvrir les soins</a>
+      </div>
+      <div class="chiffres" data-si="faits_cles" data-repete="faits_cles" data-h>
+        <template><div class="chiffre"><strong>{{item.valeur}}</strong><span>{{item.libelle}}</span></div></template>
+      </div>
+    </div>
+    <div class="objet" data-objet>
+      <span class="bulle b1" aria-hidden="true"></span><span class="bulle b2" aria-hidden="true"></span><span class="bulle b3" aria-hidden="true"></span>
+      <img class="dent" src="assets/dent-3d.webp" width="704" height="1000" alt="" fetchpriority="high">
+      <div class="puce-flottante pf1" data-si="equipements" data-puce><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></i><span>{{equipements.0.nom}}<small>au cabinet</small></span></div>
+      <div class="puce-flottante pf2" data-puce><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h4"/></svg></i><span>Devis détaillé<small>avant tout traitement</small></span></div>
+      <span class="badge-exemple">Rendu 3D d'illustration</span>
+    </div>
+  </div>
+  <div class="conteneur">
+    <ul class="infos" aria-label="Informations pratiques">
+      <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></i><div><strong>{{adresse.rue}}</strong><span>{{adresse.quartier}}</span></div></li>
+      <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i><div><strong>{{horaires.0.heures}}</strong><span>{{horaires.0.jours}}</span></div></li>
+      <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></i><div><strong>Conventionné</strong><span>Carte Vitale acceptée</span></div></li>
+      <li data-si="p.langues"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg></i><div><strong>Langues</strong><span>{{p.langues}}</span></div></li>
+      <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="4.5" r="1.8"/><path d="M12 7v6h5l2 6M12 10H8M9 21a5 5 0 0 1-1-9.5"/></svg></i><div><strong>Accès PMR</strong><span>Ascenseur jusqu'au cabinet</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="cabinet" aria-labelledby="t-cab">
+  <div class="conteneur split">
+    <div class="split-photos">
+      <div class="p1"><div class="cadre"><img loading="lazy" src="assets/cabinet-pierre.webp" srcset="assets/cabinet-pierre.webp 800w, assets/cabinet-pierre-grand.webp 1600w" sizes="(min-width:1000px) 560px, 92vw" width="800" height="533" alt="Salle de soins lumineuse avec un mur en pierre"></div></div>
+      <div class="p2"><div class="cadre"><img loading="lazy" src="assets/instruments.webp" width="1000" height="563" alt="Instruments dentaires rangés sur un plateau"></div></div>
+    </div>
+    <div>
+      <span class="surtitre">Le cabinet</span>
+      <h2 id="t-cab">L'implantologie, <span class="bleu">expliquée simplement</span></h2>
+      <p>Un implant remplace la racine d'une dent absente. Ce n'est pas la seule solution : le bridge et la prothèse amovible vous sont aussi présentés.</p>
+      <ul class="coches"><li>Imagerie 3D au cabinet</li><li>Devis remis avant tout soin</li><li>Alternatives présentées</li><li>Suivi après chaque étape</li></ul>
+      <a class="btn btn-plein" href="#equipe">Rencontrer l'équipe<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="soins" aria-labelledby="t-soins">
+  <div class="conteneur">
+    <div class="tete"><span class="surtitre">Les soins</span><h2 id="t-soins">Ce que nous <span class="bleu">pratiquons</span></h2><p>Du soin courant à l'arcade complète sur implants.</p></div>
+    <div class="soins" data-repete="pratiques">
+      <template><a class="carte soin" href="#questions"><div class="cadre"><img loading="lazy" src="assets/{{item.photo}}.webp" width="800" height="600" alt=""></div><div class="corps"><h3>{{item.titre}}</h3><p>{{item.texte}}</p><span class="lien">En savoir plus</span></div></a></template>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="t-eng">
+  <div class="conteneur">
+    <div class="bande">
+      <div class="cadre"><img loading="lazy" src="assets/clinique-grand.webp" srcset="assets/clinique.webp 800w, assets/clinique-grand.webp 1600w" sizes="100vw" width="1600" height="1067" alt="Cabinet dentaire clair et spacieux"></div>
+      <div class="contenu">
+        <h2 id="t-eng">Ce qui ne change jamais, d'un patient à l'autre</h2>
+        <ol class="points" data-repete="engagements"><template><li><b>{{nn}}</b><strong>{{item.titre}}</strong><span>{{item.texte}}</span></li></template></ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="t-tech" data-si="equipements">
+  <div class="conteneur">
+    <div class="tete"><span class="surtitre">Le plateau technique</span><h2 id="t-tech">Les équipements, <span class="bleu">sans jargon</span></h2></div>
+    <div class="techs" data-repete="equipements">
+      <template><div class="carte tech liee"><div class="cadre"><img loading="lazy" src="assets/{{item.photo}}.webp" width="800" height="600" alt=""></div><div class="corps"><h3>{{item.nom}}</h3><p>{{item.usage}}</p></div></div></template>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="parcours" aria-labelledby="t-parc">
+  <div class="conteneur">
+    <div class="tete"><span class="surtitre">Le parcours</span><h2 id="t-parc">Quatre étapes, <span class="bleu">sans surprise</span></h2><p>Délais indicatifs, selon votre situation.</p></div>
+    <ol class="etapes" data-repete="parcours">
+      <template><li class="carte etape liee"><span class="num" aria-hidden="true">{{n}}</span><h3><span class="sr">Étape {{n}} : </span>{{item.titre}}</h3><p>{{item.texte}}</p><span class="delai">{{item.delai}}</span></li></template>
+    </ol>
+  </div>
+</section>
+
+<section class="section" id="equipe" aria-labelledby="t-eq">
+  <div class="conteneur">
+    <div class="tete"><span class="surtitre">L'équipe</span><h2 id="t-eq">Les visages <span class="bleu">du cabinet</span></h2></div>
+    <div class="equipe">
+      <article class="membre"><div class="cadre"><img loading="lazy" src="assets/{{p.photo}}.webp" width="640" height="960" alt="{{p.nom_complet}}"></div><div class="plaque"><div class="nom"><strong>{{p.nom_complet}}</strong><span>Chirurgien-dentiste · {{p.rpps}}</span></div><a class="btn btn-plein" href="{{lien_rdv}}">Prendre rendez-vous</a></div></article>
+      <div data-si="equipe" data-repete="equipe" style="display:contents"><template><article class="membre"><div class="cadre"><img loading="lazy" src="assets/{{item.photo}}.webp" width="800" height="1000" alt="{{item.prenom}} {{item.nom}}"></div><div class="plaque"><div class="nom"><strong>{{item.prenom}} {{item.nom}}</strong><span>{{item.fonction}}</span></div><a class="btn btn-blanc" href="#rdv">Contacter le cabinet</a></div></article></template></div>
+    </div>
+    <div class="carte presentation" data-si="citation_praticien">
+      <div class="rond"><img loading="lazy" src="assets/{{p.photo}}.webp" width="200" height="200" alt=""></div>
+      <div><blockquote>« {{citation_praticien}} »</blockquote><p class="signature">{{p.nom_complet}}</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-label="Le cabinet en quelques faits" data-si="faits_cles" style="padding-top:0">
+  <div class="conteneur"><div class="carte faits" data-repete="faits_cles"><template><div class="fait"><strong class="bleu">{{item.valeur}}</strong><span>{{item.libelle}}</span></div></template></div></div>
+</section>
+
+<section class="section" id="honoraires" aria-labelledby="t-hon">
+  <div class="conteneur">
+    <div class="tete"><span class="surtitre">Honoraires</span><h2 id="t-hon">Des honoraires <span class="bleu">affichés</span></h2><p>{{situation_conventionnelle}}. Un devis détaillé précède toujours le traitement.</p></div>
+    <div class="hon" data-repete="honoraires_vedette">
+      <template><div class="carte"><span class="acte">{{item.acte}}</span><div class="montant"><span data-si="item.honoraires">{{item.honoraires}}</span><span data-si="item.vide">— €</span><small data-si="item.vide">Honoraires indicatifs à compléter par le cabinet</small></div><p class="pc">{{item.prise_en_charge}}</p></div></template>
+    </div>
+    <div class="hon-mentions">
+      <div class="carte"><h3>Sécurité sociale</h3><p>{{mention_secu}}</p></div>
+      <div class="carte"><h3>Accès aux soins</h3><p>{{mention_css_ame}}</p></div>
+      <div class="carte"><h3>Paiement</h3><p>{{modes_paiement}}. Aucun mode de règlement n'est imposé.</p></div>
+    </div>
+    <details class="tableau">
+      <summary>Voir tous les honoraires <span>{{honoraires.length}} actes</span></summary>
+      <table><caption>Montants à compléter par le cabinet : aucun tarif n'est inventé. <a class="lien" href="https://annuairesante.ameli.fr/" rel="noopener">Annuaire santé ameli</a></caption>
+        <thead><tr><th scope="col">Acte</th><th scope="col">Honoraires</th></tr></thead>
+        <tbody data-repete="honoraires"><template><tr><td>{{item.acte}}<small>{{item.prise_en_charge}}</small></td><td><span data-si="item.honoraires">{{item.honoraires}}</span><span data-si="item.vide" class="vide">À compléter</span></td></tr></template></tbody>
+      </table>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="rdv" aria-labelledby="t-rdv">
+  <div class="conteneur rdv">
+    <form class="carte formulaire" data-maquette aria-labelledby="t-rdv">
+      <span class="surtitre">Rendez-vous</span>
+      <h2 id="t-rdv">Demander un <span class="bleu" style="white-space:nowrap">rendez-vous</span></h2>
+      <p class="aide">Le cabinet vous rappelle pour fixer l'horaire. N'indiquez aucune information médicale ici.</p>
+      <div class="champs">
+        <div class="champ"><label for="f-nom">Nom et prénom</label><input id="f-nom" name="nom" autocomplete="name" required></div>
+        <div class="champ"><label for="f-tel">Téléphone</label><input id="f-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required></div>
+        <div class="champ"><label for="f-mail">Email</label><input id="f-mail" name="email" type="email" autocomplete="email"></div>
+        <div class="champ"><label for="f-moment">Moment préféré</label><select id="f-moment" name="moment"><option>Matin</option><option>Après-midi</option><option>Indifférent</option></select></div>
+        <div class="champ large"><label for="f-motif">Type de rendez-vous</label><select id="f-motif" name="motif"><option>Première consultation</option><option>Bilan implantaire</option><option>Suivi</option><option>Urgence</option></select></div>
+      </div>
+      <button class="btn btn-plein" type="submit">Envoyer la demande</button>
+      <p class="retour" data-retour hidden role="status">Maquette : ce formulaire n'est pas encore relié au cabinet.</p>
+    </form>
+    <div class="venir">
+      <div class="cadre"><img loading="lazy" src="assets/salle-claire-grand.webp" srcset="assets/salle-claire.webp 800w, assets/salle-claire-grand.webp 1600w" sizes="(min-width:1000px) 560px, 92vw" width="1600" height="1070" alt="Salle de soins claire"></div>
+      <div class="info">
+        <h3>Venir au cabinet</h3>
+        <p class="adr">{{adresse.rue}}, {{adresse.quartier}} — {{adresse.ville}}<br>{{adresse.transports}}</p>
+        <table class="horaires" aria-label="Horaires d'ouverture"><tbody data-repete="horaires"><template><tr><td>{{item.jours}}</td><td>{{item.heures}}</td></tr></template></tbody></table>
+        <a class="tel" href="tel:{{coordonnees.telephone_lien}}">{{coordonnees.telephone}}</a>
+        <p class="petit" data-si="urgences">Urgences : {{urgences}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="questions" aria-labelledby="t-faq">
+  <div class="conteneur">
+    <div class="tete"><span class="surtitre">Questions</span><h2 id="t-faq">Vos questions, <span class="bleu">nos réponses</span></h2></div>
+    <div class="faq" data-repete="faq"><template><details><summary>{{item.q}}</summary><p>{{item.r}}</p></details></template></div>
+    <p class="note">Réponses d'ordre général, à valider par le praticien. Elles ne remplacent pas une consultation.</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="t-cta" style="padding-bottom:0">
+  <div class="conteneur">
+    <div class="cta">
+      <h2 id="t-cta">Une question avant de prendre rendez-vous ?</h2>
+      <p>L'équipe vous répond aux horaires d'ouverture et vous oriente vers le bon type de consultation.</p>
+      <div class="btns"><a class="btn btn-blanc" href="{{lien_rdv}}">Prendre rendez-vous</a><a class="btn btn-verre" href="tel:{{coordonnees.telephone_lien}}">Appeler le cabinet</a></div>
+      <img src="assets/dent-3d.webp" width="704" height="1000" alt="" loading="lazy">
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="pied">
+  <div class="conteneur">
+    <div class="grille">
+      <div><a class="marque" href="#haut"><span>{{nom_cabinet}}</span></a><p style="margin-top:14px">{{p.nom_complet}}, chirurgien-dentiste à {{adresse.ville}}.</p><p>{{adresse.rue}}, {{adresse.quartier}}</p><p><a href="mailto:{{coordonnees.email}}">{{coordonnees.email}}</a></p></div>
+      <div><h3>Le cabinet</h3><p><a href="#soins">Soins</a></p><p><a href="#equipe">L'équipe</a></p><p><a href="#honoraires">Honoraires</a></p><p><a href="#questions">Questions</a></p></div>
+      <div><h3>Praticien</h3><p>{{p.rpps}}</p><p>{{p.conseil_departemental}}</p><p>{{situation_conventionnelle}}</p></div>
+      <div><h3>Mentions légales</h3><p>{{statut_juridique.denomination}} ({{statut_juridique.forme}}) · {{statut_juridique.siren_rcs}}</p><p>Publication : {{statut_juridique.directeur_publication}}</p><p>Hébergeur : {{statut_juridique.hebergeur}}</p><p>Aucun cookie de mesure d'audience ni de publicité.</p></div>
+    </div>
+    <p class="bas">Maquette de démonstration privée, non indexée. Rédaction conforme aux recommandations ordinales V1-19.06.2026, à valider par le praticien. Cabinet, praticien, équipe et coordonnées fictifs (EXEMPLE). Photographies d'illustration libres de droits (Unsplash, StockSnap, rawpixel), à remplacer par les photos du cabinet ; rendu 3D INDESCALE Studio. — Maquette INDESCALE Studio, {{annee}}.</p>
+  </div>
+</footer>
+
+<nav class="barre-mobile" aria-label="Actions rapides">
+  <a class="btn btn-blanc" href="tel:{{coordonnees.telephone_lien}}">Appeler</a>
+  <a class="btn btn-plein" href="{{lien_rdv}}">Rendez-vous</a>
+</nav>
+
+<!-- DONNÉES FICTIVES (EXEMPLE) : à remplacer par le brief.json du prospect -->
+<script id="donnees" type="application/json">
+{
+ "_avertissement": "DONNÉES FICTIVES — EXEMPLE. Cabinet, praticien, équipe, numéros et adresses inventés pour la démonstration du template. À remplacer intégralement par le brief.json du prospect.",
+ "nom_cabinet": "Cabinet Dentaire EXEMPLE",
+ "statut_juridique": {
+  "forme": "SELARL",
+  "denomination": "SELARL Cabinet Dentaire EXEMPLE",
+  "siren_rcs": "RCS EXEMPLE",
+  "siege": "rue de l'Exemple, Exempleville",
+  "est_centre_de_sante": false,
+  "directeur_publication": "Dr Camille Exemple",
+  "hebergeur": "Hébergeur EXEMPLE"
+ },
+ "praticiens": [
+  {
+   "civilite": "Dr",
+   "prenom": "Camille",
+   "nom": "Exemple",
+   "photo": "docteure",
+   "rpps": "RPPS EXEMPLE",
+   "conseil_departemental": "Conseil départemental de l'Ordre EXEMPLE",
+   "specialite_qualifiee": "",
+   "formule_orientation": "oriente sa pratique aux actes d'odontologie chirurgicale",
+   "diplomes_reconnus": [
+    "Diplôme d'État de docteur en chirurgie dentaire — Université EXEMPLE",
+    "Diplôme universitaire d'implantologie orale — Université EXEMPLE"
+   ],
+   "formations_non_reconnues": [
+    "Formation continue en chirurgie pré-implantaire — Organisme EXEMPLE",
+    "Formation en greffe osseuse et sinus lift — Organisme EXEMPLE"
+   ],
+   "fonctions_hu": [
+    "Attaché hospitalier, service d'odontologie — CHU EXEMPLE (2016-2022)"
+   ],
+   "publications": [
+    {
+     "titre": "Titre d'article EXEMPLE sur la cicatrisation péri-implantaire",
+     "revue": "Revue scientifique EXEMPLE",
+     "annee": "2024",
+     "doi": ""
+    },
+    {
+     "titre": "Titre d'article EXEMPLE sur l'imagerie 3D pré-implantaire",
+     "revue": "Revue scientifique EXEMPLE",
+     "annee": "2021",
+     "doi": ""
+    }
+   ],
+   "langues": "Français, anglais"
+  }
+ ],
+ "pratiques": [
+  {
+   "titre": "Pose d'implants",
+   "texte": "Remplacer une ou plusieurs dents absentes.",
+   "photo": "implant"
+  },
+  {
+   "titre": "Greffe osseuse et sinus lift",
+   "texte": "Reconstituer l'os quand il manque.",
+   "photo": "scan3d"
+  },
+  {
+   "titre": "Extraction-implantation",
+   "texte": "L'implant posé le jour de l'extraction, quand c'est possible.",
+   "photo": "dentiste-soin"
+  },
+  {
+   "titre": "Prothèse fixe sur implants",
+   "texte": "Couronne, bridge ou arcade complète fixée.",
+   "photo": "modele-mains"
+  },
+  {
+   "titre": "Parodontologie",
+   "texte": "Soigner la gencive et l'os qui soutiennent les dents.",
+   "photo": "instruments"
+  },
+  {
+   "titre": "Soins et détartrage",
+   "texte": "Le suivi courant, indispensable aux implants.",
+   "photo": "unit"
+  },
+  {
+   "titre": "Couronnes et bridges",
+   "texte": "Restaurer une dent abîmée, sur mesure.",
+   "photo": "modele-dents"
+  },
+  {
+   "titre": "Urgences",
+   "texte": "Une solution dans la journée, selon les disponibilités.",
+   "photo": "lampe"
+  }
+ ],
+ "equipe": [
+  {
+   "prenom": "Léa",
+   "nom": "EXEMPLE",
+   "fonction": "Assistante dentaire",
+   "photo": "dentiste-f"
+  },
+  {
+   "prenom": "Hugo",
+   "nom": "EXEMPLE",
+   "fonction": "Assistant dentaire",
+   "photo": "soignant"
+  }
+ ],
+ "equipements": [
+  {
+   "nom": "Imagerie 3D (CBCT)",
+   "usage": "Mesurer l'os avant la pose.",
+   "photo": "ecrans"
+  },
+  {
+   "nom": "Empreinte optique",
+   "usage": "Une empreinte numérique, sans pâte.",
+   "photo": "vue-dessus"
+  },
+  {
+   "nom": "Salle de soins dédiée",
+   "usage": "Réservée aux actes chirurgicaux.",
+   "photo": "fauteuil-blanc"
+  },
+  {
+   "nom": "Stérilisation et traçabilité",
+   "usage": "Selon les obligations en vigueur.",
+   "photo": "lampe-sombre"
+  }
+ ],
+ "photos": {
+  "legende_ambiance": "Photo d'ambiance EXEMPLE — remplacée par les photos réelles du cabinet"
+ },
+ "logo": "",
+ "adresse": {
+  "rue": "rue de l'Exemple",
+  "quartier": "quartier Exemple",
+  "code_postal": "",
+  "ville": "Exempleville",
+  "acces": "Ascenseur jusqu'au cabinet (EXEMPLE)",
+  "transports": "Tram, arrêt Exemple · parking public à proximité",
+  "plan_url": "https://www.openstreetmap.org/"
+ },
+ "horaires": [
+  {
+   "jours": "Lundi, mardi, jeudi",
+   "heures": "9 h — 19 h"
+  },
+  {
+   "jours": "Mercredi",
+   "heures": "9 h — 13 h"
+  },
+  {
+   "jours": "Vendredi",
+   "heures": "9 h — 17 h"
+  },
+  {
+   "jours": "Samedi",
+   "heures": "9 h — 12 h, sur rendez-vous"
+  },
+  {
+   "jours": "Dimanche",
+   "heures": "Fermé"
+  }
+ ],
+ "coordonnees": {
+  "telephone": "0X XX XX XX XX",
+  "telephone_lien": "0000000000",
+  "email": "contact@cabinet.example"
+ },
+ "lien_rdv": "#contact",
+ "urgences": "Pendant les horaires d'ouverture : appelez le cabinet. En dehors : composez le 15, qui oriente vers le chirurgien-dentiste de garde.",
+ "accessibilite_pmr": "Accessible aux personnes à mobilité réduite (EXEMPLE).",
+ "situation_conventionnelle": "Chirurgien-dentiste conventionné (EXEMPLE)",
+ "honoraires": [
+  {
+   "acte": "Consultation",
+   "honoraires": "",
+   "prise_en_charge": "Remboursée par l'Assurance maladie sur la base du tarif conventionnel",
+   "mis_en_avant": true
+  },
+  {
+   "acte": "Bilan implantaire avec imagerie 3D",
+   "honoraires": "",
+   "prise_en_charge": "À préciser par le cabinet",
+   "mis_en_avant": true
+  },
+  {
+   "acte": "Détartrage",
+   "honoraires": "",
+   "prise_en_charge": "Remboursé sur la base du tarif conventionnel",
+   "mis_en_avant": true
+  },
+  {
+   "acte": "Extraction d'une dent",
+   "honoraires": "",
+   "prise_en_charge": "Remboursée sur la base du tarif conventionnel",
+   "mis_en_avant": false
+  },
+  {
+   "acte": "Pose d'un implant",
+   "honoraires": "",
+   "prise_en_charge": "Acte hors nomenclature, non remboursé par l'Assurance maladie",
+   "mis_en_avant": false
+  },
+  {
+   "acte": "Couronne sur implant",
+   "honoraires": "",
+   "prise_en_charge": "Prise en charge partielle selon la base de remboursement en vigueur",
+   "mis_en_avant": false
+  },
+  {
+   "acte": "Greffe osseuse / comblement",
+   "honoraires": "",
+   "prise_en_charge": "En général hors nomenclature — à confirmer par le cabinet",
+   "mis_en_avant": false
+  },
+  {
+   "acte": "Sinus lift",
+   "honoraires": "",
+   "prise_en_charge": "En général hors nomenclature — à confirmer par le cabinet",
+   "mis_en_avant": false
+  }
+ ],
+ "modes_paiement": [
+  "Carte bancaire",
+  "Chèque",
+  "Espèces (dans la limite légale)",
+  "Virement"
+ ],
+ "mention_css_ame": "Le cabinet reçoit toute personne sans discrimination, y compris les bénéficiaires de la Complémentaire santé solidaire (CSS) et de l'Aide médicale de l'État (AME), qui bénéficient de la dispense d'avance de frais dans les conditions prévues par la réglementation.",
+ "nom_domaine": {
+  "url": "dr-exemple-camille.chirurgiens-dentistes.fr",
+  "type": "chirurgiens-dentistes.fr"
+ },
+ "version_anglaise": false,
+ "parcours": [
+  {
+   "titre": "Consultation et imagerie 3D",
+   "texte": "On écoute, on examine, on mesure l'os.",
+   "delai": "1er rendez-vous"
+  },
+  {
+   "titre": "Plan de traitement et devis",
+   "texte": "Les options, le calendrier, le devis détaillé.",
+   "delai": "Avant tout engagement"
+  },
+  {
+   "titre": "Pose et cicatrisation",
+   "texte": "Sous anesthésie locale, puis quelques mois de cicatrisation, avec une solution provisoire le plus souvent.",
+   "delai": "Quelques mois en général"
+  },
+  {
+   "titre": "Prothèse et suivi",
+   "texte": "La dent définitive, puis des contrôles réguliers.",
+   "delai": "Tout au long de la vie de l'implant"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Est-ce que ça fait mal ?",
+   "r": "La pose se fait sous anesthésie locale, comme un soin courant. Une gêne ou un gonflement peuvent apparaître les jours suivants ; ils sont le plus souvent soulagés par le traitement prescrit. Nous en parlons en détail avant l'intervention."
+  },
+  {
+   "q": "Vais-je rester sans dents ?",
+   "r": "Dans la plupart des cas, une solution provisoire, amovible ou fixe, est proposée pendant la cicatrisation. Sa nature dépend de votre situation et vous est expliquée à l'avance."
+  },
+  {
+   "q": "Ai-je assez d'os ?",
+   "r": "C'est l'imagerie 3D du bilan qui le dit. Si le volume est insuffisant, une greffe ou un sinus lift peut être nécessaire, ce qui allonge le traitement de quelques mois."
+  },
+  {
+   "q": "Combien cela coûte-t-il ?",
+   "r": "L'implant est un acte hors nomenclature, en général non remboursé par l'Assurance maladie. Un devis détaillé vous est remis après le bilan, avant toute décision. Les honoraires des actes courants figurent plus bas."
+  },
+  {
+   "q": "Un implant dure-t-il toute la vie ?",
+   "r": "Un implant n'est pas garanti à vie. Sa longévité dépend surtout de l'hygiène, des contrôles réguliers, du tabac et de l'état de santé général."
+  },
+  {
+   "q": "Combien de temps entre l'extraction et la dent définitive ?",
+   "r": "Comptez en général plusieurs mois, le temps que l'os cicatrise autour de l'implant. Le nombre de rendez-vous et le calendrier indicatif figurent dans votre plan de traitement. Une greffe préalable allonge ce délai."
+  },
+  {
+   "q": "Que porte-t-on pendant la cicatrisation ?",
+   "r": "Une prothèse provisoire, amovible ou fixe selon les cas, est le plus souvent prévue. Une alimentation plus souple est conseillée pendant les premières semaines."
+  },
+  {
+   "q": "Qu'est-ce qu'une greffe osseuse ou un sinus lift ?",
+   "r": "Ce sont des techniques qui reconstituent le volume d'os nécessaire à la stabilité de l'implant. Leur nécessité est évaluée sur l'imagerie 3D. Elles vous sont expliquées, avec leurs suites, avant toute décision."
+  },
+  {
+   "q": "Implant, bridge ou prothèse amovible : comment choisir ?",
+   "r": "Le bridge s'appuie sur les dents voisines, qu'il faut préparer ; l'implant remplace la racine sans toucher aux dents voisines ; la prothèse amovible reste une solution possible. Chaque option a ses avantages et ses limites : elles vous sont toutes présentées lors du bilan."
+  },
+  {
+   "q": "Pourrai-je croquer et mâcher normalement ?",
+   "r": "Une fois la prothèse définitive posée et la cicatrisation terminée, l'implant permet de mâcher normalement dans la plupart des situations. Votre praticien vous indique les précautions propres à votre cas."
+  },
+  {
+   "q": "Y a-t-il des contre-indications ?",
+   "r": "Le tabac, un diabète non équilibré, une parodontite non traitée ou certains traitements, notamment osseux, peuvent augmenter les risques ou contre-indiquer la pose. Ils sont recherchés lors du bilan médical."
+  },
+  {
+   "q": "Qui pose l'implant et qui réalise la couronne ?",
+   "r": "Au cabinet, le même praticien assure en général la pose et la prothèse. Si un autre intervenant est prévu, vous en êtes informé dès le plan de traitement."
+  }
+ ],
+ "faits_cles": [
+  {
+   "valeur": "12 ans",
+   "libelle": "d'exercice à Exempleville"
+  },
+  {
+   "valeur": "3",
+   "libelle": "personnes pour vous accueillir"
+  },
+  {
+   "valeur": "2",
+   "libelle": "langues parlées"
+  },
+  {
+   "valeur": "Sam.",
+   "libelle": "matin, sur rendez-vous"
+  }
+ ],
+ "citation_praticien": "Je prends le temps d'expliquer chaque étape et chaque option, avec ou sans implant. Vous décidez une fois que tout est clair.",
+ "engagements": [
+  {
+   "titre": "L'écoute",
+   "texte": "Votre situation, vos craintes, vos questions, avant tout examen."
+  },
+  {
+   "titre": "Un plan clair",
+   "texte": "Étapes, délais indicatifs et devis détaillé remis avant toute décision."
+  },
+  {
+   "titre": "Le confort",
+   "texte": "Anesthésie locale, consignes écrites et suivi après chaque étape."
+  }
+ ],
+ "mention_secu": "Les soins courants sont remboursés par l'Assurance maladie sur la base des tarifs conventionnels. Les actes prothétiques et implantaires peuvent comporter des dépassements d'honoraires, toujours indiqués sur le devis."
+}
+</script>
+<script>
+/* Moteur de rendu INDESCALE Studio : {{cle}}, data-si, data-repete. Aucun cookie, aucun traceur. */
+(function () {
+  var D = JSON.parse(document.getElementById('donnees').textContent);
+  var A_COMPLETER = 'à compléter par le cabinet';
+  (D.praticiens || []).forEach(function (p) {
+    p.nom_complet = [p.civilite, p.prenom, p.nom].filter(Boolean).join(' ');
+    p.mention_exercice = p.specialite_qualifiee
+      ? 'est spécialiste qualifié' + (p.civilite === 'Dre' ? 'e' : '') + ' en ' + p.specialite_qualifiee
+      : (p.formule_orientation || '');
+    p.initiales = ((p.prenom || ' ')[0] + (p.nom || ' ')[0]).toUpperCase();
+  });
+  (D.equipe || []).forEach(function (m) { m.initiale = (m.prenom || ' ')[0].toUpperCase(); });
+  (D.honoraires || []).forEach(function (h) { h.vide = !h.honoraires; });
+  D.honoraires_vedette = (D.honoraires || []).filter(function (h) { return h.mis_en_avant; });
+  D.pratiques_4 = (D.pratiques || []).slice(0, 4);
+  D.p = (D.praticiens || [])[0] || {};
+  D.annee = new Date().getFullYear();
+  D.A_COMPLETER = A_COMPLETER;
+
+  function get(o, chemin) {
+    return chemin.split('.').reduce(function (a, k) { return a == null ? undefined : a[k]; }, o);
+  }
+  function vide(v) { return v == null || v === '' || v === false || (Array.isArray(v) && v.length === 0); }
+  function fmt(v) { return vide(v) ? '' : Array.isArray(v) ? v.join(' · ') : String(v); }
+  var RX = /\{\{\s*([^}]+?)\s*\}\}/g;
+  function remplace(s, ctx) { return s.replace(RX, function (m, c) { return fmt(get(ctx, c)); }); }
+
+  function rendre(node, ctx) {
+    if (node.nodeType === 3) { if (node.nodeValue.indexOf('{{') > -1) node.nodeValue = remplace(node.nodeValue, ctx); return; }
+    if (node.nodeType !== 1 && node.nodeType !== 11) return;
+    if (node.nodeType === 1) {
+      if (node.tagName === 'TEMPLATE' || node.tagName === 'SCRIPT') return;
+      var si = node.getAttribute('data-si');
+      if (si) {
+        var neg = si.charAt(0) === '!';
+        var v = get(ctx, neg ? si.slice(1) : si);
+        if (neg ? !vide(v) : vide(v)) { node.remove(); return; }
+      }
+      for (var i = 0; i < node.attributes.length; i++) {
+        var a = node.attributes[i];
+        if (a.value.indexOf('{{') > -1) a.value = remplace(a.value, ctx);
+      }
+      var rep = node.getAttribute('data-repete');
+      if (rep) {
+        var tpl = node.querySelector(':scope > template');
+        var items = get(ctx, rep) || [];
+        items.forEach(function (it, n) {
+          var f = tpl.content.cloneNode(true);
+          var c = Object.create(ctx); c.item = it; c.n = n + 1; c.nn = String(n + 1).padStart(2, '0');
+          rendre(f, c);
+          node.appendChild(f);
+        });
+        tpl.remove();
+        return;
+      }
+    }
+    Array.prototype.slice.call(node.childNodes).forEach(function (c) { rendre(c, ctx); });
+  }
+  rendre(document.documentElement, D);
+  window.__DONNEES = D;
+})();
+
+</script>
+<script>
+window.animerDirection=function(gsap){
+  /* Entrée unique du hero (~0,9 s) : texte échelonné, puis l'objet 3D et ses pastilles. Rien n'est lié au défilement. */
+  gsap.timeline({defaults:{ease:'power3.out'}})
+    .from('[data-h]',{y:22,autoAlpha:0,duration:.45,stagger:.06})
+    .from('[data-objet] .dent',{y:40,scale:.94,autoAlpha:0,duration:.6},'-=.5')
+    .from('[data-puce]',{y:12,autoAlpha:0,duration:.35,stagger:.08},'-=.3');
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+/* Mouvement : une seule entrée orchestrée au chargement (hero), aucune animation liée au défilement.
+   Défilement doux Lenis. Tout est coupé si prefers-reduced-motion ou ?apercu. Le survol est en CSS. */
+(function () {
+  var apercu = /apercu/.test(location.search);
+  if (apercu) { document.documentElement.classList.add('apercu'); document.querySelectorAll('img[loading="lazy"]').forEach(function (i) { i.loading = 'eager'; }); }
+  var reduit = apercu || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduit) document.documentElement.classList.add('reduit');
+  if (!reduit && window.Lenis) {
+    var lenis = new Lenis({ lerp: 0.12 });
+    window.__lenis = lenis;
+    (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(0);
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href'); if (id.length < 2) return;
+      var t = document.querySelector(id); if (!t) return;
+      e.preventDefault();
+      if (window.__lenis) window.__lenis.scrollTo(t, { offset: -80 }); else t.scrollIntoView();
+      var m = document.getElementById('menu-mobile'); if (m) m.classList.remove('ouvert');
+    });
+  });
+  var f = document.querySelector('form[data-maquette]');
+  if (f) f.addEventListener('submit', function (e) { e.preventDefault(); var o = f.querySelector('[data-retour]'); if (o) o.hidden = false; });
+  var b = document.querySelector('.menu-btn');
+  if (b) b.addEventListener('click', function () { var m = document.getElementById('menu-mobile'), o = m.classList.toggle('ouvert'); b.setAttribute('aria-expanded', o); b.setAttribute('aria-label', o ? 'Fermer le menu' : 'Ouvrir le menu'); });
+  if (reduit || !window.gsap) return;
+  if (window.animerDirection) window.animerDirection(gsap);
+})();
+</script>
+</body>
+</html>
