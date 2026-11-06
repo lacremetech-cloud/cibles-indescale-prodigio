@@ -6,7 +6,8 @@ import { updateSite } from '../../lib/studioClient'
 const STATUTS = ['Brouillon', 'Prêt', 'Validé', 'Envoyé', 'Ouvert', 'Répondu', 'RDV', 'Vendu', 'Perdu', 'Expiré']
 const lotDe = s => Number(s.prospects?.data?.lot) || 1
 
-export default function StudioSites({ sites, onChange }) {
+export default function StudioSites({ sites: tous, onChange }) {
+  const sites = tous.filter(s => !s.prospects?.data?.test)
   const [vue, setVue] = useState('grille')
 
   const wa = s => s.mobile_whatsapp
@@ -38,7 +39,7 @@ export default function StudioSites({ sites, onChange }) {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginTop: 10 }}>
           {[
             { titre: 'Site actuel', img: s.capture_avant, url: s.prospects?.site_web },
-            { titre: 'Maquette', img: s.capture_apres, url: s.url_maquette },
+            { titre: "Maquette", img: s.capture_apres, url: s.url_maquette && s.url_maquette + "?moi=1" },
           ].map(v => (
             <a key={v.titre} href={v.url || undefined} target="_blank" rel="noreferrer" style={{ display: 'block', textDecoration: 'none', color: 'inherit' }} title={`Ouvrir : ${v.titre}`}>
               <div className="c-addr" style={{ fontWeight: 600, marginBottom: 4 }}>{v.titre} ↗</div>
@@ -59,7 +60,7 @@ export default function StudioSites({ sites, onChange }) {
       {s.email_corps && <details><summary className="c-addr">✉️ {s.prospects?.email || s.email_objet}</summary><p className="c-note" style={{ whiteSpace: 'pre-wrap' }}>{s.email_corps}</p></details>}
       <div className="actions" style={vue === 'grille' ? { marginTop: 'auto', flexWrap: 'wrap' } : undefined}>
         {s.prospects?.site_web && <a className="act" href={s.prospects.site_web} target="_blank" rel="noreferrer">Site actuel</a>}
-        {s.url_maquette && <a className="act" href={s.url_maquette} target="_blank" rel="noreferrer">Maquette</a>}
+        {s.url_maquette && <a className="act" href={s.url_maquette + "?moi=1"} target="_blank" rel="noreferrer">Maquette</a>}
         {s.statut === 'Prêt' && <button className="btn primary" onClick={() => patch(s.id, { statut: 'Validé', valide_at: new Date().toISOString() })}>Valider</button>}
         {wa(s) && <a className="act" href={wa(s)} target="_blank" rel="noreferrer" onClick={() => patch(s.id, { whatsapp_envoye_at: new Date().toISOString() })}>💬</a>}
         <select className="btn" value={s.statut} onChange={e => patch(s.id, { statut: e.target.value })}>
