@@ -20,6 +20,6 @@ export const updateSecteur = async (id, patch) => chk(await supabase.from('studi
 export const listJobs = async id => chk(await supabase.from('studio_jobs').select('*').eq('secteur_id', id).order('created_at', { ascending: false }))
 export const createJob = async (secteur_id, type, params = {}) => chk(await supabase.from('studio_jobs').insert({ secteur_id, type, params }).select().single())
 export const listLivrables = async id => chk(await supabase.from('studio_livrables').select('*').eq('secteur_id', id).order('created_at', { ascending: false }))
-export const listSites = async secteur => chk(await supabase.from('studio_sites').select('*, prospects(entreprise, ville, dirigeant_principal, telephone, email, site_web)').eq('secteur', secteur).order('nb_vues', { ascending: false }))
+export const listSites = async secteur => chk(await supabase.from('studio_sites').select('*, prospects(entreprise, ville, dirigeant_principal, telephone, email, site_web, data)').eq('secteur', secteur).order('nb_vues', { ascending: false }))
 export const updateSite = async (id, patch) => chk(await supabase.from('studio_sites').update(patch).eq('id', id).select().single())
 export const createSecteur = async row => chk(await supabase.from('studio_secteurs').insert(row).select().single())
